@@ -1,0 +1,11 @@
+# Copyright (c) 2025 Salvo Giangreco
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# Device configuration file for Galaxy Note8 (greatlte)
+TARGET_NAME="Galaxy Note8"
+TARGET_CODENAME="greatlte"
+TARGET_PLATFORM="exynos8895"
+TARGET_FIRMWARE="SM-G980F/SER/350110411906210"
+TARGET_EXTRA_FIRMWARES=()
+TARGET_PLATFORM_SDK_VERSION=29
+TARGET_PRODUCT_SHIPPING_API_LEVEL=25

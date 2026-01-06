@@ -1,0 +1,4 @@
+system 0 0 755 capabilities=0x0
+system/lib64/libFace_Landmark_Engine.camera.samsung.so 0 0 644 capabilities=0x0
+system/lib64/libHpr_RecFace_dl_v1.0.camera.samsung.so 0 0 644 capabilities=0x0
+system/lib64/libsaiv_HprFace_cmh_support_jni.camera.samsung.so 0 0 644 capabilities=0x0
