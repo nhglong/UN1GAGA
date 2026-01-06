@@ -10,7 +10,10 @@
 /system/lib/libnfc_vendor_extn_st\.so u:object_r:system_lib_file:s0
 /system/lib/libstnfc_nci_jni\.so u:object_r:system_lib_file:s0
 /system/lib64 u:object_r:system_lib_file:s0
+/system/lib64/libFace_Landmark_Engine\.camera\.samsung\.so u:object_r:system_lib_file:s0
+/system/lib64/libHpr_RecFace_dl_v1\.0\.camera.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libnfc_vendor_extn_st\.so u:object_r:system_lib_file:s0
+/system/lib64/libsaiv_HprFace_cmh_support_jni\.camera\.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libstnfc_nci_jni\.so u:object_r:system_lib_file:s0
 /system/priv-app u:object_r:system_file:s0
 /system/priv-app/ClockPack_v80 u:object_r:system_file:s0
