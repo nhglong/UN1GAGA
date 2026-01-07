@@ -4,4 +4,5 @@
     <dimen name="config_screenBrightnessSettingDefaultFloat">0.5019608</dimen>
     <dimen name="config_screenBrightnessSettingMaximumFloat">1.0</dimen>
     <dimen name="config_screenBrightnessSettingMinimumFloat">0.0</dimen>
+    <dimen name="physical_power_button_center_screen_location_y">960.0px</dimen>
 </resources>
