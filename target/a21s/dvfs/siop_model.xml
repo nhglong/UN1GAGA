@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE siop_document [
+<!ELEMENT siop_document (temperatures, levels, components, scenarios?)>
+<!ELEMENT temperatures (temp+)>
+<!ELEMENT temp EMPTY>
+<!ATTLIST temp
+          type (AP|BAT|USB|CHG|PA|WIFI) #REQUIRED
+          default CDATA "1"
+          min CDATA "1"
+          max CDATA "1"
+          step CDATA "1"
+          init CDATA "5"
+          hold CDATA "1"
+          gap CDATA "0">
+<!ELEMENT levels (level+)>
+<!ELEMENT level EMPTY>
+<!ATTLIST level
+          id CDATA #REQUIRED
+          temp CDATA #REQUIRED>
+<!ELEMENT components (component+)>
+<!ELEMENT component (limiter+)>
+<!ATTLIST component
+          name CDATA #REQUIRED
+          tempType CDATA #REQUIRED>
+<!ELEMENT scenarios (scenario*, scenario_group*)>
+<!ELEMENT scenario (limiter+)>
+<!-- you can use below delimiter on scenario name -->
+<!-- "!" : intent, ":" : package, "," : plural    -->
+<!ATTLIST scenario
+          name CDATA #REQUIRED
+          tempType CDATA #REQUIRED
+          priority CDATA "0">
+<!ELEMENT scenario_group (scenario+)>
+<!ELEMENT scenario EMPTY>
+<!ATTLIST scenario
+          name CDATA #REQUIRED
+          limiter CDATA #REQUIRED
+          step CDATA "-1"
+          delay CDATA "0"
+          cond (sensor_check|for_request|for_temporary) #IMPLIED
+          temp CDATA "370"
+          gap CDATA "20"
+          value CDATA #REQUIRED>
+<!ELEMENT limiter EMPTY>
+<!ATTLIST limiter
+          name CDATA #REQUIRED
+          step CDATA "-1"
+          delay CDATA "0"
+          cond (sensor_check|for_request|for_temporary) #IMPLIED
+          temp CDATA "370"
+          gap CDATA "20"
+          value CDATA #REQUIRED>
+]>
+
+<siop_document>
+
+    <overheatcontrol>
+        <complex>
+            <MW     formula="AP*BAT*LRP" temp="510.410.450" />
+            <LTB    formula="AP*BAT"     temp="510.410"     />
+            <LCD    formula="AP*BAT"     temp="490.390"     />
+            <GDM    formula="AP*BAT"     temp="480.400"     />
+            <GDMLTB formula="AP*BAT"     temp="500.420"     />
+            <SS     formula="AP*BAT"     temp="770.550"     />
+        </complex>
+    </overheatcontrol>
+
+    <modelsettings>
+        <Skin type="LRP"/>
+        <sensors>
+            <LTB_SENSOR type="PALM" />
+        </sensors>
+    </modelsettings>
+
+
+    <components>
+
+        <component name="AP" tempType="LRP" >
+            <limiter name="CPUFreqMax" step="0" temp="350:380:450:470" value="-1:1586000:1586000:1157000" />
+            <limiter name="AppInstallDelay" value="5000" />
+        </component>
+
+        <component name="CHG" tempType="LRP">
+            <limiter name="Charging" temp="370" value="-1" />
+        </component>
+
+        <component name="DISPLAY" tempType="LRP">
+            <limiter name="Brightness" temp="370" value="-1:230:209" />
+        </component>
+
+        <component name="WIFI" tempType="LRP">
+            <limiter name="WifiTput" temp="370" gap="20" value="-1:50:30:10" />
+            <limiter name="SmartBonding" temp="400" value="-1:1" />
+        </component>
+
+        <component name="AP+DISPLAY" tempType="LRP" >
+            <limiter name="AppInstallDelay" temp="370" gap="20" value="-1" />
+        </component>
+
+        <component name="CHG+DISPLAY" tempType="LRP">
+            <limiter name="Charging" temp="350" value="-1:70" />
+        </component>
+
+        <component name="CAM" tempType="LRP" >
+            <limiter name="DualRecording" temp="370" value="-1" />
+        </component>
+
+    </components>
+
+    <scenarios>
+
+        <scenario name="ScreenOff" tempType="LRP" priority="1" >
+            <limiter name="Charging" value="100" />
+        </scenario>
+
+        <scenario name="ScreenOffInCall" tempType="LRP" priority="1">
+            <limiter name="Charging" value="70" />
+        </scenario>
+
+        <scenario name="SIPStart" tempType="LRP" priority="1" >
+            <limiter name="CPUFreqMax" cond="for_temporary" temp="430" value="-1:1586000:1456000" />
+            <limiter name="GPUFreqMax" cond="for_temporary" temp="430"         value="-1:598000"          />
+        </scenario>
+
+        <scenario name="AppStart" tempType="LRP" priority="1" >
+            <limiter name="CPUFreqMax" cond="for_temporary" temp="430" value="-1:1586000:1456000" />
+            <limiter name="GPUFreqMax" cond="for_temporary" temp="430"         value="-1:598000"          />
+        </scenario>
+
+        <scenario name="Badge" tempType="LRP" priority="1" >
+            <limiter name="CPUFreqMax" cond="for_temporary" temp="430" value="-1:1586000:1456000" />
+            <limiter name="GPUFreqMax" cond="for_temporary" temp="430"         value="-1:598000"          />
+        </scenario>
+
+        <scenario name="WakeUp" tempType="LRP" priority="1" >
+            <limiter name="CPUFreqMax" cond="for_temporary" temp="430" value="-1:1586000:1456000" />
+            <limiter name="GPUFreqMax" cond="for_temporary" temp="430"         value="-1:598000"          />
+        </scenario>
+
+        <scenario name="AppStore" tempType="LRP" >
+            <limiter name="AppInstallDelay" temp="300" value="-1:3000:5000" />
+        </scenario>
+
+        <scenario name="VtCallControl" tempType="LRP" priority="1">
+            <limiter name="AppInstallDelay" temp="300" value="-1:3000:5000" />
+            <limiter name="Brightness"      temp="350" value="219:199"      />
+            <limiter name="CameraFps"       temp="340" value="-1:1" />
+            <limiter name="CPUFreqMax"     temp="330:350:450:470" value="-1:1586000:1586000:1456000" />
+        </scenario>
+
+        <scenario name="CameraRecording!Camera_recording,Camera_recordingDual" tempType="LRP">
+            <limiter name="Brightness" temp="350" value="219:199" />
+        </scenario>
+
+        <scenario name="Navigation" tempType="LRP" >
+            <limiter name="Brightness" value="169" />
+        </scenario>
+
+        <scenario_group name="GameThermalCpuControl" tempType="LRP" >
+            <scenario id="-6"  limiter="CPUFreqMax"                             value="1300000" />
+            <scenario id="-5"  limiter="CPUFreqMax" step="0" temp="370:380:400" value="-1:1456000:1300000" />
+            <scenario id="-4"  limiter="CPUFreqMax" step="0" temp="370:380:400" value="-1:1586000:1456000" />
+            <scenario id="-3"  limiter="CPUFreqMax" step="0" temp="370:380:400" value="-1:1742000:1586000" />
+            <scenario id="-2"  limiter="CPUFreqMax" step="0" temp="370:380:400" value="-1:1846000:1742000" />
+            <scenario id="-1"  limiter="CPUFreqMax" step="0" temp="370:380:400" value="-1:2002000:1846000" />
+            <scenario id="0"   limiter="CPUFreqMax"                             value="-1"                 />
+        </scenario_group>
+
+        <scenario_group name="GameThermalGpuControl" tempType="LRP" >
+            <scenario id="-3" limiter="GPUFreqMax"                             value="377000" />
+            <scenario id="-2" limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:433000:377000" />
+            <scenario id="-1" limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:598000:433000" />
+            <scenario id="0"  limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:754000:598000" />
+            <scenario id="1"  limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:865000:754000" />
+            <scenario id="2"  limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:865000:754000" />
+            <scenario id="3"  limiter="GPUFreqMax" step="0" temp="370:380:400" value="-1:1001000:865000" />
+            <scenario id="4"  limiter="GPUFreqMax"                             value="-1"               />
+        </scenario_group>
+
+    </scenarios>
+
+</siop_document>

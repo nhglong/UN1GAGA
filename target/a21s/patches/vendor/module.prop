@@ -1,0 +1,4 @@
+id=vendor
+name=Vendor patches
+author=nhglong
+description=Various vendor-related patches.

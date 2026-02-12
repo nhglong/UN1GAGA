@@ -1,0 +1,9 @@
+# Vendor patches for Galaxy A21s (a21s)
+# All proprietary files from this list, unless pinned or noted otherwise,
+# are from A217FXXSCDXE2.
+
+# Fstab
+vendor/etc/fstab.exynos850
+
+# Vintf
+vendor/etc/vintf/manifest.xml
