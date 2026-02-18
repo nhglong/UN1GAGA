@@ -2,3 +2,4 @@ external_storage.projid.enabled=1
 external_storage.casefold.enabled=1
 external_storage.sdcardfs.enabled=1
 persist.sys.fuse.passthrough.enable=true
+ro.incremental.enable=true
