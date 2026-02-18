@@ -13,7 +13,7 @@ odm     /odm            ext4      ro            wait,logical,first_stage_mount
 /dev/block/platform/12100000.dwmmc0/by-name/optics	/optics	ext4	ro,barrier=1	nofail,avb,first_stage_mount
 /dev/block/platform/12100000.dwmmc0/by-name/metadata	/metadata	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic,sync	wait,first_stage_mount,formattable,check
 /dev/block/platform/12100000.dwmmc0/by-name/cache	/cache	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
-/dev/block/platform/12100000.dwmmc0/by-name/userdata	/data	f2fs	noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678	latemount,wait,check,quota,reservedsize=128M,checkpoint=fs
+/dev/block/platform/12100000.dwmmc0/by-name/userdata	/data	f2fs	noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier latemount,wait,check,quota,formattable,checkpoint=fs,fscompress,readahead_size_kb=128
 /dev/block/platform/12100000.dwmmc0/by-name/efs	/mnt/vendor/efs	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check
 /dev/block/platform/12100000.dwmmc0/by-name/cpefs	/mnt/vendor/cpefs	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic	wait,check,nofail
 /dev/block/platform/12100000.dwmmc0/by-name/misc	/misc	emmc	defaults	defaults,first_stage_mount
