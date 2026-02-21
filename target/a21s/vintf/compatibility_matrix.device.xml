@@ -34,7 +34,7 @@
         device_framework_compatibility_matrix.xml
 -->
 <compatibility-matrix version="9.0" type="framework">
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>android.hardware.biometrics.face</name>
         <version>1.0</version>
         <interface>
@@ -42,7 +42,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>android.hardware.biometrics.fingerprint</name>
         <version>2.1</version>
         <interface>
@@ -50,7 +50,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl">
         <name>android.hardware.bluetooth</name>
         <version>1.0</version>
         <interface>
@@ -58,7 +58,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl">
         <name>android.hardware.drm</name>
         <version>1.4</version>
         <interface>
@@ -70,7 +70,7 @@
             <instance>widevine</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>android.hardware.keymaster</name>
         <version>4.0</version>
         <interface>
@@ -78,14 +78,14 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>android.hardware.light</name>
         <interface>
             <name>ILights</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>android.hardware.nfc</name>
         <version>1.2</version>
         <interface>
@@ -93,7 +93,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>android.hardware.radio</name>
         <version>1.2</version>
         <interface>
@@ -102,7 +102,7 @@
             <instance>slot2</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.audio</name>
         <version>1.0</version>
         <interface>
@@ -110,7 +110,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.biometrics.face</name>
         <version>2.0</version>
         <interface>
@@ -118,7 +118,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.biometrics.fingerprint</name>
         <version>3.0</version>
         <interface>
@@ -126,7 +126,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.bluetooth</name>
         <version>2.0</version>
         <interface>
@@ -134,7 +134,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.camera.provider</name>
         <version>4.0</version>
         <interface>
@@ -142,7 +142,7 @@
             <instance>legacy/0</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.gnss</name>
         <version>2.1</version>
         <interface>
@@ -150,7 +150,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.gnss</name>
         <version>2.1</version>
         <interface>
@@ -158,7 +158,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.health</name>
         <version>2.0</version>
         <interface>
@@ -166,7 +166,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.hqm</name>
         <version>1.0</version>
         <interface>
@@ -174,7 +174,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>vendor.samsung.hardware.hyper</name>
         <version>2</version>
         <interface>
@@ -182,7 +182,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>vendor.samsung.hardware.hyper</name>
         <version>2</version>
         <interface>
@@ -190,14 +190,14 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>vendor.samsung.hardware.media.mpp</name>
         <interface>
             <name>ISehMppStore</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.miscpower</name>
         <version>2.0</version>
         <interface>
@@ -205,7 +205,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.nfc</name>
         <version>2.0</version>
         <interface>
@@ -213,7 +213,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.radio</name>
         <version>2.2</version>
         <interface>
@@ -222,7 +222,7 @@
             <instance>slot2</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.radio.bridge</name>
         <version>2.0</version>
         <interface>
@@ -231,7 +231,7 @@
             <instance>slot2</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.radio.channel</name>
         <version>2.0</version>
         <interface>
@@ -242,7 +242,7 @@
             <instance>imsd2</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.security.drk</name>
         <version>2.0</version>
         <interface>
@@ -250,7 +250,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.security.engmode</name>
         <version>1.0</version>
         <interface>
@@ -258,7 +258,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>vendor.samsung.hardware.security.hdcp.wifidisplay</name>
         <version>1-2</version>
         <interface>
@@ -266,7 +266,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.security.skpm</name>
         <version>1.0</version>
         <interface>
@@ -274,7 +274,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.security.vaultkeeper</name>
         <version>2.0</version>
         <interface>
@@ -290,7 +290,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.snap</name>
         <version>1.2</version>
         <interface>
@@ -298,7 +298,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.sysinput</name>
         <version>1.2</version>
         <interface>
@@ -306,7 +306,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.sysinput</name>
         <version>1.2</version>
         <interface>
@@ -314,7 +314,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.thermal</name>
         <version>1.0</version>
         <interface>
@@ -322,7 +322,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.tlc.iccc</name>
         <version>1.0</version>
         <interface>
@@ -330,7 +330,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.tlc.ucm</name>
         <version>2.0</version>
         <interface>
@@ -338,7 +338,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.vibrator</name>
         <version>2.2</version>
         <interface>
@@ -346,7 +346,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.wifi</name>
         <version>2.0-2</version>
         <interface>
@@ -354,7 +354,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.wifi</name>
         <version>2.0-2</version>
         <interface>
@@ -362,7 +362,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.wifi.hostapd</name>
         <version>4.0</version>
         <interface>
@@ -370,7 +370,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.wifi.supplicant</name>
         <version>3.0-1</version>
         <interface>
@@ -378,7 +378,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung.hardware.wifi.supplicant</name>
         <version>3.0-1</version>
         <interface>
@@ -386,7 +386,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung_slsi.hardware.ExynosHWCServiceTW</name>
         <version>1.0</version>
         <interface>
@@ -394,7 +394,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl">
         <name>vendor.samsung_slsi.hardware.configstore</name>
         <version>1.0</version>
         <interface>
