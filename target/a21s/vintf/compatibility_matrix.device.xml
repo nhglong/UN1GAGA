@@ -33,7 +33,7 @@
         framework_compatibility_matrix_2_1.xml
         device_framework_compatibility_matrix.xml
 -->
-<compatibility-matrix version="4.0" type="framework">
+<compatibility-matrix version="9.0" type="framework">
     <hal format="hidl" optional="true">
         <name>android.hardware.biometrics.face</name>
         <version>1.0</version>
@@ -410,6 +410,11 @@
         <sepolicy-version>29.0</sepolicy-version>
         <sepolicy-version>30.0</sepolicy-version>
         <sepolicy-version>31.0</sepolicy-version>
+        <sepolicy-version>32.0</sepolicy-version>
+        <sepolicy-version>33.0</sepolicy-version>
+        <sepolicy-version>34.0</sepolicy-version>
+        <sepolicy-version>202404</sepolicy-version>
+        <sepolicy-version>202504</sepolicy-version>
     </sepolicy>
     <avb>
         <vbmeta-version>1.0</vbmeta-version>
