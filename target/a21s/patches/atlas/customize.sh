@@ -31,6 +31,20 @@ if [ ! -f "$TMP_DIR/out/kernel" ]; then
 fi
 LOG_STEP_OUT
 
+while IFS= read -r f; do
+    LOG "- Extracting boot.img/$(basename "$f")"
+
+    EVAL "mkdir -p \"$TMP_DIR/out/ramdisk_extracted\""
+    EVAL "cat \"$f\" | gzip -d | cpio --quiet -i -D \"$TMP_DIR/out/ramdisk_extracted\""
+
+    EVAL "cp -a \"$SRC_DIR/target/$TARGET_CODENAME/patches/vendor/vendor/etc/fstab.exynos850\" \"$TMP_DIR/out/ramdisk_extracted\""
+
+    LOG "- Repacking boot.img/$(basename "$f")"
+
+    EVAL "mkbootfs \"$TMP_DIR/out/ramdisk_extracted\" | gzip > \"$f\""
+    EVAL "rm -rf \"$TMP_DIR/out/ramdisk_extracted\""
+done < <(find "$TMP_DIR/out" -type f -name "*ramdisk*" | LC_ALL=C sort)
+
 LOG_STEP_IN "- Repacking boot.img"
 EVAL "rm -rf \"$TMP_DIR/out/dtb\""
 EVAL "rm -rf \"$TMP_DIR/out/kernel\""
