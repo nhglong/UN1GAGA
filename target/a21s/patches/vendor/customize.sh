@@ -42,3 +42,8 @@ ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/init/vendor.samsung.hardware.vi
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/vintf/manifest/vendor.samsung.hardware.vibrator-default.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.vibrator-V5-ndk_platform.so" 0 0 644 "u:object_r:vendor_file:s0"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Removing renderscript blobs"
+DELETE_FROM_WORK_DIR "vendor" "lib/hw/android.hardware.renderscript@1.0-impl.so"
+DELETE_FROM_WORK_DIR "vendor" "lib64/hw/android.hardware.renderscript@1.0-impl.so"
+LOG_STEP_OUT
