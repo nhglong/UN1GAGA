@@ -73,3 +73,12 @@ ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.snap-
 LOG_STEP_OUT
 
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/libsnaplite_native.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+
+LOG_STEP_IN "- Updating sysinput blobs"
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/vendor.samsung.hardware.sysinput@1.2-service"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/vendor.samsung.hardware.sysinput@1.2-service.rc"
+
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "bin/hw/vendor.samsung.hardware.sysinput@1.3-service" 0 0 755 "u:object_r:hal_sec_inputdev_default_exec:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/init/vendor.samsung.hardware.sysinput@1.3-service.rc" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.sysinput@1.3.so" 0 0 644 "u:object_r:system_lib_file:s0"
+LOG_STEP_OUT
