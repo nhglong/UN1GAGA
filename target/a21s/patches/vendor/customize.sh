@@ -57,3 +57,17 @@ EVAL "sed -i \"s/a2dp_audio_policy_configuration/bluetooth_audio_policy_configur
 DELETE_FROM_WORK_DIR "vendor" "etc/a2dp_audio_policy_configuration.xml"
 EVAL "sed -i \"/hearing_aid_audio_policy_configuration/d\" \"$WORK_DIR/vendor/etc/audio_policy_configuration_base.xml\""
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Updating snap blobs"
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/vendor.samsung.hardware.snap@1.2-service-nonlazy"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/vendor.samsung.hardware.snap@1.2-service.rc"
+DELETE_FROM_WORK_DIR "vendor" "lib64/vendor.samsung.hardware.snap@1.0.so"
+DELETE_FROM_WORK_DIR "vendor" "lib64/vendor.samsung.hardware.snap@1.1.so"
+DELETE_FROM_WORK_DIR "vendor" "lib64/vendor.samsung.hardware.snap@1.2.so"
+
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "bin/snap_utility_64" 0 2000 755 "u:object_r:snap_utility_exec:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "bin/hw/vendor.samsung.hardware.snap-service" 0 2000 755 "u:object_r:snap_hidl_exec:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/init/vendor.samsung.hardware.snap-lazy.rc" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/vintf/manifest/vendor.samsung.hardware.snap-default.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.snap-V1-ndk_platform.so" 0 0 644 "u:object_r:vendor_file:s0"
+LOG_STEP_OUT

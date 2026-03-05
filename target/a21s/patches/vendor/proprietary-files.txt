@@ -55,5 +55,12 @@ vendor/etc/selinux/vendor_sepolicy_version|0aecf399d8cc8867f469bc52e4595b8c|28b1
 vendor/etc/selinux/vendor_service_contexts|ce56c42d984a46a153e201c3ca1b09ae
 vendor/etc/selinux/vndservice_contexts|42f059f520d32ecb18ceec76516df233
 
+# Snap - A256EXXSADZA2
+vendor/lib64/libsnaplite_native.so|7c5de23da38d600c6677c46f68d2520e
+vendor/lib64/libsnaplite_wrapper.so|384e20e9f2c985c97d770de163cc9159
+vendor/lib64/libsnap_compute.so|52db9800ab7005421786bd6df529698d
+vendor/lib64/libsnap_compute_wrapper.so|35df22562bd10a2ebc3b2b52398d0c71
+vendor/lib64/libsnap_vndk.so|58858adba62a89ffa04e72f7937bd3a7
+
 # Vintf
 vendor/etc/vintf/manifest.xml
