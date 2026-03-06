@@ -18,7 +18,7 @@
         manifest_gnss_2_1.xml
         manifest_isehgnss_2_1.xml
 -->
-<manifest version="4.0" type="device" target-level="4">
+<manifest version="4.0" type="device" target-level="5">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -68,16 +68,6 @@
             <instance>legacy/0</instance>
         </interface>
         <fqname>@2.6::ICameraProvider/legacy/0</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.configstore</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>ISurfaceFlingerConfigs</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::ISurfaceFlingerConfigs/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.gatekeeper</name>
@@ -403,4 +393,5 @@
     <sepolicy>
         <version>31.0</version>
     </sepolicy>
+    <kernel target-level="5"/>
 </manifest>

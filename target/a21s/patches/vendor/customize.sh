@@ -94,3 +94,8 @@ EVAL "sed -i '/<feature name=\"android.software.managed_users\" notLowRam=\"true
     <\\!-- Feature to specify if the device support devices controls. -->\\
     <feature name=\"android.software.controls\" />\
 ' \"$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml\""
+
+# fcm 5
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.configstore@1.1-service"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.configstore@1.1-service.rc"
+DELETE_FROM_WORK_DIR "vendor" "etc/seccomp_policy/configstore@1.1.policy"
