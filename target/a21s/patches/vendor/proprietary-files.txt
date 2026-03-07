@@ -5,5 +5,19 @@
 # Fstab
 vendor/etc/fstab.exynos850
 
+# Selinux - A256EXXSADZA2
+vendor/etc/selinux/sk/authorize.xml|c942a0afe3ecde6aa7eec10b9804ad8c
+vendor/etc/selinux/plat_pub_versioned.cil|e1b9c6496bf963485005cad0ea4e5021
+vendor/etc/selinux/selinux_denial_metadata|cff3714bed12be3db0c2afb6b1d78d34
+vendor/etc/selinux/vendor_file_contexts|93d7cc60e1610c830268ca7d45463f39
+vendor/etc/selinux/vendor_hwservice_contexts|269251673a4e0da56581c7ec6953e43a
+vendor/etc/selinux/vendor_mac_permissions.xml|40df49af27a225a761e451d446fb9688
+vendor/etc/selinux/vendor_property_contexts|5c434c347456e70a40fbe122c7547775
+vendor/etc/selinux/vendor_seapp_contexts|2169b6fab2d37b9849746f83228f16ad
+vendor/etc/selinux/vendor_sepolicy.cil|399e7f765dbefc35a518447ce71f9145
+vendor/etc/selinux/vendor_sepolicy_version|0aecf399d8cc8867f469bc52e4595b8c
+vendor/etc/selinux/vendor_service_contexts|ce56c42d984a46a153e201c3ca1b09ae
+vendor/etc/selinux/vndservice_contexts|42f059f520d32ecb18ceec76516df233
+
 # Vintf
 vendor/etc/vintf/manifest.xml
