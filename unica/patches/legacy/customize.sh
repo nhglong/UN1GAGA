@@ -639,6 +639,10 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     fi
 fi
 
+# Support Left and Right display cutouts (pre-API 34)
+APPLY_PATCH "system_ext" "priv-app/SystemUI/SystemUI.apk" \
+    "$MODPATH/cutout/SystemUI.apk/0001-restore-left-and-right-cutout-support.patch"
+
 if ! $PATCHED; then
     LOG "\033[0;33m! Nothing to do\033[0m"
 fi
