@@ -82,3 +82,15 @@ ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "bin/hw/vendor.samsung.hardware.sysi
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/init/vendor.samsung.hardware.sysinput@1.3-service.rc" 0 0 644 "u:object_r:vendor_configs_file:s0"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.sysinput@1.3.so" 0 0 644 "u:object_r:system_lib_file:s0"
 LOG_STEP_OUT
+
+# device spec
+EVAL "sed -i '/<feature name=\"android.hardware.screen.landscape\" \\/>/a\\
+    <\\!-- Indicate support for the Android security model per the CDD. -->\\
+    <feature name=\"android.hardware.security.model.compatible\" />\
+' \"$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml\""
+
+EVAL "sed -i '/<feature name=\"android.software.managed_users\" notLowRam=\"true\"\/>/a\\
+\\
+    <\\!-- Feature to specify if the device support devices controls. -->\\
+    <feature name=\"android.software.controls\" />\
+' \"$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml\""
