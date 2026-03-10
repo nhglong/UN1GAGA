@@ -63,3 +63,6 @@ vendor/lib64/libsnap_vndk.so|58858adba62a89ffa04e72f7937bd3a7
 
 # Vintf
 vendor/etc/vintf/manifest.xml
+
+# Wi-Fi - A256EXXSADZA2
+vendor/bin/hw/wpa_supplicant|97c2e46c05a00babb4956bbeffded48e
