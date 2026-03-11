@@ -160,6 +160,7 @@
     <local name="SUPPORT_FRONT_LOW_PERFORMANCE_VIDEO_BEAUTY" value="true" />
     <local name="SUPPORT_ADVANCED_RECORDING_OPTIONS" value="false"/>
     <local name="SUPPORT_HDR10_PLUS_RECORDING" value="false"/>
+    <local name="SUPPORT_RECORDING_LENS_CHANGE" value="true" />
     <local name="SUPPORT_VIDEO_HDR" value="false" />
     <local name="SUPPORT_SENSOR_CROP" value="true"/>
     <local name="SUPPORT_BACK_LOW_PERFORMANCE_VIDEO_BEAUTY" value="true" />
