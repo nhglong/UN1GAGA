@@ -1,0 +1,47 @@
+From eecccab7205c7dae3d8998985b14c5cb4c6b79c4 Mon Sep 17 00:00:00 2001
+From: nhglong <its.nhglong@gmail.com>
+Date: Fri, 20 Mar 2026 21:34:55 +0700
+Subject: [PATCH] Enable frame watermark
+
+---
+ smali_classes3/x1/e.smali | 22 ----------------------
+ 1 file changed, 22 deletions(-)
+
+diff --git a/smali_classes3/x1/e.smali b/smali_classes3/x1/e.smali
+index 46cce9d..31eb3a5 100644
+--- a/smali_classes3/x1/e.smali
++++ b/smali_classes3/x1/e.smali
+@@ -5420,30 +5420,8 @@
+ 
+     sget-object v1, Lx1/c;->SUPPORT_FRAME_WATERMARK:Lx1/c;
+ 
+-    invoke-virtual/range {p0 .. p0}, Lx1/e;->I()Ljava/lang/String;
+-
+-    move-result-object v6
+-
+-    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+-
+-    move-result v6
+-
+-    if-eqz v6, :cond_1f
+-
+-    invoke-static {v1, v3}, Lx1/e;->C0(Lx1/c;Z)Z
+-
+-    move-result v6
+-
+-    if-eqz v6, :cond_1f
+-
+     const/4 v3, 0x1
+ 
+-    goto :goto_1a
+-
+-    :cond_1f
+-    const/4 v3, 0x0
+-
+-    :goto_1a
+     invoke-static {v3}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+ 
+     move-result-object v3
+-- 
+2.51.0
+
