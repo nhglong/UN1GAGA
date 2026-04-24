@@ -99,6 +99,10 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
 fi
 
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
+    ADD_TO_WORK_DIR "a73xqxx" "vendor" "bin/hw/vendor.samsung.hardware.light-service" 0 2000 755 "u:object_r:hal_light_default_exec:s0"
+fi
+
+if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/libsnaplite_native.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
 fi
 
