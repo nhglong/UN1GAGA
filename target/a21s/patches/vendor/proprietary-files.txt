@@ -29,6 +29,10 @@ vendor/lib64/vendor.samsung.hardware.bluetooth.audio@2.1.so|fad2953892801ff0d9a4
 # Fstab
 vendor/etc/fstab.exynos850
 
+# Light - S901BXXSMGZB2
+vendor/bin/hw/vendor.samsung.hardware.light-service|93fbae922e4aaf6bfe0612d98c186620
+vendor/lib64/vendor.samsung.hardware.light-V1-ndk_platform.so|56b6aad2676e0e38ab30698bcd6ce0a0
+
 # RIL - A256EXXSADZA2
 vendor/bin/hw/rild|fc25e7f4738ecc09918189dc3ed0041b
 vendor/etc/init/vendor.samsung.rild.rc:vendor/etc/init/init.vendor.rilchip.rc|ebcdaf6f28a4746ea4050b5d65803880

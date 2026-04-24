@@ -99,3 +99,7 @@ EVAL "sed -i '/<feature name=\"android.software.managed_users\" notLowRam=\"true
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.configstore@1.1-service"
 DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.configstore@1.1-service.rc"
 DELETE_FROM_WORK_DIR "vendor" "etc/seccomp_policy/configstore@1.1.policy"
+
+# light
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "bin/hw/vendor.samsung.hardware.light-service" 0 0 755 "u:object_r:hal_light_default_exec:s0"
+ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.samsung.hardware.light-V1-ndk_platform.so" 0 0 644 "u:object_r:system_lib_file:s0"
