@@ -1,6 +1,7 @@
 /vendor u:object_r:vendor_file:s0
 /vendor/bin u:object_r:vendor_file:s0
 /vendor/bin/hw u:object_r:vendor_file:s0
+/vendor/bin/hw/vendor\.samsung\.hardware\.light-service u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/wpa_supplicant u:object_r:hal_wifi_supplicant_default_exec:s0
 /vendor/etc u:object_r:vendor_configs_file:s0
 /vendor/etc/midas u:object_r:vendor_configs_file:s0
