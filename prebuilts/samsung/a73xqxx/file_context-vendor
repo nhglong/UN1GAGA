@@ -1,9 +1,12 @@
 /vendor u:object_r:vendor_file:s0
 /vendor/bin u:object_r:vendor_file:s0
 /vendor/bin/hw u:object_r:vendor_file:s0
+/vendor/bin/hw/vendor\.samsung\.hardware\.biometrics\.face@3\.0-service u:object_r:hal_face_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.light-service u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/wpa_supplicant u:object_r:hal_wifi_supplicant_default_exec:s0
 /vendor/etc u:object_r:vendor_configs_file:s0
+/vendor/etc/init u:object_r:vendor_configs_file:s0
+/vendor/etc/init/vendor\.samsung\.hardware\.biometrics\.face@3\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/midas u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/deflare u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/deflare/srcb_flare_enhancement\.tflite u:object_r:vendor_configs_file:s0
@@ -30,6 +33,10 @@
 /vendor/etc/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn\.dlc u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/slens_detector u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/slens_detector/slens_detector_cnn\.dlc u:object_r:vendor_configs_file:s0
+/vendor/lib u:object_r:vendor_file:s0
+/vendor/lib/vendor\.samsung\.hardware\.biometrics\.face@3\.0\.so u:object_r:vendor_file:s0
+/vendor/lib64 u:object_r:vendor_file:s0
+/vendor/lib64/vendor\.samsung\.hardware\.biometrics\.face@3\.0\.so u:object_r:vendor_file:s0
 /vendor/saiv u:object_r:vendor_file:s0
 /vendor/saiv/image_understanding u:object_r:vendor_file:s0
 /vendor/saiv/image_understanding/db u:object_r:vendor_snap_file:s0
