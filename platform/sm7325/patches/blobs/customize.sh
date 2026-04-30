@@ -105,3 +105,22 @@ fi
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/libsnaplite_native.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
 fi
+
+if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
+    # Upgrade GPU blobs
+    ARCHS="lib lib64"
+    for f in $ARCHS; do
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/eglSubDriverAndroid.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/libEGL_adreno.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/libGLESv1_CM_adreno.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/libGLESv2_adreno.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/libq3dtools_adreno.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/egl/libq3dtools_esx.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/hw/vulkan.adreno.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/libadreno_utils.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/libCB.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/libgsl.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/libllvm-glnext.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+        ADD_TO_WORK_DIR "a73xqxx" "vendor" "$f/libllvm-qcom.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
+    done
+fi
