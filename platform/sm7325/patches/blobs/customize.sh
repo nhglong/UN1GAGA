@@ -70,6 +70,13 @@ fi
 
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
     # Upgrade saiv blobs
+    DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_classifier"
+    DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_detector"
+    ADD_TO_WORK_DIR "a73xqxx" "system" "system/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn.sni" 0 0 644 "u:object_r:system_file:s0"
+    ADD_TO_WORK_DIR "a73xqxx" "system" "system/saiv/image_understanding/db/slens_detector/slens_detector_cnn.sni" 0 0 644 "u:object_r:system_file:s0"
+    ADD_TO_WORK_DIR "a73xqxx" "vendor" "etc/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn.dlc" 0 0 644 "u:object_r:vendor_configs_file:s0"
+    ADD_TO_WORK_DIR "a73xqxx" "vendor" "etc/saiv/image_understanding/db/slens_detector/slens_detector_cnn.dlc" 0 0 644 "u:object_r:vendor_configs_file:s0"
+
     ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
     ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter.info" 0 0 644 "u:object_r:vendor_configs_file:s0"
 fi
