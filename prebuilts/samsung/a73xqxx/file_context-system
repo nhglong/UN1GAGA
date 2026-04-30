@@ -20,6 +20,8 @@
 /system/lib/libtlc_payment_spay\.so u:object_r:system_lib_file:s0
 /system/lib/service\.incremental\.so u:object_r:system_lib_file:s0
 /system/lib64 u:object_r:system_lib_file:s0
+/system/lib64/libFace_Landmark_Engine\.camera\.samsung\.so u:object_r:system_lib_file:s0
+/system/lib64/libHpr_RecFace_dl_v1\.0\.camera\.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libBestComposition\.polarr\.so u:object_r:system_lib_file:s0
 /system/lib64/libFeature\.polarr\.so u:object_r:system_lib_file:s0
 /system/lib64/libImageTagger\.camera\.samsung\.so u:object_r:system_lib_file:s0
@@ -30,6 +32,7 @@
 /system/lib64/libepm\.so u:object_r:system_lib_file:s0
 /system/lib64/libhdcp2\.so u:object_r:system_lib_file:s0
 /system/lib64/libmdf\.so u:object_r:system_lib_file:s0
+/system/lib64/libsaiv_HprFace_cmh_support_jni\.camera\.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libsec_semRil\.so u:object_r:system_lib_file:s0
 /system/lib64/libsecimaging_pdk.camera.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libsqlite\.so u:object_r:system_lib_file:s0
