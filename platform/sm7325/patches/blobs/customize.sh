@@ -67,3 +67,9 @@ LOG_STEP_OUT
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "34" ]; then
     ADD_TO_WORK_DIR "a73xqxx" "vendor" "bin/hw/wpa_supplicant" 0 2000 755 "u:object_r:hal_wifi_supplicant_default_exec:s0"
 fi
+
+if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
+    # Upgrade saiv blobs
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter.info" 0 0 644 "u:object_r:vendor_configs_file:s0"
+fi
