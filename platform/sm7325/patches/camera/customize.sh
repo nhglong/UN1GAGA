@@ -27,6 +27,10 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
     # Upgrade singletake blobs
     DELETE_FROM_WORK_DIR "vendor" "etc/singletake"
     ADD_TO_WORK_DIR "a73xqxx" "vendor" "etc/singletake" 0 2000 755 "u:object_r:vendor_configs_file:s0"
+
+    # Upgrade saiv blobs
+    DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/aig_classifier/aig_classifier_cnn.tf"
+    ADD_TO_WORK_DIR "a73xqxx" "vendor" "saiv/image_understanding/db/aig_classifier/aig_classifier_cnn.tflite" 0 0 644 "u:object_r:vendor_snap_file:s0"
 fi
 
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "34" ]; then
