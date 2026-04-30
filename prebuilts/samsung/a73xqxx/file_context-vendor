@@ -22,6 +22,13 @@
 /vendor/etc/singletake/ClarityScorer/ClarityScorer\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/singletake/SmartCrop u:object_r:vendor_configs_file:s0
 /vendor/etc/singletake/SmartCrop/SmartCrop\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/slens_classifier u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn\.dlc u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/slens_detector u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/slens_detector/slens_detector_cnn\.dlc u:object_r:vendor_configs_file:s0
 /vendor/saiv u:object_r:vendor_file:s0
 /vendor/saiv/image_understanding u:object_r:vendor_file:s0
 /vendor/saiv/image_understanding/db u:object_r:vendor_snap_file:s0
