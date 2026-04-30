@@ -1,5 +1,6 @@
  0 0 755 capabilities=0x0
 vendor/bin 0 2000 751 capabilities=0x0
+vendor/bin/secril_config_svc 0 2000 755 capabilities=0x0
 vendor/bin/hw 0 2000 751 capabilities=0x0
 vendor/bin/hw/vendor.samsung.hardware.biometrics.face@3.0-service 0 2000 755 capabilities=0x0
 vendor/bin/hw/vendor.samsung.hardware.light-service 0 2000 755 capabilities=0x0

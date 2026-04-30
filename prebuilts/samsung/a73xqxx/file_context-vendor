@@ -1,5 +1,6 @@
 /vendor u:object_r:vendor_file:s0
 /vendor/bin u:object_r:vendor_file:s0
+/vendor/bin/secril_config_svc u:object_r:vendor_secril_config_svc_exec:s0
 /vendor/bin/hw u:object_r:vendor_file:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.biometrics\.face@3\.0-service u:object_r:hal_face_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.light-service u:object_r:hal_light_default_exec:s0
