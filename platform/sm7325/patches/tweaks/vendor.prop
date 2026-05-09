@@ -1,2 +1,5 @@
 # Audio tweaks
 vendor.audio.offload.buffer.size.kb=256
+
+# Dalvik
+dalvik.vm.dex2oat64.enabled=true
