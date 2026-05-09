@@ -1,3 +1,6 @@
+# shellcheck disable=SC2034
+SKIPUNZIP=1
+
 LOG_STEP_IN "- Adding OK Google Hotword Enrollment blobs"
 DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentOKGoogleEx4HEXAGON"
 DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentXGoogleEx4HEXAGON"
@@ -71,3 +74,8 @@ fi
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/libsnaplite_native.so" 0 0 644 "u:object_r:same_process_hal_file:s0"
 fi
+
+ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_iot.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_v0.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
+ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_v1.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
