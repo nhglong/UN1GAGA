@@ -2,6 +2,10 @@
 SET_PROP "system" "ro.unica.version" "$ROM_VERSION"
 EVAL "echo \"ro.unica.version u:object_r:build_prop:s0 exact string\" >> \"$WORK_DIR/system/system/etc/selinux/plat_property_contexts\""
 
+# Property identifying the UN1CA codename
+EVAL "echo \"ro.unica.codename u:object_r:build_prop:s0 exact string\" >> \"$WORK_DIR/system/system/etc/selinux/plat_property_contexts\""
+SET_PROP "system" "ro.unica.codename" "$ROM_CODENAME"
+
 # Property identifying the UN1CA build time
 SET_PROP "system" "ro.unica.timestamp" "$ROM_BUILD_TIMESTAMP"
 EVAL "echo \"ro.unica.timestamp u:object_r:build_prop:s0 exact string\" >> \"$WORK_DIR/system/system/etc/selinux/plat_property_contexts\""
