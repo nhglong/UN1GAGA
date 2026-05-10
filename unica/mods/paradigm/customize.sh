@@ -1,15 +1,6 @@
 # shellcheck disable=SC2034
 SKIPUNZIP=1
 
-if [ ! "$(GET_PROP "system" "ro.unica.codename")" ]; then
-    LOG "- Patching /system/system/etc/selinux/plat_property_contexts"
-    EVAL "echo \"ro.unica.codename u:object_r:build_prop:s0 exact string\" >> \"$WORK_DIR/system/system/etc/selinux/plat_property_contexts\""
-    # Match latest Samsung's flagship device codename
-    ROM_CODENAME="$(basename "$MODPATH")"
-    SET_PROP "system" "ro.unica.codename" "${ROM_CODENAME^}"
-    unset ROM_CODENAME
-fi
-
 # 2025 Audio Pack
 LOG_STEP_IN "- Adding 2025 Audio Pack"
 DELETE_FROM_WORK_DIR "system" "system/hidden/INTERNAL_SDCARD/Music/Samsung/Over_the_Horizon.mp3"
