@@ -1,6 +1,9 @@
 if [ ! "$(GET_PROP "system" "ro.unica.version")" ]; then
     SET_PROP "system" "ro.unica.version" "$ROM_VERSION"
 fi
+if [ ! "$(GET_PROP "system" "ro.unica.codename")" ]; then
+    SET_PROP "system" "ro.unica.codename" "$ROM_CODENAME"
+fi
 
 SMALI_PATCH "system" "system/framework/framework.jar" \
     "smali/android/app/Instrumentation.smali" "replace" \
