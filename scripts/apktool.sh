@@ -181,6 +181,13 @@ PREPARE_SCRIPT()
 
     local FILE_PATH="$WORK_DIR"
     case "$PARTITION" in
+        "product")
+            if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+                FILE_PATH+="/product"
+            else
+                FILE_PATH+="/system/system/product"
+            fi
+            ;;
         "system_ext")
             if $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION; then
                 FILE_PATH+="/system_ext"
