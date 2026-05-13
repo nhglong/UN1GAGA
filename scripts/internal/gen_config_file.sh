@@ -215,6 +215,9 @@ fi
 #     Defaults to "erofs".
 #     Using a different value than stock will require patching the device fstab file in vendor and kernel ramdisk.
 #
+#   TARGET_OS_BUILD_PRODUCT_PARTITION
+#     If set to true, product partition will be built.
+#
 #   TARGET_OS_BUILD_SYSTEM_EXT_PARTITION
 #     If set to true, system_ext partition will be built.
 #
@@ -527,6 +530,7 @@ fi
     GET_BUILD_VAR "TARGET_OPTICS_PARTITION_SIZE" "20971520"
     GET_BUILD_VAR "TARGET_OS_SINGLE_SYSTEM_IMAGE"
     GET_BUILD_VAR "TARGET_OS_FILE_SYSTEM_TYPE" "erofs"
+    GET_BUILD_VAR "TARGET_OS_BUILD_PRODUCT_PARTITION" "false"
     GET_BUILD_VAR "TARGET_OS_BUILD_SYSTEM_EXT_PARTITION" "false"
     GET_BUILD_VAR "TARGET_OS_BUILD_ODM_PARTITION" "false"
     GET_BUILD_VAR "SOURCE_AUDIO_CONFIG_RECORDALIVE_LIB_VERSION" "none"

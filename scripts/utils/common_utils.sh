@@ -129,11 +129,15 @@ _GET_SELINUX_LABEL()
     local FC_FILE
 
     case "$PARTITION" in
-        "product")
-            FC_FILE="$WORK_DIR/product/etc/selinux/product_file_contexts"
-            ;;
         "vendor")
             FC_FILE="$WORK_DIR/vendor/etc/selinux/vendor_file_contexts"
+            ;;
+        "product")
+            if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+                FC_FILE="$WORK_DIR/product/etc/selinux/product_file_contexts"
+            else
+                FC_FILE="$WORK_DIR/system/system/product/etc/selinux/product_file_contexts"
+            fi
             ;;
         "system_ext")
             if $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION; then
@@ -230,7 +234,23 @@ ADD_TO_WORK_DIR()
 
     local SOURCE_FILE="$SOURCE"
     local TARGET_FILE="$WORK_DIR"
-    if [[ "$PARTITION" == "system_ext" ]]; then
+    if [[ "$PARTITION" == "product" ]]; then
+        if [ -d "$SOURCE/product" ]; then
+            SOURCE_FILE+="/product/$FILE"
+        elif [ -d "$SOURCE/system/system/product" ]; then
+            SOURCE_FILE+="/system/system/product/$FILE"
+        else
+            SOURCE_FILE+="/system/product/$FILE"
+        fi
+
+        if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+            TARGET_FILE+="/product/$FILE"
+        else
+            PARTITION="system"
+            FILE="system/product/$FILE"
+            TARGET_FILE+="/system/$FILE"
+        fi
+    elif [[ "$PARTITION" == "system_ext" ]]; then
         if [ -d "$SOURCE/system_ext" ]; then
             SOURCE_FILE+="/system_ext/$FILE"
         elif [ -d "$SOURCE/system/system/system_ext" ]; then
@@ -335,6 +355,7 @@ ADD_TO_WORK_DIR()
         FILES="$(find "${SOURCE_FILE%/.}")"
         FILES="${FILES//$SOURCE\//}"
         [[ "$PARTITION" == "system" ]] && FILES="${FILES//system\/system\//system/}"
+        $TARGET_OS_BUILD_PRODUCT_PARTITION || FILES="${FILES//product\//system/product/}"
         $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION || FILES="${FILES//system_ext\//system/system_ext/}"
 
         while IFS= read -r f; do
@@ -431,6 +452,11 @@ DELETE_FROM_WORK_DIR()
         FILE="${FILE:1}"
     done
 
+    if ! $TARGET_OS_BUILD_PRODUCT_PARTITION && [[ "$PARTITION" == "product" ]]; then
+        PARTITION="system"
+        FILE="system/product/$FILE"
+    fi
+
     if ! $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION && [[ "$PARTITION" == "system_ext" ]]; then
         PARTITION="system"
         FILE="system/system_ext/$FILE"
@@ -443,6 +469,13 @@ DELETE_FROM_WORK_DIR()
 
     local FILE_PATH="$WORK_DIR"
     case "$PARTITION" in
+        "product")
+            if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+                FILE_PATH+="/product"
+            else
+                FILE_PATH+="/system/system/product"
+            fi
+            ;;
         "system_ext")
             if $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION; then
                 FILE_PATH+="/system_ext"
@@ -717,6 +750,13 @@ SET_PROP()
             "system")
                 FILE="$WORK_DIR/system/system/build.prop"
                 ;;
+            "product")
+                if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+                    FILE="$WORK_DIR/product/etc/build.prop"
+                else
+                    FILE="$WORK_DIR/system/system/product/etc/build.prop"
+                fi
+                ;;
             "system_ext")
                 if $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION; then
                     FILE="$WORK_DIR/system_ext/etc/build.prop"
@@ -742,9 +782,6 @@ SET_PROP()
                 else
                     FILE="$WORK_DIR/vendor/odm/etc/build.prop"
                 fi
-                ;;
-            "product")
-                FILE="$WORK_DIR/product/etc/build.prop"
                 ;;
         esac
 

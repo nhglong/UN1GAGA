@@ -50,19 +50,84 @@ COPY_PARTITIONS()
 
 COPY_SOURCE_FIRMWARE()
 {
-    local SOURCE_FOLDERS="product system"
-    for f in $SOURCE_FOLDERS; do
-        COPY_PARTITIONS "$FW_DIR/$SOURCE_FIRMWARE_PATH" "$f"
-        if [[ "$f" == "product" ]]; then
-            LOG_STEP_IN
-            SET_PROP "product" "ro.product.product.name" "$(GET_PROP "$FW_DIR/$TARGET_FIRMWARE_PATH/product/etc/build.prop" "ro.product.product.name")"
+    COPY_PARTITIONS "$FW_DIR/$SOURCE_FIRMWARE_PATH" "system"
+    LOG_STEP_IN
+    SET_PROP "system" "ro.product.device" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/odm/etc/build.prop" "ro.product.odm.device")"
+    LOG_STEP_OUT
+
+    if [ -d "$FW_DIR/$SOURCE_FIRMWARE_PATH/product" ]; then
+        if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+            LOG_STEP_IN "- Copying /product from source firmware"
+
+            [ -L "$WORK_DIR/system/product" ] && rm -f "$WORK_DIR/system/product"
+            [ -d "$WORK_DIR/system/system/product" ] && rm -rf "$WORK_DIR/system/system/product"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$SOURCE_FIRMWARE_PATH/product\" \"$WORK_DIR\"" || exit 1
+            mkdir -p "$WORK_DIR/system/product"
+            EVAL "ln -sf \"/product\" \"$WORK_DIR/system/system/product\"" || exit 1
+            SET_METADATA "system" "product" 0 0 755 "u:object_r:system_file:s0"
+            SET_METADATA "system" "system/product" 0 0 644 "u:object_r:system_file:s0"
+            EVAL "cp -a \"$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-product\" \"$WORK_DIR/configs/file_context-product\"" || exit 1
+            EVAL "cp -a \"$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-product\" \"$WORK_DIR/configs/fs_config-product\"" || exit 1
+
             LOG_STEP_OUT
-        elif [[ "$f" == "system" ]]; then
-            LOG_STEP_IN
-            SET_PROP "system" "ro.product.device" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/odm/etc/build.prop" "ro.product.odm.device")"
+        else
+            LOG_STEP_IN "- Copying /system/system/product from source firmware"
+
+            [ -d "$WORK_DIR/system/product" ] && rm -rf "$WORK_DIR/system/product"
+            [ -L "$WORK_DIR/system/system/product" ] && rm -f "$WORK_DIR/system/system/product"
+            [ -d "$WORK_DIR/product" ] && rm -rf "$WORK_DIR/product"
+            [ -f "$WORK_DIR/configs/file_context-product" ] && rm -f "$WORK_DIR/configs/file_context-product"
+            [ -f "$WORK_DIR/configs/fs_config-product" ] && rm -f "$WORK_DIR/configs/fs_config-product"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$SOURCE_FIRMWARE_PATH/product\" \"$WORK_DIR/system/system\"" || exit 1
+            EVAL "ln -sf \"/system/product\" \"$WORK_DIR/system/product\"" || exit 1
+            SET_METADATA "system" "product" 0 0 644 "u:object_r:system_file:s0"
+            sed "s/^\/product/\/system\/product/g" "$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-product" >> "$WORK_DIR/configs/file_context-system"
+            sed "s/^product/system\/product/g" "$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-product" >> "$WORK_DIR/configs/fs_config-system"
+
             LOG_STEP_OUT
         fi
-    done
+        LOG_STEP_IN
+        SET_PROP "product" "ro.product.product.name" "$(GET_PROP "$FW_DIR/$TARGET_FIRMWARE_PATH/product/etc/build.prop" "ro.product.product.name")"
+        LOG_STEP_OUT
+    elif [ -d "$FW_DIR/$SOURCE_FIRMWARE_PATH/system/system/product" ]; then
+        if $TARGET_OS_BUILD_PRODUCT_PARTITION; then
+            LOG_STEP_IN "- Copying /product from source firmware"
+
+            [ -L "$WORK_DIR/system/product" ] && rm -f "$WORK_DIR/system/product"
+            [ -d "$WORK_DIR/system/system/product" ] && rm -rf "$WORK_DIR/system/system/product"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$SOURCE_FIRMWARE_PATH/system/system/product\" \"$WORK_DIR\"" || exit 1
+            mkdir -p "$WORK_DIR/system/product"
+            EVAL "ln -sf \"/product\" \"$WORK_DIR/system/system/product\"" || exit 1
+            SET_METADATA "system" "product" 0 0 755 "u:object_r:system_file:s0"
+            SET_METADATA "system" "system/product" 0 0 644 "u:object_r:system_file:s0"
+            grep -F "system/product" "$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-system" | sed "s/^\/system//" > "$WORK_DIR/configs/file_context-product"
+            grep -F "system/product" "$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-system" | sed "s/^system\///" > "$WORK_DIR/configs/fs_config-product"
+            sed -i "s/^product /  /g" "$WORK_DIR/configs/fs_config-product"
+
+            LOG_STEP_OUT
+        else
+            LOG_STEP_IN "- Copying /system/system/product from source firmware"
+
+            [ -d "$WORK_DIR/system/product" ] && rm -rf "$WORK_DIR/system/product"
+            [ -L "$WORK_DIR/system/system/product" ] && rm -f "$WORK_DIR/system/system/product"
+            [ -d "$WORK_DIR/product" ] && rm -rf "$WORK_DIR/product"
+            [ -f "$WORK_DIR/configs/file_context-product" ] && rm -f "$WORK_DIR/configs/file_context-product"
+            [ -f "$WORK_DIR/configs/fs_config-product" ] && rm -f "$WORK_DIR/configs/fs_config-product"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$SOURCE_FIRMWARE_PATH/system/system/product\" \"$WORK_DIR/system/system\"" || exit 1
+            EVAL "ln -sf \"/system/product\" \"$WORK_DIR/system/product\"" || exit 1
+            grep -F "product" "$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-system" >> "$WORK_DIR/configs/file_context-system"
+            grep -F "product" "$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-system" >> "$WORK_DIR/configs/fs_config-system"
+
+            LOG_STEP_OUT
+        fi
+        LOG_STEP_IN
+        SET_PROP "product" "ro.product.product.name" "$(GET_PROP "$FW_DIR/$TARGET_FIRMWARE_PATH/product/etc/build.prop" "ro.product.product.name")"
+        LOG_STEP_OUT
+    fi
 
     if [ -d "$FW_DIR/$SOURCE_FIRMWARE_PATH/system_ext" ]; then
         if $TARGET_OS_BUILD_SYSTEM_EXT_PARTITION; then
