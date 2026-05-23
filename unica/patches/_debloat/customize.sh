@@ -32,6 +32,8 @@ PRODUCT_DEBLOAT="$(sed "/^$/d" <<< "$PRODUCT_DEBLOAT" | sort)"
 SYSTEM_DEBLOAT="$(sed "/^$/d" <<< "$SYSTEM_DEBLOAT" | sort)"
 SYSTEM_EXT_DEBLOAT="$(sed "/^$/d" <<< "$SYSTEM_EXT_DEBLOAT" | sort)"
 VENDOR_DEBLOAT="$(sed "/^$/d" <<< "$VENDOR_DEBLOAT" | sort)"
+OPTICS_DEBLOAT="$(sed "/^$/d" <<< "$OPTICS_DEBLOAT" | sort)"
+PRISM_DEBLOAT="$(sed "/^$/d" <<< "$PRISM_DEBLOAT" | sort)"
 
 if [ "$ODM_DEBLOAT" ]; then
     xargs -I "{}" -P "$(nproc)" \
@@ -58,5 +60,15 @@ if [ "$VENDOR_DEBLOAT" ]; then
         bash -c 'source "$SRC_DIR/scripts/utils/module_utils.sh"; DELETE_FROM_WORK_DIR "vendor" "$1"' "bash" "{}" \
         <<< "$VENDOR_DEBLOAT" 2>&1 | sed "/File not found/d"
 fi
+if [ "$OPTICS_DEBLOAT" ]; then
+    xargs -I "{}" -P "$(nproc)" \
+        bash -c 'source "$SRC_DIR/scripts/utils/module_utils.sh"; DELETE_FROM_WORK_DIR "optics" "$1"' "bash" "{}" \
+        <<< "$OPTICS_DEBLOAT" 2>&1 | sed "/File not found/d"
+fi
+if [ "$PRISM_DEBLOAT" ]; then
+    xargs -I "{}" -P "$(nproc)" \
+        bash -c 'source "$SRC_DIR/scripts/utils/module_utils.sh"; DELETE_FROM_WORK_DIR "prism" "$1"' "bash" "{}" \
+        <<< "$PRISM_DEBLOAT" 2>&1 | sed "/File not found/d"
+fi
 
-unset ODM_DEBLOAT PRODUCT_DEBLOAT SYSTEM_DEBLOAT SYSTEM_EXT_DEBLOAT VENDOR_DEBLOAT
+unset ODM_DEBLOAT PRODUCT_DEBLOAT SYSTEM_DEBLOAT SYSTEM_EXT_DEBLOAT VENDOR_DEBLOAT OPTICS_DEBLOAT PRISM_DEBLOAT

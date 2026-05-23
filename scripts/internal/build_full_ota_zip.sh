@@ -124,6 +124,8 @@ GENERATE_UPDATER_SCRIPT()
     [ -f "$TMP_DIR/vendor_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
     [ -f "$TMP_DIR/odm_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
     [ -f "$TMP_DIR/system_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
+    [ -f "$TMP_DIR/optics.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
+    [ -f "$TMP_DIR/prism.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
 
     {
         PRINT_ASSERTIONS "$BUILD_INFO" || exit 1
@@ -142,7 +144,7 @@ GENERATE_UPDATER_SCRIPT()
             fi
             echo    '));'
         fi
-        for p in $PARTITIONS_LIST; do
+        for p in $PARTITIONS_LIST $CSC_PARTITIONS_LIST; do
             if [ ! -f "$TMP_DIR/$p.transfer.list" ]; then
                 continue
             fi
@@ -243,7 +245,7 @@ if $TARGET_USE_DYNAMIC_PARTITIONS; then
     GENERATE_OP_LIST
 fi
 
-for p in $PARTITIONS_LIST; do
+for p in $PARTITIONS_LIST $CSC_PARTITIONS_LIST; do
     if [ ! -f "$TMP_DIR/$p.img" ]; then
         continue
     fi

@@ -141,7 +141,7 @@ COPY_SOURCE_FIRMWARE()
 
 COPY_TARGET_FIRMWARE()
 {
-    local TARGET_FOLDERS="system_dlkm vendor odm odm_dlkm vendor_dlkm"
+    local TARGET_FOLDERS="prism optics system_dlkm vendor odm odm_dlkm vendor_dlkm"
     for f in $TARGET_FOLDERS; do
         COPY_PARTITIONS "$FW_DIR/$TARGET_FIRMWARE_PATH" "$f"
         if [[ "$f" == "vendor" ]]; then
