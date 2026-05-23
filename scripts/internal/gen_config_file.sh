@@ -194,6 +194,14 @@ fi
 #     Integer containing the size in bytes of the target device system_dlkm partition size.
 #     Unused if TARGET_USE_DYNAMIC_PARTITIONS is set to false.
 #
+#   TARGET_PRISM_PARTITION_SIZE
+#     Integer containing the size in bytes of the target device prism partition size.
+#     Default to 400Mb (419430400 in bytes)
+#
+#   TARGET_OPTICS_PARTITION_SIZE
+#     Integer containing the size in bytes of the target device optics partition size.
+#     Default to 20Mb (20971520 in bytes)
+#
 #   TARGET_OS_SINGLE_SYSTEM_IMAGE
 #     String containing the target device SSI, it must match the `ro.build.product` prop.
 #     Currently, only "qssi" and "essi" are supported.
@@ -492,6 +500,8 @@ fi
         GET_BUILD_VAR "TARGET_ODM_DLKM_PARTITION_SIZE" "none"
         GET_BUILD_VAR "TARGET_SYSTEM_DLKM_PARTITION_SIZE" "none"
     fi
+    GET_BUILD_VAR "TARGET_PRISM_PARTITION_SIZE" "419430400"
+    GET_BUILD_VAR "TARGET_OPTICS_PARTITION_SIZE" "20971520"
     GET_BUILD_VAR "TARGET_OS_SINGLE_SYSTEM_IMAGE"
     GET_BUILD_VAR "TARGET_OS_FILE_SYSTEM_TYPE" "erofs"
     GET_BUILD_VAR "TARGET_OS_BUILD_SYSTEM_EXT_PARTITION"

@@ -50,7 +50,7 @@ COPY_PARTITIONS()
 
 COPY_SOURCE_FIRMWARE()
 {
-    local SOURCE_FOLDERS="product system"
+    local SOURCE_FOLDERS="product system prism optics"
     for f in $SOURCE_FOLDERS; do
         COPY_PARTITIONS "$FW_DIR/$SOURCE_FIRMWARE_PATH" "$f"
         if [[ "$f" == "product" ]]; then

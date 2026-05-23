@@ -322,3 +322,10 @@ system/etc/sysconfig/feature-a11y-preload-voacc.xml
 PRODUCT_DEBLOAT+="
 app/YouTube
 "
+
+# CSC
+PRISM_DEBLOAT+="
+app
+priv-app
+sipdb
+"
