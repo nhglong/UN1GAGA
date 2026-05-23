@@ -220,6 +220,8 @@ GENERATE_UPDATER_SCRIPT()
     [ -f "$TMP_DIR/vendor_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
     [ -f "$TMP_DIR/odm_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
     [ -f "$TMP_DIR/system_dlkm.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
+    [ -f "$TMP_DIR/optics.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
+    [ -f "$TMP_DIR/prism.transfer.list" ] && PARTITION_COUNT=$((PARTITION_COUNT + 1))
 
     {
         PRINT_ASSERTIONS "$TARGET_BUILD_INFO" || exit 1
@@ -229,7 +231,7 @@ GENERATE_UPDATER_SCRIPT()
         # https://android.googlesource.com/platform/build/+/refs/tags/android-16.0.0_r4/tools/releasetools/non_ab_ota.py#397
         echo    'ui_print("Verify partitions...");'
         # https://android.googlesource.com/platform/build/+/refs/tags/android-16.0.0_r4/tools/releasetools/common.py#3492
-        for p in $PARTITIONS_LIST; do
+        for p in $PARTITIONS_LIST $CSC_PARTITIONS_LIST; do
             if [ ! -f "$TMP_DIR/$p.transfer.list" ]; then
                 continue
             fi
@@ -339,7 +341,7 @@ GENERATE_UPDATER_SCRIPT()
             fi
             echo    '));'
         fi
-        for p in $PARTITIONS_LIST; do
+        for p in $PARTITIONS_LIST $CSC_PARTITIONS_LIST; do
             if [ ! -f "$TMP_DIR/$p.transfer.list" ]; then
                 continue
             fi
@@ -479,7 +481,7 @@ if $TARGET_USE_DYNAMIC_PARTITIONS; then
     GENERATE_OP_LIST
 fi
 
-for p in $PARTITIONS_LIST; do
+for p in $PARTITIONS_LIST $CSC_PARTITIONS_LIST; do
     if [ ! -f "$TMP_DIR/target/$p.img" ]; then
         continue
     fi
