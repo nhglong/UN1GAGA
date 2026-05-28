@@ -32,11 +32,13 @@ applications that come with the platform
        <permission name="com.samsung.permission.READ_KNOX_NOTIFICATION"/>
        <permission name="android.permission.SUBSTITUTE_SHARE_TARGET_APP_NAME_AND_ICON"/>
        <permission name="com.samsung.systemui.permission.KEYGUARD_IMAGE" />
-	   <permission name="com.sec.android.diagmonagent.permission.DIAGMON"/>
-	   <permission name="com.sec.android.diagmonagent.permission.PROVIDER"/>
+       <permission name="com.sec.android.diagmonagent.permission.DIAGMON"/>
+       <permission name="com.sec.android.diagmonagent.permission.PROVIDER"/>
        <permission name="android.permission.BIND_APPWIDGET"/>
        <permission name="android.permission.SET_WALLPAPER_COMPONENT"/>
        <permission name="com.samsung.android.permission.MODIFY_THEME"/>
        <permission name="android.permission.INTERACT_ACROSS_USERS" />
+       <permission name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+       <permission name="android.permission.MANAGE_USERS" />
     </privapp-permissions>
 </permissions>
