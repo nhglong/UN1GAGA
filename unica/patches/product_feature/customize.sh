@@ -965,13 +965,8 @@ if ! $SOURCE_WLAN_SUPPORT_MOBILEAP_DUALAP; then
             "smali/com/samsung/android/server/wifi/ap/SemSoftApConfiguration\$12.smali" "remove"
         SMALI_PATCH "system" "system/framework/semwifi-service.jar" \
             "smali/com/samsung/android/server/wifi/ap/SemSoftApConfiguration\$16.smali" "remove"
-        if $TARGET_COMMON_SUPPORT_DYN_RESOLUTION_CONTROL; then
-            APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
-                "$MODPATH/wifi/dualap_resolution/SecSettings.apk/0001-Enable-MOBILEAP_DUALAP-support.patch"
-        else
-            APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
-                "$MODPATH/wifi/dualap/SecSettings.apk/0001-Enable-MOBILEAP_DUALAP-support.patch"
-        fi
+        APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
+            "$MODPATH/wifi/dualap/SecSettings.apk/0001-Enable-MOBILEAP_DUALAP-support.patch"
         SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
             "smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApSmartSwitchBackupRestore\$5.smali" "remove"
     fi
