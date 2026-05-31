@@ -1,0 +1,25 @@
+#line 1 "system/sepolicy/vendor/vndservice_contexts"
+manager                 u:object_r:service_manager_vndservice:s0
+*                       u:object_r:default_android_vndservice:s0
+#line 1 "vendor/samsung/system/sepolicy/samsung/vndservice_contexts"
+# http://mobilerndhub.sec.samsung.net/hub/site/seandroid/board/O_treble_review_request/view/22594847/?search_target=author&search_keyword=%25EC%25A0%2595%25EB%25AF%25BC%25EC%25B2%25A0&page=1
+WlanDutService                              u:object_r:wlandutservice_vndservice:s0
+
+# http://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-979
+# http://mobilerndhub.sec.samsung.net/hub/site/seandroid/board/O_review_request/view/22893686
+android.samsung.IRemosaicDaemon             u:object_r:remosaicd_vndservice:s0
+# http://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-1584
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9537
+#SEC_DUPLICATED android.IRemosaicDaemon                     u:object_r:remosaicd_vndservice:s0
+
+# http://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-1346
+SccHalAudioContext             u:object_r:SccHalAudio_service:s0
+SccHalSoundTriggerContext             u:object_r:SccHalAudio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-4303
+EngineeringModeService                      u:object_r:EngineeringMode_vndservice:s0
+#line 1 "device/samsung/sepolicy/common/vndservice_contexts"
+Exynos.HWCService     u:object_r:vendor_surfaceflinger_vndservice:s0
+#line 1 "vendor/samsung/system/sepolicy/BSP/slsi/common/vndservice_contexts"
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9537
+android.IRemosaicDaemon                     u:object_r:remosaicd_vndservice:s0

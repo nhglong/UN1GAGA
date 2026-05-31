@@ -1,0 +1,128 @@
+# All blobs, if not pinned, are from N950FXXUGDZC3
+
+# Audio - A750CONS1BVK1
+vendor/lib/hw/audio.primary.exynos7885.so:vendor/lib/hw/audio.primary.exynos8895.so|1cccd430e2b72c9622875c48c24b6d13|ef2c259167caffaf3246295e4ca15c19
+vendor/lib/vndk/libaudioroute.so|12d0239d7ab781407c03ff9df1b4ecde
+vendor/lib/libSamsungPostProcessConvertor.so|9953e3017ee3b03e2d36b0bd2c8bc0f9
+vendor/lib/libaudio-ril.so|f46a7b53bb63c5846af82b4d7dceb4a3|c5132613155cbe9fc6764ea181f7d233
+vendor/lib/librecordalive.so|8891f5895f325db1162c87fae850b2cf
+vendor/lib/libsamsungDiamondVoice.so|47c158f294b91bba676211b85d43e642
+
+# Audio
+vendor/etc/abox_debug.xml
+
+# Bluetooth
+vendor/firmware/bcm4361B0_murata.hcd
+vendor/firmware/bcm4361B0_semco.hcd
+vendor/lib64/libbt-vendor.so
+
+# DRM - Widevine - N770FZHU9HZB1
+vendor/bin/hw/android.hardware.drm@1.3-service.widevine|77b30e8a65183b885161262739289f04
+vendor/etc/init/android.hardware.drm@1.3-service.widevine.rc|4ebe7103cc497733fd5ac157c3e28d64
+vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml|2ee052f4597cad2642d80bec5065c5ca
+vendor/lib/mediadrm/libwvdrmengine.so|9828b86e1530d6c75fdce9c01bf4601c
+vendor/lib/libwvhidl.so|efd4a4b30da6231b7c292cfde043aa96
+
+# Gatekeeper
+vendor/lib/hw/gatekeeper.exynos8895.so
+vendor/lib64/hw/gatekeeper.exynos8895.so
+
+# Graphics
+vendor/lib/egl/libGLES_mali.so
+vendor/lib64/egl/libGLES_mali.so
+
+# Keymaster
+vendor/lib64/hw/keystore.mdfpp.so
+vendor/lib64/libkeymaster_helper.so
+vendor/lib64/libkeymaster_mdfpp.so
+
+# Memtrack
+vendor/lib/hw/memtrack.universal8895.so
+vendor/lib64/hw/memtrack.universal8895.so
+
+# MobiCore
+app/mcRegistry/00060308060501020000000000000000.tlbin:vendor/app/mcRegistry/00060308060501020000000000000000.tlbin
+app/mcRegistry/ffffffff000000000000000000000004.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000004.tlbin
+app/mcRegistry/ffffffff000000000000000000000005.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000005.tlbin
+app/mcRegistry/ffffffff00000000000000000000000a.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000a.tlbin
+app/mcRegistry/ffffffff00000000000000000000000c.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000c.tlbin
+app/mcRegistry/ffffffff00000000000000000000000d.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+app/mcRegistry/ffffffff000000000000000000000016.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000016.tlbin
+app/mcRegistry/ffffffff000000000000000000000017.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000017.tlbin
+app/mcRegistry/ffffffff000000000000000000000038.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000038.tlbin
+app/mcRegistry/ffffffff00000000000000000000003e.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000003e.tlbin
+app/mcRegistry/ffffffff000000000000000000000041.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000041.tlbin
+app/mcRegistry/ffffffff000000000000000000000045.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000045.tlbin
+app/mcRegistry/ffffffff000000000000000000000047.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000047.tlbin
+app/mcRegistry/ffffffff000000000000000000000059.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000059.tlbin
+app/mcRegistry/ffffffff000000000000000000000060.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000060.tlbin
+app/mcRegistry/ffffffffd00000000000000000000004.tlbin:vendor/app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd00000000000000000000017.tlbin:vendor/app/mcRegistry/ffffffffd00000000000000000000017.tlbin
+app/mcRegistry/ffffffffd0000000000000000000001a.tlbin:vendor/app/mcRegistry/ffffffffd0000000000000000000001a.tlbin
+app/mcRegistry/fffffffff0000000000000000000001b.tlbin:vendor/app/mcRegistry/fffffffff0000000000000000000001b.tlbin
+vendor/app/mcRegistry/07010000000000000000000000000000.tlbin
+vendor/app/mcRegistry/08130000000000000000000000000000.tlbin
+vendor/app/mcRegistry/FFFFFFFF000000000000000000000001.drbin
+vendor/app/mcRegistry/ffffffff00000000000000000000000e.tlbin
+vendor/app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+vendor/app/mcRegistry/ffffffff000000000000000000000012.tlbin
+vendor/app/mcRegistry/ffffffff000000000000000000000013.tlbin
+vendor/app/mcRegistry/ffffffff00000000000000000000002f.tlbin
+vendor/app/mcRegistry/ffffffff000000000000000000000030.tlbin
+vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+vendor/app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
+vendor/app/mcRegistry/ffffffffd00000000000000000000014.tlbin
+vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+vendor/lib/libMcClient.so
+vendor/lib64/libMcClient.so
+
+# Mobicore - A750CONS1BVK1
+vendor/bin/mcDriverDaemon|1c7eeac0ae8df5092d4012f5213620a7
+vendor/etc/init/mobicore.rc|820ce394a72ab583a724422f1c5dd898
+
+# OMX
+lib/libExynosOMX_Core.so:vendor/lib/libExynosOMX_Core.so
+lib/libExynosOMX_Resourcemanager.so:vendor/lib/libExynosOMX_Resourcemanager.so
+lib/libstagefrighthw.so:vendor/lib/libstagefrighthw.so
+lib/omx/libOMX.Exynos.AVC.Decoder.so:vendor/lib/omx/libOMX.Exynos.AVC.Decoder.so
+lib/omx/libOMX.Exynos.AVC.Encoder.so:vendor/lib/omx/libOMX.Exynos.AVC.Encoder.so
+lib/omx/libOMX.Exynos.HEVC.Decoder.so:vendor/lib/omx/libOMX.Exynos.HEVC.Decoder.so
+lib/omx/libOMX.Exynos.HEVC.Encoder.so:vendor/lib/omx/libOMX.Exynos.HEVC.Encoder.so
+lib/omx/libOMX.Exynos.MPEG4.Decoder.so:vendor/lib/omx/libOMX.Exynos.MPEG4.Decoder.so
+lib/omx/libOMX.Exynos.MPEG4.Encoder.so:vendor/lib/omx/libOMX.Exynos.MPEG4.Encoder.so
+lib/omx/libOMX.Exynos.VP8.Decoder.so:vendor/lib/omx/libOMX.Exynos.VP8.Decoder.so
+lib/omx/libOMX.Exynos.VP8.Encoder.so:vendor/lib/omx/libOMX.Exynos.VP8.Encoder.so
+lib/omx/libOMX.Exynos.VP9.Decoder.so:vendor/lib/omx/libOMX.Exynos.VP9.Decoder.so
+lib/omx/libOMX.Exynos.VP9.Encoder.so:vendor/lib/omx/libOMX.Exynos.VP9.Encoder.so
+lib/omx/libOMX.Exynos.WMV.Decoder.so:vendor/lib/omx/libOMX.Exynos.WMV.Decoder.so
+lib64/libExynosOMX_Core.so:vendor/lib64/libExynosOMX_Core.so
+lib64/libExynosOMX_Resourcemanager.so:vendor/lib64/libExynosOMX_Resourcemanager.so
+lib64/libstagefrighthw.so:vendor/lib64/libstagefrighthw.so
+lib64/omx/libOMX.Exynos.AVC.Decoder.so:vendor/lib64/omx/libOMX.Exynos.AVC.Decoder.so
+lib64/omx/libOMX.Exynos.AVC.Encoder.so:vendor/lib64/omx/libOMX.Exynos.AVC.Encoder.so
+lib64/omx/libOMX.Exynos.HEVC.Decoder.so:vendor/lib64/omx/libOMX.Exynos.HEVC.Decoder.so
+lib64/omx/libOMX.Exynos.HEVC.Encoder.so:vendor/lib64/omx/libOMX.Exynos.HEVC.Encoder.so
+lib64/omx/libOMX.Exynos.MPEG4.Decoder.so:vendor/lib64/omx/libOMX.Exynos.MPEG4.Decoder.so
+lib64/omx/libOMX.Exynos.MPEG4.Encoder.so:vendor/lib64/omx/libOMX.Exynos.MPEG4.Encoder.so
+lib64/omx/libOMX.Exynos.VP8.Decoder.so:vendor/lib64/omx/libOMX.Exynos.VP8.Decoder.so
+lib64/omx/libOMX.Exynos.VP8.Encoder.so:vendor/lib64/omx/libOMX.Exynos.VP8.Encoder.so
+lib64/omx/libOMX.Exynos.VP9.Decoder.so:vendor/lib64/omx/libOMX.Exynos.VP9.Decoder.so
+lib64/omx/libOMX.Exynos.VP9.Encoder.so:vendor/lib64/omx/libOMX.Exynos.VP9.Encoder.so
+lib64/omx/libOMX.Exynos.WMV.Decoder.so:vendor/lib64/omx/libOMX.Exynos.WMV.Decoder.so
+
+# Sensors
+vendor/bin/hw/lhd
+vendor/etc/sensor/lhd.conf
+vendor/etc/sensors/hals.conf
+vendor/lib64/libflicker.so
+
+# Soundtrigger
+vendor/lib/libaudio_soundtrigger.so
+vendor/lib/hw/sound_trigger.primary.universal8895.so
+
+# WiFi
+vendor/bin/hw/macloader
+vendor/bin/hw/mfgloader
+vendor/etc/wifi/bcmdhd_clm.blob:vendor/firmware/bcmdhd_clm.blob
+vendor/etc/wifi/bcmdhd_mfg.bin_b0:vendor/firmware/bcmdhd_mfg.bin_b0
+vendor/etc/wifi/bcmdhd_sta.bin_b0:vendor/firmware/bcmdhd_sta.bin_b0

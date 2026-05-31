@@ -1,0 +1,202 @@
+#line 1 "vendor/samsung/system/sepolicy/samsung/service_contexts"
+# Due to AIDL HAL introduction, vendors can publish services
+# with servicemanager. vendor_service_contexts is labeled as
+# vendor_service_contexts_file, not nonplat_service_contexts_file.
+# And pack it to vendor partition.
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-3993
+vendor.samsung.hardware.light.ILights/default            u:object_r:hal_light_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-3902
+vendor.samsung.hardware.base.ISehBase/default            u:object_r:hal_base_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-4117
+vendor.samsung.hardware.hyper.ISehHyPer/default      u:object_r:hal_hyper_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-4208
+# DUPLICATE vendor.samsung.hardware.uwb@1.0::ISehUwb/default      u:object_r:hal_uwb_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6118
+vendor.samsung.hardware.media.converter.ISehColorConverterStore/default      u:object_r:hal_converter_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6133/6523
+vendor.samsung.hardware.media.mpp.ISehMppStore/default		u:object_r:hal_mpp_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6181
+vendor.samsung.hardware.keymint.ISehKeyMintExtension/default		u:object_r:hal_keymint_service:s0
+vendor.samsung.hardware.keymint.ISehKeyMintFactory/default			u:object_r:hal_keymint_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6408
+vendor.samsung.hardware.gnss.ISehGnss/default                u:object_r:hal_gnss_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6460
+vendor.samsung.hardware.security.hdcp.wifidisplay.ISehHdcp/default                u:object_r:hal_hdcp_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6578
+android.hardware.security.keymint.IKeyMintDevice/strongbox             	   u:object_r:hal_keymint_service:s0
+android.hardware.security.sharedsecret.ISharedSecret/strongbox             u:object_r:hal_sharedsecret_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6575
+vendor.samsung.hardware.kpm.ISehKpm/default      u:object_r:hal_kpm_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6870
+android.hardware.neuralnetworks.IDevice/gpu_sl_shim     u:object_r:hal_neuralnetworks_gpu_service:s0
+android.hardware.neuralnetworks.IDevice/npu_sl_shim     u:object_r:hal_neuralnetworks_npu_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-6967
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9365
+vendor.samsung.hardware.ifaa@1.0::ISehIfaa/default									u:object_r:hal_ifaa_service:s0
+vendor.samsung.hardware.ifaa.ISehIfaa/default									    u:object_r:hal_ifaa_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7551
+vendor.samsung.hardware.radio.network.ISehRadioNetwork/slot1                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.network.ISehRadioNetwork/slot2                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.bridge.ISehRadioBridge/slot1                       u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.bridge.ISehRadioBridge/slot2                       u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.channel.ISehRadioChannel/imsd                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.channel.ISehRadioChannel/epdgd                u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.channel.ISehRadioChannel/imsd2                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.channel.ISehRadioChannel/epdgd2                 u:object_r:hal_radio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7784
+vendor.samsung.hardware.radio.data.ISehRadioData/slot1                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.data.ISehRadioData/slot2                  u:object_r:hal_radio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7859
+vendor.samsung.hardware.radio.sim.ISehRadioSim/slot1                  	u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.sim.ISehRadioSim/slot2                  	u:object_r:hal_radio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7873
+vendor.samsung.hardware.radio.messaging.ISehRadioMessaging/slot1                  u:object_r:hal_radio_service:s0
+vendor.samsung.hardware.radio.messaging.ISehRadioMessaging/slot2                  u:object_r:hal_radio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7899
+vendor.samsung.hardware.bluetooth.audio.ISehBluetoothAudioProviderFactory/default		u:object_r:hal_audio_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7946
+vendor.samsung.hardware.snap.ISehSnap/default               u:object_r:hal_snap_service:s0
+vendor.samsung.hardware.snap.ISehSnap/secsnap               u:object_r:hal_securesnap_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-7985
+android.hardware.drm.IDrmFactory/widevine   									u:object_r:hal_drm_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-8149
+vendor.samsung.hardware.frcmc.ISehFrcMc/default				u:object_r:hal_frcmc_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-8144
+vendor.samsung.hardware.security.ssu.ISehSSUTEECL/default						u:object_r:hal_ssu_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-8032
+vendor.samsung.hardware.csip.ISehCSIP/default				u:object_r:hal_csip_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9622
+vendor.samsung.hardware.sysinput.ISehSysInputDev/default                        u:object_r:hal_sec_inputdev_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9187
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9272
+vendor.samsung.hardware.security.widevine.keyprov.ISehWidevineKeyProv/default			                  u:object_r:hal_wvkprov_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9007
+vendor.samsung.hardware.security.fkeymaster.ISehFkeymaster/default                u:object_r:hal_fkey_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9322
+vendor.samsung.hardware.authfw.ISehAuthenticationFramework/default                             u:object_r:hal_authfw_service:s0
+
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9425
+vendor.samsung.hardware.soter.ISehSoter/default										    u:object_r:hal_soter_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9587
+vendor.samsung.hardware.security.wsm@1.0::ISehWsm/default                      u:object_r:hal_wsm_service:s0
+vendor.samsung.hardware.security.wsm.service.ISehWsm/default                      u:object_r:hal_wsm_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9809
+vendor.samsung.hardware.security.engmode.ISehEngmode/default											u:object_r:hal_engmode_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9597
+vendor.samsung.hardware.displayquality.ISehDisplayQuality/default                u:object_r:hal_display_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9635
+vendor.samsung.hardware.nfc_aidl.ISehNfc/default                				u:object_r:hal_nfc_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9616
+vendor.samsung.hardware.security.vaultkeeper.ISehVaultKeeper/default		   u:object_r:hal_vaultkeeper_service:s0
+			
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9637
+vendor.samsung.hardware.security.hermes.ISehHermesCommand/default                      u:object_r:hal_hermes_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9876
+vendor.samsung.hardware.khdm.ISehKhdm/default                           u:object_r:hal_hdm_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9976
+vendor.samsung.hardware.security.rtts.ISehRealTimeToken/default         u:object_r:hal_rtss_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10086
+vendor.samsung.hardware.tlc.ddar.ISehDdar/default						u:object_r:hal_ddar_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-9788
+vendor.samsung.hardware.security.drk.ISehDrk/default		   u:object_r:hal_drk_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10093
+vendor.samsung.hardware.tlc.ucm.ISehUcm/default 						u:object_r:hal_ucmtlc_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10453
+vendor.samsung.hardware.wifi.nan.IWifiVendorNan/default               u:object_r:hal_wifi_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10551
+vendor.samsung.hardware.security.spqckeymaster.ISehPQCkeymaster/default			u:object_r:hal_spqckeymaster_service:s0	
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10608
+vendor.samsung.hardware.tlc.iccc.ISehIccc/default					 u:object_r:hal_iccc_service:s0
+
+# https://mobilerndhub.sec.samsung.net/its/browse/SEANDROID-10186
+vendor.samsung.hardware.tlc.kg.ISehKg/default           			  u:object_r:hal_kgta_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-11034
+vendor.samsung.hardware.security.sem.ISehSem/default			     u:object_r:hal_sem_service:s0
+vendor.samsung.hardware.security.skpm.ISehSkpm/default			     u:object_r:hal_skpm_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-11360
+vendor.samsung.hardware.prefetch.ISehPrefetch/default		u:object_r:hal_prefetch_hal_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-10967
+vendor.samsung.hardware.tlc.payment.ISehPayment/default									u:object_r:hal_payment_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-11700
+vendor.samsung.hardware.audio.ISecAudioHal/default    								u:object_r:hal_audio_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-11878
+vendor.samsung.hardware.wifi.ISehWifi/default											u:object_r:hal_wifi_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-11656
+vendor.samsung.hardware.tlc.blockchain.ISehBlockchain/default						u:object_r:hal_blockchain_service:s0
+
+# https://jira-mx.sec.samsung.net/browse/SEANDROID-12813
+vendor.samsung.hardware.kg30.ISehKg30/default										u:object_r:hal_kg30_service:s0
+#line 1 "device/samsung/sepolicy/common/service_contexts"
+# SEC_REMOVE : This is not AIDL hal service 
+# sims       u:object_r:sims_service:s0
+
+# SEC_ADD
+exynos_display       u:object_r:exynos_display_service:s0
+
+# SEC_MOVED : android.hardware.security.keymint.IKeyMintDevice/strongbox             u:object_r:hal_keymint_service:s0
+# SEC_MOVED : android.hardware.security.sharedsecret.ISharedSecret/strongbox             u:object_r:hal_sharedsecret_service:s0
+
+#SEC_DUPLICATE android.hardware.drm.IDrmFactory/widevine    u:object_r:hal_drm_service:s0
+vendor.samsung_slsi.hardware.enn_aidl.IEnnInterfaceAidl/default     u:object_r:hal_enn_service:s0
+
+#hal nnapi driver
+# SEC_MOVED : android.hardware.neuralnetworks.IDevice/gpu_sl_shim  u:object_r:hal_neuralnetworks_service:s0
+# SEC_MOVED : android.hardware.neuralnetworks.IDevice/npu_sl_shim  u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/enn-npu  u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/enn-gpu  u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/enn      u:object_r:hal_neuralnetworks_service:s0
+
+vendor.samsung.hardware.gnss.ISlsiGnss/default   u:object_r:hal_gnss_service:s0
+
+vendor.samsung_slsi.hardware.epic.IEpicRequest/default		u:object_r:hal_vendor_epic_service:s0
+#line 1 "system/sepolicy/reqd_mask/service_contexts"
+# empty service_contexts file - this file is used to generate an empty
+# non-platform service_context for devices without any service_contexts
+# customizations.
