@@ -1,0 +1,5 @@
+# APEXD timeout for DeviceMapper create/delete
+on late-init
+    setprop apexd.config.dm_create.timeout 10000
+    setprop apexd.config.dm_delete.timeout 10000
+    setprop apexd.config.loop_wait.attempts 40

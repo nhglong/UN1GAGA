@@ -1,0 +1,21 @@
+user=_app seinfo=platform name=com.gd.mobicore.pa domain=mobicore_app type=app_data_file levelFrom=user
+user=_app seinfo=platform name=com.trustonic.tuiservice domain=mobicore_app type=app_data_file levelFrom=user
+user=system seinfo=platform name=com.android.power domain=blocked_app type=system_app_data_file
+user=system seinfo=platform name=com.android.sms domain=blocked_app type=system_app_data_file
+user=_app seinfo=platform name=com.android.power domain=blocked_app type=app_data_file
+user=_app seinfo=platform name=com.android.sms domain=blocked_app type=app_data_file
+user=system seinfo=platform name=com.android.data.backup domain=blocked_app type=system_app_data_file
+user=system seinfo=platform name=com.android.sec.backup.svc domain=blocked_app type=system_app_data_file
+user=_app seinfo=platform name=com.android.data.backup domain=blocked_app type=app_data_file
+user=_app seinfo=platform name=com.android.sec.backup.svc domain=blocked_app type=app_data_file
+user=_app seinfo=aasa_blocked domain=blocked_app type=app_data_file levelFrom=user
+user=system seinfo=aasa_blocked domain=blocked_app type=app_data_file
+user=radio seinfo=platform name=com.shannon.imsservice domain=vendor_ims_app levelFrom=all
+user=radio seinfo=platform name=com.shannon.imsservice:remote domain=vendor_ims_app levelFrom=all
+user=radio seinfo=platform name=com.shannon.rcsservice domain=vendor_rcs_app
+user=radio seinfo=platform name=com.shannon.rcsservice:remote domain=vendor_rcs_app
+user=radio seinfo=platform name=com.shannon.dataservice domain=vendor_ims_app
+user=radio seinfo=platform name=com.shannon.networkservice domain=vendor_ims_app
+user=_app isPrivApp=true name=com.shannon.qualifiednetworksservice domain=vendor_ims_app levelFrom=all
+user=system seinfo=platform name=com.samsung.slsi.cnntlogger domain=vendor_wlbt_app levelFrom=all
+user=system seinfo=platform name=com.samsung.slsi.telephony.silentlogging domain=vendor_telephony_silentlogging_app levelFrom=all
