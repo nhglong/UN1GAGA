@@ -232,6 +232,26 @@
         </interface>
         <fqname>@2.0::ISehBluetooth/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.bluetooth.a2dp</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISehBluetoothAudioOffload</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ISehBluetoothAudioOffload/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.bluetooth.audio</name>
+        <transport>hwbinder</transport>
+        <version>2.1</version>
+        <interface>
+            <name>ISehBluetoothAudioProvidersFactory</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@2.1::ISehBluetoothAudioProvidersFactory/default</fqname>
+    </hal>
     <hal format="hidl" override="true">
         <name>vendor.samsung.hardware.gnss</name>
         <transport>hwbinder</transport>
@@ -361,6 +381,16 @@
             <instance>default</instance>
         </interface>
         <fqname>@3.1::ISehSupplicant/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung_slsi.hardware.ExynosA2DPOffload</name>
+        <transport>hwbinder</transport>
+        <version>3.0</version>
+        <interface>
+            <name>IExynosA2DPOffload</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@3.0::IExynosA2DPOffload/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.samsung_slsi.hardware.ExynosHWCServiceTW</name>

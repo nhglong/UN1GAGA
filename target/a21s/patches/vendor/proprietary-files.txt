@@ -2,6 +2,27 @@
 # All proprietary files from this list, unless pinned or noted otherwise,
 # are from A217FXXSCDXE2.
 
+# BT Audio - A256EXXSADZA2
+vendor/bin/hw/android.hardware.audio.service|d875aad355354a3a674c60fe25a34655
+vendor/lib/hw/audio.bluetooth.so|54ba634629912f3c720f644595ce6ee0
+vendor/lib/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so|aed522491ea19d310816ab998944a654
+vendor/lib/hw/vendor.samsung.hardware.bluetooth.audio@2.1-impl.so|b2a431f721f08058ce077af9539349ef
+vendor/lib/hw/vendor.samsung_slsi.hardware.ExynosA2DPOffload@3.0-impl.so|253c724ac8ce66c5dad77fab1355a3b7
+vendor/lib/libaudioproxy2.so|533b0c8d9b13a37f07bb1a4b47f71b5c
+vendor/lib/libhwbinder.so|2863ca78a8a9e35f727d6e397b85387b
+vendor/lib/libsehbluetooth_audio_session.so|6a6c4facee451a44c87097dbe55fc533
+vendor/lib/vendor.samsung.hardware.bluetooth.a2dp@1.0.so|3ee497e4c6bca1b835710d99980a76a5
+vendor/lib/vendor.samsung.hardware.bluetooth.audio@2.0.so|ea626f8b2a213e3aee0dc6a03c846eb8
+vendor/lib/vendor.samsung.hardware.bluetooth.audio@2.1.so|45a2db82412e4024887e5400a0908510
+vendor/lib/vendor.samsung_slsi.hardware.ExynosA2DPOffload@3.0.so|f105bfd4afd6c5e424aa364e6d2a028a
+vendor/lib64/hw/audio.bluetooth.so|3ef1df7fa6d7c487b99e5835f7acd72c
+vendor/lib64/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so|6168e6fe66eb221a51c75891eedc1a3e
+vendor/lib64/hw/vendor.samsung.hardware.bluetooth.audio@2.1-impl.so|70329e90452e8e8c1812b23fb5e96ac9
+vendor/lib64/libsehbluetooth_audio_session.so|9e4db76bb6620d8a85e895040ab3f926
+vendor/lib64/vendor.samsung.hardware.bluetooth.a2dp@1.0.so|8ccc70b064f0fd8cdebfe878182de817
+vendor/lib64/vendor.samsung.hardware.bluetooth.audio@2.0.so|ea9218554b1ba7c7a2da4c5a4a9e5e46
+vendor/lib64/vendor.samsung.hardware.bluetooth.audio@2.1.so|fad2953892801ff0d9a4f3402d13643a
+
 # Fstab
 vendor/etc/fstab.exynos850
 

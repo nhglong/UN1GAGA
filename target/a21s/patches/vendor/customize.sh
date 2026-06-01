@@ -47,3 +47,13 @@ LOG_STEP_IN "- Removing renderscript blobs"
 DELETE_FROM_WORK_DIR "vendor" "lib/hw/android.hardware.renderscript@1.0-impl.so"
 DELETE_FROM_WORK_DIR "vendor" "lib64/hw/android.hardware.renderscript@1.0-impl.so"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Updating bluetooth audio blobs"
+DELETE_FROM_WORK_DIR "vendor" "etc/a2dpsink_audio_policy_configuration.xml"
+EVAL "mv \"$WORK_DIR/vendor/etc/audio_policy_configuration_sec.xml\" \"$WORK_DIR/vendor/etc/audio_policy_configuration_base.xml\""
+EVAL "sed -i \"s/audio_policy_configuration_sec/audio_policy_configuration_base/g\" \"$WORK_DIR/configs/file_context-vendor\""
+EVAL "sed -i \"s/audio_policy_configuration_sec/audio_policy_configuration_base/g\" \"$WORK_DIR/configs/fs_config-vendor\""
+EVAL "sed -i \"s/a2dp_audio_policy_configuration/bluetooth_audio_policy_configuration/g\" \"$WORK_DIR/vendor/etc/audio_policy_configuration_base.xml\""
+DELETE_FROM_WORK_DIR "vendor" "etc/a2dp_audio_policy_configuration.xml"
+EVAL "sed -i \"/hearing_aid_audio_policy_configuration/d\" \"$WORK_DIR/vendor/etc/audio_policy_configuration_base.xml\""
+LOG_STEP_OUT
