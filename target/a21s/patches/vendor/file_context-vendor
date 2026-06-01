@@ -1,6 +1,7 @@
 /vendor u:object_r:vendor_file:s0
 /vendor/bin/hw/android\.hardware\.audio\.service u:object_r:hal_audio_default_exec:s0
 /vendor/bin/hw/rild u:object_r:rild_exec:s0
+/vendor/etc/situation_audio_policy_volumes_sec\.xml u:object_r:vendor_configs_file:s0
 /vendor/lib/hw/audio\.bluetooth\.default\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/vendor\.samsung_slsi\.hardware\.ExynosA2DPOffload@3\.0-impl\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/vendor\.samsung\.hardware\.bluetooth\.a2dp@1\.0-impl\.so u:object_r:vendor_file:s0

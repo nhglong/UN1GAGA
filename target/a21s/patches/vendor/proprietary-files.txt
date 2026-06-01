@@ -2,6 +2,9 @@
 # All proprietary files from this list, unless pinned or noted otherwise,
 # are from A217FXXSCDXE2.
 
+# Audio - A145FXXSCDZA2
+vendor/etc/situation_audio_policy_volumes_sec.xml|968fecb954647711cc957c96763b5617
+
 # BT Audio - A256EXXSADZA2
 vendor/bin/hw/android.hardware.audio.service|d875aad355354a3a674c60fe25a34655
 vendor/lib/hw/audio.bluetooth.so|54ba634629912f3c720f644595ce6ee0

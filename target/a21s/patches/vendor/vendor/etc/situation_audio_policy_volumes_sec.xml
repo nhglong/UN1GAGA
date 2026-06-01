@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<audioPolicyConfiguration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <situations>
+        <situation type="stv_call_connection" stream="AUDIO_STREAM_VOICE_CALL">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   58,   73,   92,  115,  145,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   58,   73,   92,  115,  145,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+        </situation>
+        <situation type="stv_call_waiting" stream="AUDIO_STREAM_VOICE_CALL">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,   27,   38,   53,   75,  106,  150,  212,  300
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                    0,   27,   38,   53,   75,  106,  150,  212,  300
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_BLUETOOTH_SCO">
+                 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET">
+                 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT">
+                 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296, 1296
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   27,   38,   53,   75,  106,  150,  212,  300
+            </volume>
+        </situation>
+        <situation type="stv_ringback" stream="AUDIO_STREAM_VOICE_CALL">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,  116,  164,  231,  326,  461,  651,  920, 1300
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,  254,  359,  507,  716, 1012, 1429, 2018, 2850
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,  103,  145,  205,  289,  408,  576,  814, 1150, 2024, 2024, 2024, 2024, 2024, 2024, 2024
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                    0,  103,  145,  205,  289,  408,  576,  814, 1150, 2024, 2024, 2024, 2024, 2024, 2024, 2024
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_BLUETOOTH_SCO">
+                 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET">
+                 1203, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430, 1430
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,  116,  164,  231,  326,  460,  650,  918, 1296
+            </volume>
+        </situation>
+        <situation type="stv_voip_via_smart_view" stream="AUDIO_STREAM_VOICE_CALL">
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0, 1220, 1450, 1727, 2050, 2439, 2865, 3445, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096
+            </volume>
+        </situation>
+        <situation type="stv_boot_sound" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,  107,  120,  135,  151,  169,  190,  213,  239,  301,  379,  477,  601,  757,  953, 1200
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,    2,    3,    4,    5,    6,    8,   11,   16,   23,   32,   45,   64,   90,  127,  180
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+        </situation>
+        <situation type="stv_charger_connection" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,    3,    4,    5,    6,    7,    9,   12,   16,   21,   29,   39,   53,   71,   95,  130
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   25,   28,   31,   35,   39,   44,   49,   55,   69,   87,  109,  137,  173,  218,  274
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,    1,    1,    1,    1,    1,    1,    2,    3,    4,    6,    9,   13,   18,   25,   36
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                    2,    2,    2,    2,    2,    3,    4,    6,    9,   13,   18,   25,   35,   50,   71,  100
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,    3,    4,    5,    6,    7,    9,   12,   16,   21,   29,   39,   53,   71,   95,  130
+            </volume>
+        </situation>
+        <situation type="stv_hmt" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+        </situation>
+        <situation type="stv_key_tone" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   58,   73,   92,  115,  145,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,  152,  170,  191,  214,  240,  269,  302,  339,  427,  538,  677,  852, 1072, 1350, 1700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   51,   64,   81,  102,  129,  163,  205,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   51,   64,   81,  102,  129,  163,  205,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   58,   73,   92,  115,  145,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900, 4096
+            </volume>
+        </situation>
+        <situation type="stv_keyboard" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   30,   34,   38,   43,   48,   54,   61,   68,   85,  107,  135,  170,  214,  270,  340
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,   41,   52,   65,   82,  103,  130,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                    0,   41,   52,   65,   82,  103,  130,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+        </situation>
+        <situation type="stv_lock_screen" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   40,   45,   51,   57,   64,   72,   81,   91,  114,  143,  180,  226,  284,  357,  450
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   45,   57,   72,   91,  115,  145,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   45,   57,   72,   91,  115,  145,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+        </situation>
+        <situation type="stv_low_battery" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   10,   13,   16,   20,   25,   31,   44,   62,   88,  125,  175,  250,  350,  500,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,    8,    9,   10,   11,   12,   13,   15,   17,   21,   27,   34,   43,   54,   68,   85
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,   10,   13,   16,   20,   25,   31,   44,   62,   88,  125,  176,  248,  351,  496,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                    0,   10,   13,   16,   20,   25,   31,   44,   62,   88,  125,  176,  248,  351,  496,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   10,   13,   16,   20,   25,   31,   44,   62,   88,  125,  175,  250,  350,  500,  700
+            </volume>
+        </situation>
+        <situation type="stv_midi" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126,  126
+            </volume>
+        </situation>
+        <situation type="stv_touch_tone" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   14,   18,   22,   28,   35,   44,   62,   88,  125,  175,  250,  350,  500,  700, 1000
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   49,   55,   62,   70,   78,   87,   98,  110,  138,  174,  219,  276,  347,  437,  550
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   21,   26,   33,   41,   51,   64,   81,  114,  161,  227,  320,  452,  639,  902, 1274, 1800
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   21,   26,   33,   41,   51,   64,   81,  114,  161,  227,  320,  452,  639,  902, 1274, 1800
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   14,   18,   22,   28,   35,   44,   62,   88,  125,  175,  250,  350,  500,  700, 1000
+            </volume>
+        </situation>
+        <situation type="stv_unlock_screen" stream="AUDIO_STREAM_SYSTEM">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   23,   26,   29,   33,   37,   42,   47,   53,   67,   84,  106,  133,  168,  212,  267
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   45,   57,   72,   91,  115,  145,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   45,   57,   72,   91,  115,  145,  183,  258,  365,  515,  728, 1029, 1453, 2053, 2900, 4096
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+        </situation>
+        <situation type="stv_burst_shot" stream="AUDIO_STREAM_ENFORCED_AUDIBLE">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   28,   35,   44,   56,   70,   88,  111,  140,  176,  222,  279,  351,  442,  556,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                    0,   21,   26,   33,   42,   53,   67,   95,  134,  189,  267,  377,  532,  752, 1062, 1500
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   83,   97,  114,  134,  157,  184,  216,  254,  299,  377,  474,  597,  751,  946, 1191, 1500
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   41,   52,   65,   82,  103,  129,  183,  258,  365,  516,  729, 1029, 1454, 2053, 2900
+            </volume>
+        </situation>
+        <situation type="stv_camcording_start" stream="AUDIO_STREAM_ENFORCED_AUDIBLE">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,    4,    5,    6,    7,    9,   11,   16,   22,   31,   44,   62,   88,  125,  175,  250
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   33,   42,   53,   67,   84,  106,  134,  169,  213,  268,  338,  426,  536,  675,  850
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   11,   13,   15,   18,   21,   25,   29,   34,   40,   50,   63,   79,  100,  126,  159,  200
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   11,   13,   15,   18,   21,   25,   29,   34,   40,   50,   63,   79,  100,  126,  159,  200
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,    4,    5,    6,    7,    9,   11,   16,   22,   31,   44,   62,   88,  125,  175,  250
+            </volume>
+        </situation>
+        <situation type="stv_shutter" stream="AUDIO_STREAM_ENFORCED_AUDIBLE">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,    6,    8,   11,   16,   22,   31,   44,   62,   88,  125,  176,  248,  351,  496,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                    0,   22,   28,   35,   44,   55,   69,   87,  110,  138,  174,  219,  276,  347,  437,  550
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   11,   14,   18,   23,   29,   36,   45,   63,   89,  126,  178,  251,  355,  501,  708, 1000
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   11,   14,   18,   23,   29,   36,   45,   63,   89,  126,  178,  251,  355,  501,  708, 1000
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                    0,   10,   13,   16,   20,   25,   31,   44,   62,   88,  125,  175,  250,  350,  500,  700
+            </volume>
+        </situation>
+        <situation type="stv_dtmf" stream="AUDIO_STREAM_DTMF">
+            <volume device="AUDIO_DEVICE_OUT_EARPIECE">
+                    0,   62,   70,   78,   88,   99,  111,  125,  140,  176,  222,  279,  351,  442,  556,  700
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_SPEAKER">
+                   12,   14,   16,   19,   22,   26,   31,   37,   44,   55,   69,   87,  110,  139,  175,  220
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADSET">
+                   16,   19,   22,   26,   31,   37,   43,   51,   60,   75,   95,  119,  150,  189,  238,  300
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_WIRED_HEADPHONE">
+                   16,   19,   22,   26,   31,   37,   43,   51,   60,   75,   95,  119,  150,  189,  238,  300
+            </volume>
+            <volume device="AUDIO_DEVICE_OUT_USB_HEADSET">
+                   16,   19,   22,   26,   31,   37,   43,   51,   60,   75,   95,  119,  150,  189,  238,  300
+            </volume>
+        </situation>
+    </situations>
+</audioPolicyConfiguration>
