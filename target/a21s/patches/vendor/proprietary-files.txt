@@ -5,6 +5,18 @@
 # Fstab
 vendor/etc/fstab.exynos850
 
+# RIL - A256EXXSADZA2
+vendor/bin/hw/rild|fc25e7f4738ecc09918189dc3ed0041b
+vendor/etc/init/vendor.samsung.rild.rc:vendor/etc/init/init.vendor.rilchip.rc|ebcdaf6f28a4746ea4050b5d65803880
+vendor/lib64/android.hardware.radio.config@1.2.so|ecf1148a3a8d9a4ba8b090ec910589d1
+vendor/lib64/android.hardware.radio.config@1.3.so|18b944bae5c6544fb043b5588832eab3
+vendor/lib64/android.hardware.radio@1.5.so|7fc02a576d1de46bf815362975319891
+vendor/lib64/android.hardware.radio@1.6.so|3e9f98bdacb042577dd06922381a9dc5
+vendor/lib64/libVendorSemDataProps.so|84a1dc566f6b8c504387f433eb019747
+vendor/lib64/libVendorSemTelephonyProps.so|d56900be31ee527a50e706cfdbbb201e
+vendor/lib64/libril_sem.so|d3b520650bfb196289222a013b488113
+vendor/lib64/libsec-ril.so|2dc006808296a4c628fa8f4354150296
+
 # Selinux - A256EXXSADZA2
 vendor/etc/selinux/sk/authorize.xml|c942a0afe3ecde6aa7eec10b9804ad8c
 vendor/etc/selinux/plat_pub_versioned.cil|e1b9c6496bf963485005cad0ea4e5021
