@@ -758,6 +758,7 @@
 /vendor/lib/libstagefright_softomx\.so u:object_r:vendor_file:s0
 /vendor/lib/libstagefright_softomx_plugin\.so u:object_r:vendor_file:s0
 /vendor/lib/libstagefrighthw\.so u:object_r:vendor_file:s0
+/vendor/lib/libstdc\+\+_vendor\.so u:object_r:vendor_file:s0
 /vendor/lib/libtinycompress\.so u:object_r:vendor_file:s0
 /vendor/lib/libutils-v32\.so u:object_r:vendor_file:s0
 /vendor/lib/libvibrator\.so u:object_r:vendor_file:s0
@@ -1091,6 +1092,7 @@
 /vendor/lib64/libstagefright_flacdec\.so u:object_r:vendor_file:s0
 /vendor/lib64/libstagefright_foundation_vendor\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libstagefrighthw\.so u:object_r:vendor_file:s0
+/vendor/lib64/libstdc\+\+_vendor\.so u:object_r:vendor_file:s0
 /vendor/lib64/libstork_shared\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsynaFpSensorTestNwd\.so u:object_r:vendor_file:s0
 /vendor/lib64/libtvm_runtime\.so u:object_r:vendor_file:s0
