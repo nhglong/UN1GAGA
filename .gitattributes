@@ -28,6 +28,9 @@ platform/exynos8895/patches/blobs/system/** binary
 target/a52sxq/patches/wpss/vendor/firmware/** binary
 target/a53x/patches/*/vendor/** binary
 target/a73xq/patches/wpss/vendor/firmware/** binary
+target/dream2lte/patches/*/** binary
+target/dreamlte/patches/*/** binary
+target/greatlte/patches/*/** binary
 target/m52xq/patches/wpss/vendor/firmware/** binary
 target/o1s/patches/variants/vendor/** binary
 target/p3s/patches/variants/vendor/** binary
