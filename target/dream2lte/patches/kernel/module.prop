@@ -1,0 +1,4 @@
+id=kernel
+name=Kernel
+author=nhglong
+description=Add a compatible kernel into the ROM.
