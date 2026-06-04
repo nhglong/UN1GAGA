@@ -721,6 +721,7 @@ vendor/lib/libsensorlistener.so 0 0 644 capabilities=0x0
 vendor/lib/libsensorndkbridge.so 0 0 644 capabilities=0x0
 vendor/lib/libsfplugin_ccodec_utils.so 0 0 644 capabilities=0x0
 vendor/lib/libshim_camera.so 0 0 644 capabilities=0x0
+vendor/lib/libshim_idiv0.so 0 0 644 capabilities=0x0
 vendor/lib/libshmemcompat.so 0 0 644 capabilities=0x0
 vendor/lib/libshmemutil.so 0 0 644 capabilities=0x0
 vendor/lib/libsnaace.so 0 0 644 capabilities=0x0
