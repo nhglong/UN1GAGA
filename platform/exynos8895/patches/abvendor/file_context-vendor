@@ -720,6 +720,7 @@
 /vendor/lib/libsensorndkbridge\.so u:object_r:vendor_file:s0
 /vendor/lib/libsfplugin_ccodec_utils\.so u:object_r:vendor_file:s0
 /vendor/lib/libshim_camera\.so u:object_r:vendor_file:s0
+/vendor/lib/libshim_idiv0\.so u:object_r:vendor_file:s0
 /vendor/lib/libshmemcompat\.so u:object_r:vendor_file:s0
 /vendor/lib/libshmemutil\.so u:object_r:vendor_file:s0
 /vendor/lib/libsnaace\.so u:object_r:vendor_file:s0
