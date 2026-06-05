@@ -11,6 +11,7 @@ PATCH_FSTAB()
         fi
         LOG "- Patching $(sed -e "s|$WORK_DIR||g" -e "s|$TMP_DIR/out/ramdisk_extracted|$BOOT_FILE|g" <<< "$f")"
         sed -E -i "/^($p)\s+/ s/(\s+\S+\s+)\S+/\1$TARGET_OS_FILE_SYSTEM_TYPE/" "$f" || true
+        sed -E -i "/^($p)\s+/ s/^(\S+\s+\S+\s+\S+\s+)\S+/\1ro/" "$f" || true
         EVAL "uniq \"$f\" \"$TMP_DIR/tmp\" && mv -f \"$TMP_DIR/tmp\" \"$f\""
     done < <(find "$1" -type f -name "fstab.*")
 }
