@@ -1,0 +1,4 @@
+id=erofs
+name=Filesystem support
+author=salvogiangri, utkustnr, nhglong
+description=Adds custom filesystem support.

@@ -1,23 +1,16 @@
-if [ "$TARGET_PRODUCT_SHIPPING_API_LEVEL" -ge "33" ]; then
-    LOG "\033[0;33m! Nothing to do\033[0m"
-    return 0
-fi
-
 # [
-_LOG() { if $DEBUG; then LOGW "$1"; else ABORT "$1"; fi }
-
+PARTITIONS_LIST="system vendor product system_ext odm vendor_dlkm odm_dlkm system_dlkm"
 PATCH_FSTAB()
 {
-    local f
+    local f p
+    p="$(echo $PARTITIONS_LIST | tr ' ' '|')"
 
     while IFS= read -r f; do
         if [[ "$f" == *"emmc" ]] || [[ "$f" == *"ramplus" ]]; then
             continue
         fi
-        sed -E -i \
-            '/^(system|vendor|product|system_ext|odm|vendor_dlkm|odm_dlkm|system_dlkm)\s+/ s/(\s+\S+\s+)\S+/\1erofs/' \
-            "$f" && LOG "- Patching $(sed -e "s|$WORK_DIR||g" -e "s|$TMP_DIR/out/ramdisk_extracted|$BOOT_FILE|g" <<< "$f")" \
-            || true
+        LOG "- Patching $(sed -e "s|$WORK_DIR||g" -e "s|$TMP_DIR/out/ramdisk_extracted|$BOOT_FILE|g" <<< "$f")"
+        sed -E -i "/^($p)\s+/ s/(\s+\S+\s+)\S+/\1erofs/" "$f" || true
         EVAL "uniq \"$f\" \"$TMP_DIR/tmp\" && mv -f \"$TMP_DIR/tmp\" \"$f\""
     done < <(find "$1" -type f -name "fstab.*")
 }
@@ -95,5 +88,5 @@ fi
 
 EVAL "rm -rf \"$TMP_DIR\""
 
-unset BOOT_FILE MKBOOTIMG_ARGS RAMDISK_FILE RAMDISK_FORMAT
+unset PARTITIONS_LIST BOOT_FILE MKBOOTIMG_ARGS RAMDISK_FILE RAMDISK_FORMAT
 unset -f _LOG PATCH_FSTAB
