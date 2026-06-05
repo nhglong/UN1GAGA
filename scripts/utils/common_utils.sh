@@ -53,7 +53,10 @@ _GET_PROP_FILES_PATH()
                 )
                 ;;
             "odm")
-                FILES+=("$WORK_DIR/odm/etc/build.prop")
+                FILES+=(
+                    "$WORK_DIR/odm/etc/build.prop"
+                    "$WORK_DIR/vendor/odm/etc/build.prop"
+                )
                 ;;
             "vendor_dlkm")
                 FILES+=(
@@ -83,8 +86,10 @@ _GET_PROP_FILES_PATH()
             "$WORK_DIR/vendor/build.prop"
             "$WORK_DIR/vendor_dlkm/etc/build.prop"
             "$WORK_DIR/vendor/vendor_dlkm/etc/build.prop"
+            "$WORK_DIR/odm_dlkm/etc/build.prop"
             "$WORK_DIR/vendor/odm_dlkm/etc/build.prop"
             "$WORK_DIR/odm/etc/build.prop"
+            "$WORK_DIR/vendor/odm/etc/build.prop"
             "$WORK_DIR/product/etc/build.prop"
         )
     fi
@@ -248,6 +253,20 @@ ADD_TO_WORK_DIR()
         else
             SOURCE_FILE+="/system/${FILE//system\//}"
             TARGET_FILE+="/system/system/${FILE//system\//}"
+        fi
+    elif [[ "$PARTITION" == "odm" ]]; then
+        if [ -d "$SOURCE/odm" ]; then
+            SOURCE_FILE+="/odm/$FILE"
+        elif [ -d "$SOURCE/vendor/odm" ]; then
+            SOURCE_FILE+="/vendor/odm/$FILE"
+        fi
+
+        if $TARGET_OS_BUILD_ODM_PARTITION; then
+            TARGET_FILE+="/odm/$FILE"
+        else
+            PARTITION="vendor"
+            FILE="odm/$FILE"
+            TARGET_FILE+="/$FILE"
         fi
     else
         SOURCE_FILE+="/$PARTITION/$FILE"
@@ -417,6 +436,11 @@ DELETE_FROM_WORK_DIR()
         FILE="system/system_ext/$FILE"
     fi
 
+    if ! $TARGET_OS_BUILD_ODM_PARTITION && [[ "$PARTITION" == "odm" ]]; then
+        PARTITION="vendor"
+        FILE="odm/$FILE"
+    fi
+
     local FILE_PATH="$WORK_DIR"
     case "$PARTITION" in
         "system_ext")
@@ -424,6 +448,13 @@ DELETE_FROM_WORK_DIR()
                 FILE_PATH+="/system_ext"
             else
                 FILE_PATH+="/system/system/system_ext"
+            fi
+            ;;
+        "odm")
+            if $TARGET_OS_BUILD_ODM_PARTITION; then
+                FILE_PATH+="/odm"
+            else
+                FILE_PATH+="/vendor/odm"
             fi
             ;;
         *)
@@ -706,7 +737,11 @@ SET_PROP()
                 FILE="$WORK_DIR/vendor/odm_dlkm/etc/build.prop"
                 ;;
             "odm")
-                FILE="$WORK_DIR/odm/etc/build.prop"
+                if $TARGET_OS_BUILD_ODM_PARTITION; then
+                    FILE="$WORK_DIR/odm/etc/build.prop"
+                else
+                    FILE="$WORK_DIR/vendor/odm/etc/build.prop"
+                fi
                 ;;
             "product")
                 FILE="$WORK_DIR/product/etc/build.prop"
