@@ -1,0 +1,145 @@
+From f0051e65103d81cac349f204f9c3e0cca0eb8a80 Mon Sep 17 00:00:00 2001
+From: nhglong <its.nhglong@gmail.com>
+Date: Fri, 5 Jun 2026 22:56:22 +0700
+Subject: [PATCH] fix unpack/repack for legacy image
+
+* with header v0
+---
+ mkbootimg.py      | 21 +++++++++++++++++++--
+ unpack_bootimg.py | 24 ++++++++++++++++++++++++
+ 2 files changed, 43 insertions(+), 2 deletions(-)
+
+diff --git a/mkbootimg.py b/mkbootimg.py
+index ec295817..a1a0ccb8 100755
+--- a/mkbootimg.py
++++ b/mkbootimg.py
+@@ -218,8 +218,13 @@ def write_header(args):
+     args.output.write(pack('I', args.base + args.tags_offset))
+     # flash page size
+     args.output.write(pack('I', args.pagesize))
+-    # version of boot image header
+-    args.output.write(pack('I', args.header_version))
++    # OEMs like Samsung stores dt_size at the header_version (unused in header v0) field.
++    if args.dt is not None and args.header_version == 0:
++        # dt
++        args.output.write(pack('I', filesize(args.dt)))
++    else:
++        # version of boot image header
++        args.output.write(pack('I', args.header_version))
+     # os version and patch level
+     args.output.write(pack('I', (args.os_version << 11) | args.os_patch_level))
+     # asciiz product name
+@@ -231,6 +236,8 @@ def write_header(args):
+     update_sha(sha, args.ramdisk)
+     update_sha(sha, args.second)
+ 
++    if args.dt:
++        update_sha(sha, args.dt)
+     if args.header_version > 0:
+         update_sha(sha, args.recovery_dtbo)
+     if args.header_version > 1:
+@@ -240,6 +247,10 @@ def write_header(args):
+ 
+     args.output.write(img_id)
+     args.output.write(pack(f'{BOOT_EXTRA_ARGS_SIZE}s', args.extra_cmdline))
++    if args.dt:
++        args.output.write(pack('I', filesize(args.dt)))
++    else:
++        args.output.write(pack('I', 0))
+ 
+     if args.header_version > 0:
+         if args.recovery_dtbo:
+@@ -501,6 +512,7 @@ def parse_cmdline():
+                         help='path to the ramdisk')
+     parser.add_argument('--second', type=FileType('rb'),
+                         help='path to the second bootloader')
++    parser.add_argument('--dt', type=FileType('rb'), help='path to the dt')
+     parser.add_argument('--dtb', type=FileType('rb'), help='path to the dtb')
+     dtbo_group = parser.add_mutually_exclusive_group()
+     dtbo_group.add_argument('--recovery_dtbo', type=FileType('rb'),
+@@ -618,6 +630,8 @@ def write_data(args, pagesize):
+     write_padded_file(args.output, args.ramdisk, pagesize)
+     write_padded_file(args.output, args.second, pagesize)
+ 
++    if args.dt:
++        write_padded_file(args.output, args.dt, pagesize)
+     if args.header_version > 0 and args.header_version < 3:
+         write_padded_file(args.output, args.recovery_dtbo, pagesize)
+     if args.header_version == 2:
+@@ -641,6 +655,9 @@ def write_vendor_boot_data(args):
+ 
+ def main():
+     args = parse_cmdline()
++    if args.dt is not None and args.header_version != 0:
++        raise ValueError(
++            '--dt is only supported with Boot header version 0')
+     if args.vendor_boot is not None:
+         if args.header_version not in {3, 4}:
+             raise ValueError(
+diff --git a/unpack_bootimg.py b/unpack_bootimg.py
+index 2578fce3..41a1e7f6 100755
+--- a/unpack_bootimg.py
++++ b/unpack_bootimg.py
+@@ -125,6 +125,9 @@ class BootImageInfoFormatter:
+             lines.append(f'dtb size: {self.dtb_size}')
+             lines.append(f'dtb address: {self.dtb_load_address:#018x}')
+ 
++        if self.dt_size > 0:
++            lines.append(f'dt size: {self.dt_size}')
++
+         if self.header_version >= 4:
+             lines.append(
+                 f'boot.img signature size: {self.boot_signature_size}')
+@@ -151,6 +154,8 @@ class BootImageInfoFormatter:
+                              os.path.join(self.image_dir, 'recovery_dtbo')])
+             if self.dtb_size > 0:
+                 args.extend(['--dtb', os.path.join(self.image_dir, 'dtb')])
++            if self.dt_size > 0:
++                args.extend(['--dt', os.path.join(self.image_dir, 'dt')])
+ 
+             args.extend(['--pagesize', f'{self.page_size:#010x}'])
+ 
+@@ -188,7 +193,15 @@ def unpack_boot_image(boot_img, output_dir):
+ 
+     kernel_ramdisk_second_info = unpack('9I', boot_img.read(9 * 4))
+     # header_version is always at [8] regardless of the value of header_version.
++    # OEMs like Samsung stores dt_size at the header_version (unused in header v0) field.
+     info.header_version = kernel_ramdisk_second_info[8]
++    info.dt_size = 0
++
++    if info.header_version not in (1, 2, 3, 4) and info.header_version >= 0x10000: # 64 KiB+
++        info.dt_size = info.header_version
++        info.header_version = 0
++    elif info.header_version not in (1, 2, 3, 4):
++        info.header_version = 0
+ 
+     if info.header_version < 3:
+         info.kernel_size = kernel_ramdisk_second_info[0]
+@@ -261,6 +274,16 @@ def unpack_boot_image(boot_img, output_dir):
+             )  # header + kernel + ramdisk
+         image_info_list.append((second_offset, info.second_size, 'second'))
+ 
++    if info.dt_size > 0:
++        num_second_pages = get_number_of_pages(info.second_size, page_size)
++        dt_offset = page_size * (
++            num_header_pages +
++            num_kernel_pages +
++            num_ramdisk_pages +
++            num_second_pages
++        )
++        image_info_list.append((dt_offset, info.dt_size, 'dt'))
++
+     if info.recovery_dtbo_size > 0:
+         image_info_list.append((info.recovery_dtbo_offset,
+                                 info.recovery_dtbo_size,
+@@ -393,6 +416,7 @@ def unpack_vendor_boot_image(boot_img, output_dir):
+     info.header_size = unpack('I', boot_img.read(4))[0]
+     info.dtb_size = unpack('I', boot_img.read(4))[0]
+     info.dtb_load_address = unpack('Q', boot_img.read(8))[0]
++    info.dt_size = 0
+ 
+     # Convenient shorthand.
+     page_size = info.page_size
+-- 
+2.54.0
+
