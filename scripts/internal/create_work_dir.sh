@@ -141,7 +141,7 @@ COPY_SOURCE_FIRMWARE()
 
 COPY_TARGET_FIRMWARE()
 {
-    local TARGET_FOLDERS="prism optics system_dlkm vendor odm odm_dlkm vendor_dlkm"
+    local TARGET_FOLDERS="system_dlkm prism optics vendor odm_dlkm vendor_dlkm"
     for f in $TARGET_FOLDERS; do
         COPY_PARTITIONS "$FW_DIR/$TARGET_FIRMWARE_PATH" "$f"
         if [[ "$f" == "vendor" ]]; then
@@ -155,6 +155,70 @@ COPY_TARGET_FIRMWARE()
             LOG_STEP_OUT
         fi
     done
+
+    if [ -d "$FW_DIR/$TARGET_FIRMWARE_PATH/odm" ]; then
+        if $TARGET_OS_BUILD_ODM_PARTITION; then
+            LOG_STEP_IN "- Copying /odm from target firmware"
+
+            [ -d "$WORK_DIR/vendor/odm" ] && rm -rf "$WORK_DIR/vendor/odm"
+        
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/odm\" \"$WORK_DIR\"" || exit 1
+            EVAL "ln -sf \"/odm\" \"$WORK_DIR/vendor/odm\"" || exit 1
+
+            SET_METADATA "vendor" "odm" 0 0 644 "u:object_r:vendor_file:s0"
+
+            EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-odm\" \"$WORK_DIR/configs/file_context-odm\"" || exit 1
+            EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-odm\" \"$WORK_DIR/configs/fs_config-odm\"" || exit 1
+
+            LOG_STEP_OUT
+        else
+            LOG_STEP_IN "- Copying /vendor/odm from target firmware"
+
+            [ -L "$WORK_DIR/vendor/odm" ] && rm -f "$WORK_DIR/vendor/odm"
+            [ -d "$WORK_DIR/odm" ] && rm -rf "$WORK_DIR/odm"
+            [ -f "$WORK_DIR/configs/file_context-odm" ] && rm -f "$WORK_DIR/configs/file_context-odm"
+            [ -f "$WORK_DIR/configs/fs_config-odm" ] && rm -f "$WORK_DIR/configs/fs_config-odm"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/odm\" \"$WORK_DIR/vendor\"" || exit 1
+
+            SET_METADATA "vendor" "odm" 0 0 755 "u:object_r:vendor_file:s0"
+
+            sed "s/^\/odm/\/vendor\/odm/g" "$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-odm" >> "$WORK_DIR/configs/file_context-vendor"
+            sed "s/^odm/vendor\/odm/g" "$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-odm" >> "$WORK_DIR/configs/fs_config-vendor"
+
+            LOG_STEP_OUT
+        fi
+    elif [ -d "$FW_DIR/$TARGET_FIRMWARE_PATH/vendor/odm" ]; then
+        if $TARGET_OS_BUILD_ODM_PARTITION; then
+            LOG_STEP_IN "- Copying /odm from target firmware"
+
+            [ -d "$WORK_DIR/vendor/odm" ] && rm -rf "$WORK_DIR/vendor/odm"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/vendor/odm\" \"$WORK_DIR\"" || exit 1
+            EVAL "ln -sf \"/odm\" \"$WORK_DIR/vendor/odm\"" || exit 1
+
+            SET_METADATA "vendor" "odm" 0 0 644 "u:object_r:vendor_file:s0"
+
+            grep -F "vendor/odm" "$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-vendor" | sed "s/^\/vendor//" > "$WORK_DIR/configs/file_context-odm"
+            grep -F "vendor/odm" "$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-vendor" | sed "s/^vendor\///" > "$WORK_DIR/configs/fs_config-odm"
+            sed -i "s/^odm /  /g" "$WORK_DIR/configs/fs_config-odm"
+
+            LOG_STEP_OUT
+        else
+            LOG_STEP_IN "- Copying /vendor/odm from target firmware"
+
+            [ -L "$WORK_DIR/vendor/odm" ] && rm -f "$WORK_DIR/vendor/odm"
+            [ -f "$WORK_DIR/configs/file_context-odm" ] && rm -f "$WORK_DIR/configs/file_context-odm"
+            [ -f "$WORK_DIR/configs/fs_config-odm" ] && rm -f "$WORK_DIR/configs/fs_config-odm"
+
+            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/vendor/odm\" \"$WORK_DIR/vendor\"" || exit 1
+
+            grep -F "odm" "$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-vendor" >> "$WORK_DIR/configs/file_context-vendor"
+            grep -F "odm" "$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-vendor" >> "$WORK_DIR/configs/fs_config-vendor"
+
+            LOG_STEP_OUT
+        fi
+    fi
 }
 
 COPY_TARGET_KERNEL()
