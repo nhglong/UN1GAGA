@@ -10,17 +10,11 @@ PATCH_FSTAB()
             continue
         fi
         LOG "- Patching $(sed -e "s|$WORK_DIR||g" -e "s|$TMP_DIR/out/ramdisk_extracted|$BOOT_FILE|g" <<< "$f")"
-        sed -E -i "/^($p)\s+/ s/(\s+\S+\s+)\S+/\1erofs/" "$f" || true
+        sed -E -i "/^($p)\s+/ s/(\s+\S+\s+)\S+/\1$TARGET_OS_FILE_SYSTEM_TYPE/" "$f" || true
         EVAL "uniq \"$f\" \"$TMP_DIR/tmp\" && mv -f \"$TMP_DIR/tmp\" \"$f\""
     done < <(find "$1" -type f -name "fstab.*")
 }
 # ]
-
-if [[ "$TARGET_OS_FILE_SYSTEM_TYPE" != "erofs" ]]; then
-    _LOG "TARGET_OS_FILE_SYSTEM_TYPE is not set to erofs"
-    unset -f _LOG
-    return 0
-fi
 
 BOOT_FILE="boot.img"
 if [ -f "$WORK_DIR/kernel/vendor_boot.img" ]; then
