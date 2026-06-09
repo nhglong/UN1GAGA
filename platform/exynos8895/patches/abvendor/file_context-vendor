@@ -676,7 +676,7 @@
 /vendor/lib/libcodec2_vndk\.so u:object_r:vendor_file:s0
 /vendor/lib/libcodecsolutionhelper_vendor\.so u:object_r:vendor_file:s0
 /vendor/lib/libcsc\.so u:object_r:vendor_file:s0
-/vendor/lib/libdemangle\.so u:object_r:vendor_file:s00
+/vendor/lib/libdemangle\.so u:object_r:vendor_file:s0
 /vendor/lib/libeffects\.so u:object_r:vendor_file:s0
 /vendor/lib/libeffectsconfig\.so u:object_r:vendor_file:s0
 /vendor/lib/libexynoscamera\.so u:object_r:vendor_file:s0
@@ -1006,6 +1006,7 @@
 /vendor/lib64/libcppcose_rkp\.so u:object_r:vendor_file:s0
 /vendor/lib64/libcsc\.so u:object_r:vendor_file:s0
 /vendor/lib64/libdeccfg\.so u:object_r:vendor_file:s0
+/vendor/lib64/libdemangle\.so u:object_r:vendor_file:s0
 /vendor/lib64/libdk_vnd_service_core\.so u:object_r:vendor_file:s0
 /vendor/lib64/libdsms_vendor\.so u:object_r:vendor_file:s0
 /vendor/lib64/libeffects\.so u:object_r:vendor_file:s0
