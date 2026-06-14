@@ -72,6 +72,7 @@
 /vendor/lib/libOpenCv\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/libopenvx\.so u:object_r:vendor_file:s0
 /vendor/lib/libscore\.so u:object_r:vendor_file:s0
+/vendor/lib/libshim_camera\.so u:object_r:vendor_file:s0
 /vendor/lib/libsmartfocus_interface\.so u:object_r:vendor_file:s0
 /vendor/lib/libsmartfocusengine\.so u:object_r:vendor_file:s0
 /vendor/lib/libuniapi\.so u:object_r:vendor_file:s0
@@ -96,6 +97,7 @@
 /vendor/lib64/libOpenCv\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libopenvx\.so u:object_r:vendor_file:s0
 /vendor/lib64/libscore\.so u:object_r:vendor_file:s0
+/vendor/lib64/libshim_camera\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsmartfocus_interface\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsmartfocusengine\.so u:object_r:vendor_file:s0
 /vendor/lib64/libuniapi\.so u:object_r:vendor_file:s0
