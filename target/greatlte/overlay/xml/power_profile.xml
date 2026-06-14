@@ -23,59 +23,59 @@
         <value>4</value>
         <value>4</value>
     </array>
-    <array name="cpu.active.cluster0">
-        <value>102</value>
-        <value>90</value>
-        <value>73</value>
-        <value>57</value>
-        <value>53</value>
-        <value>49</value>
-        <value>46</value>
-        <value>41</value>
-        <value>34</value>
-    </array>
-    <array name="cpu.speeds.cluster0">
-        <value>1690000</value>
-        <value>1456000</value>
-        <value>1248000</value>
-        <value>1053000</value>
-        <value>949000</value>
-        <value>832000</value>
-        <value>715000</value>
-        <value>598000</value>
+    <array name="cpu.core_speeds.cluster0">
         <value>455000</value>
+        <value>598000</value>
+        <value>715000</value>
+        <value>832000</value>
+        <value>949000</value>
+        <value>1053000</value>
+        <value>1248000</value>
+        <value>1456000</value>
+        <value>1690000</value>
     </array>
-    <array name="cpu.active.cluster1">
-        <value>745</value>
-        <value>643</value>
-        <value>541</value>
-        <value>470</value>
-        <value>424</value>
-        <value>374</value>
-        <value>315</value>
-        <value>281</value>
-        <value>228</value>
-        <value>210</value>
-        <value>200</value>
-        <value>179</value>
-        <value>171</value>
-        <value>164</value>
+    <array name="cpu.core_power.cluster0">
+        <value>34</value>
+        <value>41</value>
+        <value>46</value>
+        <value>49</value>
+        <value>53</value>
+        <value>57</value>
+        <value>73</value>
+        <value>90</value>
+        <value>102</value>
     </array>
-    <array name="cpu.speeds.cluster1">
-        <value>2496000</value>
-        <value>2314000</value>
-        <value>2158000</value>
-        <value>2002000</value>
-        <value>1937000</value>
-        <value>1807000</value>
-        <value>1703000</value>
-        <value>1469000</value>
-        <value>1261000</value>
-        <value>1170000</value>
-        <value>1066000</value>
-        <value>962000</value>
-        <value>858000</value>
+    <array name="cpu.core_speeds.cluster1">
         <value>741000</value>
+        <value>858000</value>
+        <value>962000</value>
+        <value>1066000</value>
+        <value>1170000</value>
+        <value>1261000</value>
+        <value>1469000</value>
+        <value>1703000</value>
+        <value>1807000</value>
+        <value>1937000</value>
+        <value>2002000</value>
+        <value>2158000</value>
+        <value>2314000</value>
+        <value>2496000</value>
+    </array>
+    <array name="cpu.core_power.cluster1">
+        <value>164</value>
+        <value>171</value>
+        <value>179</value>
+        <value>200</value>
+        <value>210</value>
+        <value>228</value>
+        <value>281</value>
+        <value>315</value>
+        <value>374</value>
+        <value>424</value>
+        <value>470</value>
+        <value>541</value>
+        <value>643</value>
+        <value>745</value>
     </array>
     <item name="cpu.idle">4.4</item>
     <item name="cpu.awake">22</item>
