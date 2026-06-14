@@ -719,6 +719,7 @@
 /vendor/lib/libsensorlistener\.so u:object_r:vendor_file:s0
 /vendor/lib/libsensorndkbridge\.so u:object_r:vendor_file:s0
 /vendor/lib/libsfplugin_ccodec_utils\.so u:object_r:vendor_file:s0
+/vendor/lib/libshim_camera\.so u:object_r:vendor_file:s0
 /vendor/lib/libshmemcompat\.so u:object_r:vendor_file:s0
 /vendor/lib/libshmemutil\.so u:object_r:vendor_file:s0
 /vendor/lib/libsnaace\.so u:object_r:vendor_file:s0
@@ -1071,6 +1072,7 @@
 /vendor/lib64/libsensorlistener\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsensorndkbridge\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsfplugin_ccodec_utils\.so u:object_r:vendor_file:s0
+/vendor/lib64/libshim_camera\.so u:object_r:vendor_file:s0
 /vendor/lib64/libshmemcompat\.so u:object_r:vendor_file:s0
 /vendor/lib64/libshmemutil\.so u:object_r:vendor_file:s0
 /vendor/lib64/libsnaace\.so u:object_r:vendor_file:s0
