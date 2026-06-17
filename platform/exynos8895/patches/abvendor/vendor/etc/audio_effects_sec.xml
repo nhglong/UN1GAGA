@@ -18,7 +18,6 @@
         <library name="soundbooster_plus" path="libsamsungSoundbooster_plus.so"/>
         <library name="pre_processing" path="libaudiopreprocessing.so"/>
         <library name="playbackrecorder" path="libplaybackrecorder.so"/>
-        <library name="vr360audio" path="libgearvr.so"/>
         <library name="dap" path="libswdap.so"/>
     </libraries>
 
@@ -49,7 +48,6 @@
             <libhw library="offload" uuid="c7a84e61-eebe-4fcc-bc53-efcb841b4625"/>
         </effectProxy>
         <effect name="playbackrecorder" library="playbackrecorder" uuid="517a26c0-fd7c-11e5-a837-0800200c9a66"/>
-        <effect name="vr3d" library="vr360audio" uuid="e6388202-e7a4-4c72-b68a-332eeeba269b"/>
     <!-- fake acoustic echo canceler -->
         <effect name="aec" library="pre_processing" uuid="62678340-e92c-11e2-91e2-0800200c9a66"/>
     <!-- Supporting Dolby effect -->
