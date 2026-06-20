@@ -8,28 +8,59 @@ source "$SRC_DIR/scripts/utils/build_utils.sh" || exit 1
 SOURCE_FIRMWARE_PATH="$(cut -d "/" -f 1 -s <<< "$SOURCE_FIRMWARE")_$(cut -d "/" -f 2 -s <<< "$SOURCE_FIRMWARE")"
 TARGET_FIRMWARE_PATH="$(cut -d "/" -f 1 -s <<< "$TARGET_FIRMWARE")_$(cut -d "/" -f 2 -s <<< "$TARGET_FIRMWARE")"
 
-COPY_SOURCE_FIRMWARE()
+COPY_PARTITIONS()
 {
-    local SOURCE_FOLDERS="product system"
+    local DIR="$1"
+    local SOURCE_FOLDERS="$2"
+    local src
+
+    case "$DIR" in
+        "$FW_DIR/$SOURCE_FIRMWARE_PATH")
+            src="source"
+            ;;
+        "$FW_DIR/$TARGET_FIRMWARE_PATH")
+            src="target"
+            ;;
+        *)
+            LOGE "Invalid firmware path: $DIR"
+            return 1
+            ;;
+    esac
+
     for f in $SOURCE_FOLDERS; do
-        if [ -d "$FW_DIR/$SOURCE_FIRMWARE_PATH/$f" ]; then
-            LOG "- Copying /$f from source firmware"
-            EVAL "rsync -a --mkpath --delete --exclude=\"*system_ext*\" \"$FW_DIR/$SOURCE_FIRMWARE_PATH/$f\" \"$WORK_DIR\"" || exit 1
-            sed "/system_ext/d" "$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-$f" > "$WORK_DIR/configs/file_context-$f"
-            sed "/system_ext/d" "$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-$f" > "$WORK_DIR/configs/fs_config-$f"
-            if [[ "$f" == "product" ]]; then
-                LOG_STEP_IN
-                SET_PROP "product" "ro.product.product.name" "$(GET_PROP "$FW_DIR/$TARGET_FIRMWARE_PATH/product/etc/build.prop" "ro.product.product.name")"
-                LOG_STEP_OUT
-            elif [[ "$f" == "system" ]]; then
-                LOG_STEP_IN
-                SET_PROP "system" "ro.product.device" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/odm/etc/build.prop" "ro.product.odm.device")"
-                LOG_STEP_OUT
+        if [ -d "$DIR/$f" ]; then
+            if [[ "$src" == "source" ]]; then
+                LOG "- Copying /$f from source firmware"
+                EVAL "rsync -a --mkpath --delete --exclude=\"*system_ext*\" \"$FW_DIR/$SOURCE_FIRMWARE_PATH/$f\" \"$WORK_DIR\"" || exit 1
+                sed "/system_ext/d" "$FW_DIR/$SOURCE_FIRMWARE_PATH/file_context-$f" > "$WORK_DIR/configs/file_context-$f"
+                sed "/system_ext/d" "$FW_DIR/$SOURCE_FIRMWARE_PATH/fs_config-$f" > "$WORK_DIR/configs/fs_config-$f"
+            elif [[ "$src" == "target" ]]; then
+                LOG "- Copying /$f from target firmware"
+                EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/$f\" \"$WORK_DIR\"" || exit 1
+                EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-$f\" \"$WORK_DIR/configs/file_context-$f\"" || exit 1
+                EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-$f\" \"$WORK_DIR/configs/fs_config-$f\"" || exit 1
             fi
         else
             [ -d "$WORK_DIR/$f" ] && rm -rf "${WORK_DIR:?}/$f"
             [ -f "$WORK_DIR/configs/file_context-$f" ] && rm -f "$WORK_DIR/configs/file_context-$f"
             [ -f "$WORK_DIR/configs/fs_config-$f" ] && rm -f "$WORK_DIR/configs/fs_config-$f"
+        fi
+    done
+}
+
+COPY_SOURCE_FIRMWARE()
+{
+    local SOURCE_FOLDERS="product system"
+    for f in $SOURCE_FOLDERS; do
+        COPY_PARTITIONS "$FW_DIR/$SOURCE_FIRMWARE_PATH" "$f"
+        if [[ "$f" == "product" ]]; then
+            LOG_STEP_IN
+            SET_PROP "product" "ro.product.product.name" "$(GET_PROP "$FW_DIR/$TARGET_FIRMWARE_PATH/product/etc/build.prop" "ro.product.product.name")"
+            LOG_STEP_OUT
+        elif [[ "$f" == "system" ]]; then
+            LOG_STEP_IN
+            SET_PROP "system" "ro.product.device" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/odm/etc/build.prop" "ro.product.odm.device")"
+            LOG_STEP_OUT
         fi
     done
 
@@ -110,27 +141,18 @@ COPY_SOURCE_FIRMWARE()
 
 COPY_TARGET_FIRMWARE()
 {
-    local TARGET_FOLDERS="odm odm_dlkm system_dlkm vendor vendor_dlkm"
+    local TARGET_FOLDERS="system_dlkm vendor odm odm_dlkm vendor_dlkm"
     for f in $TARGET_FOLDERS; do
-        if [ -d "$FW_DIR/$TARGET_FIRMWARE_PATH/$f" ]; then
-            LOG "- Copying /$f from target firmware"
-            EVAL "rsync -a --mkpath --delete \"$FW_DIR/$TARGET_FIRMWARE_PATH/$f\" \"$WORK_DIR\"" || exit 1
-            EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/file_context-$f\" \"$WORK_DIR/configs/file_context-$f\"" || exit 1
-            EVAL "cp -a \"$FW_DIR/$TARGET_FIRMWARE_PATH/fs_config-$f\" \"$WORK_DIR/configs/fs_config-$f\"" || exit 1
-            if [[ "$f" == "vendor" ]]; then
-                LOG_STEP_IN
-                SET_PROP "vendor" "ro.config.ringtone" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.ringtone")"
-                SET_PROP "vendor" "ro.config.notification_sound" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.notification_sound")"
-                SET_PROP "vendor" "ro.config.alarm_alert" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.alarm_alert")"
-                SET_PROP "vendor" "ro.config.media_sound" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.media_sound")"
-                SET_PROP "vendor" "ro.config.ringtone_2" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.ringtone_2")"
-                SET_PROP "vendor" "ro.config.notification_sound_2" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.notification_sound_2")"
-                LOG_STEP_OUT
-            fi
-        else
-            [ -d "$WORK_DIR/$f" ] && rm -rf "${WORK_DIR:?}/$f"
-            [ -f "$WORK_DIR/configs/file_context-$f" ] && rm -f "$WORK_DIR/configs/file_context-$f"
-            [ -f "$WORK_DIR/configs/fs_config-$f" ] && rm -f "$WORK_DIR/configs/fs_config-$f"
+        COPY_PARTITIONS "$FW_DIR/$TARGET_FIRMWARE_PATH" "$f"
+        if [[ "$f" == "vendor" ]]; then
+            LOG_STEP_IN
+            SET_PROP "vendor" "ro.config.ringtone" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.ringtone")"
+            SET_PROP "vendor" "ro.config.notification_sound" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.notification_sound")"
+            SET_PROP "vendor" "ro.config.alarm_alert" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.alarm_alert")"
+            SET_PROP "vendor" "ro.config.media_sound" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.media_sound")"
+            SET_PROP "vendor" "ro.config.ringtone_2" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.ringtone_2")"
+            SET_PROP "vendor" "ro.config.notification_sound_2" "$(GET_PROP "$FW_DIR/$SOURCE_FIRMWARE_PATH/vendor/build.prop" "ro.config.notification_sound_2")"
+            LOG_STEP_OUT
         fi
     done
 }
