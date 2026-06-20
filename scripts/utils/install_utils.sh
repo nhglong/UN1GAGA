@@ -6,7 +6,6 @@ source "$SRC_DIR/scripts/utils/build_utils.sh" || return 1
 
 KERNEL_BINS="dt dtbo init_boot vendor_boot"
 PARTITIONS_LIST="system vendor product system_ext odm vendor_dlkm odm_dlkm system_dlkm"
-CSC_PARTITIONS_LIST="optics prism"
 
 _GET_PARTITION_SIZE()
 {
