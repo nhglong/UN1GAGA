@@ -14,6 +14,7 @@ LATEST_FIRMWARE=""
 DOWNLOADED_FIRMWARE=""
 BL_TAR=""
 AP_TAR=""
+CSC_TAR=""
 
 TMP_DIR="$(mktemp -d)"
 
@@ -35,6 +36,70 @@ EXTRACT_AVB_BINARIES()
 
         LOG_STEP_OUT
     fi
+}
+
+EXTRACT_CSC_PARTITIONS()
+{
+    local FILES="optics.img prism.img"
+
+    LOG_STEP_IN "- Extracting CSC partitions"
+
+    for f in $FILES; do
+        EXTRACT_FILE_FROM_TAR "$CSC_TAR" "$f" || exit 1
+        [ -f "$FW_DIR/${MODEL}_${CSC}/$f" ] || continue
+        UNSPARSE_IMAGE "$FW_DIR/${MODEL}_${CSC}/$f" || exit 1
+        STORE_OS_PARTITION_METADATA "$FW_DIR/${MODEL}_${CSC}/$f"
+    done
+
+    local PARTITION
+    for f in $FILES; do
+        PARTITION="${f%.img}"
+
+        [ -f "$FW_DIR/${MODEL}_${CSC}/$f" ] || continue
+
+        if ! sudo -n -v &> /dev/null; then
+            LOG "\033[0;33m! Asking user for sudo password\033[0m"
+            if ! sudo -v 2> /dev/null; then
+                LOGE "Root permissions are required to unpack OS partitions"
+                exit 1
+            fi
+        fi
+
+        LOG "- Unpacking $(basename "$f")..."
+
+        mkdir -p "$FW_DIR/${MODEL}_${CSC}/$PARTITION"
+        sudo umount "$FW_DIR/${MODEL}_${CSC}/$f" &> /dev/null
+        if [[ "$(GET_IMAGE_FILE_SYSTEM "$FW_DIR/${MODEL}_${CSC}/$f")" == "erofs" ]]; then
+            EVAL "sudo env \"PATH=$PATH\" fuse.erofs \"$FW_DIR/${MODEL}_${CSC}/$f\" \"$TMP_DIR\"" || exit 1
+        else
+            EVAL "sudo mount -o ro \"$FW_DIR/${MODEL}_${CSC}/$f\" \"$TMP_DIR\"" || exit 1
+        fi
+        EVAL "sudo cp -a -T \"$TMP_DIR\" \"$FW_DIR/${MODEL}_${CSC}/$PARTITION\"" || exit 1
+        sudo chown -hR "$(whoami):$(whoami)" "$FW_DIR/${MODEL}_${CSC}/$PARTITION"
+        [ -d "$FW_DIR/${MODEL}_${CSC}/$PARTITION/lost+found" ] && rm -rf "$FW_DIR/${MODEL}_${CSC}/$PARTITION/lost+found"
+
+        LOG "- Generating fs_config/file_context for $(basename "$f")..."
+
+        EVAL "sudo find \"$TMP_DIR\" | sudo xargs -I \"{}\" -P \"$(nproc)\" stat -c \"%n %u %g %a capabilities=0x0\" \"{}\" > \"$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION\"" || exit 1
+        EVAL "sudo find \"$TMP_DIR\" | sudo xargs -I \"{}\" -P \"$(nproc)\" sh -c 'echo \"\$1 \$(getfattr -n security.selinux --only-values -h --absolute-names \"\$1\")\"' \"sh\" \"{}\" > \"$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION\"" || exit 1
+        sort -o "$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION" "$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION"
+        sort -o "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION" "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION"
+        # https://source.android.com/docs/core/architecture/partitions/system-as-root
+        if [[ "$PARTITION" == "system" ]] && [ -d "$FW_DIR/${MODEL}_${CSC}/system/system" ]; then
+            sed -i -e "s|$TMP_DIR |/ |g" -e "s|$TMP_DIR||g" "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION"
+            sed -i -e "s|$TMP_DIR | |g" -e "s|$TMP_DIR/||g" "$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION"
+        else
+            sed -i "s|$TMP_DIR|/$PARTITION|g" "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION"
+            sed -i -e "s|$TMP_DIR | |g" -e "s|$TMP_DIR|$PARTITION|g" "$FW_DIR/${MODEL}_${CSC}/fs_config-$PARTITION"
+        fi
+        sed -i -e "s|\.|\\\.|g" -e "s|\+|\\\+|g" -e "s|\[|\\\[|g" \
+            -e "s|\]|\\\]|g" -e "s|\*|\\\*|g" "$FW_DIR/${MODEL}_${CSC}/file_context-$PARTITION"
+
+        EVAL "sudo umount \"$TMP_DIR\"" || exit 1
+        rm -f "$FW_DIR/${MODEL}_${CSC}/$f"
+    done
+
+    LOG_STEP_OUT
 }
 
 EXTRACT_KERNEL_BINARIES()
@@ -394,6 +459,7 @@ for i in "${FIRMWARES[@]}"; do
 
     BL_TAR="$(find "$ODIN_DIR/${MODEL}_${CSC}" -name "BL_$(cut -d "/" -f 1 -s <<< "$DOWNLOADED_FIRMWARE")*.md5" | sort -r | head -n 1)"
     AP_TAR="$(find "$ODIN_DIR/${MODEL}_${CSC}" -name "AP_$(cut -d "/" -f 1 -s <<< "$DOWNLOADED_FIRMWARE")*.md5" | sort -r | head -n 1)"
+    CSC_TAR="$(find "$ODIN_DIR/${MODEL}_${CSC}" -name "CSC_*_$(cut -d "/" -f 2 -s <<< "$DOWNLOADED_FIRMWARE")*.md5" | sort -r | head -n 1)"
 
     if [ ! "$BL_TAR" ]; then
         LOG "\033[0;31m! No BL tar found\033[0m"
@@ -401,10 +467,14 @@ for i in "${FIRMWARES[@]}"; do
     elif [ ! "$AP_TAR" ]; then
         LOG "\033[0;31m! No AP tar found\033[0m"
         exit 1
+    elif [ ! "$CSC_TAR" ]; then
+        LOG "\033[0;31m! No CSC tar found\033[0m"
+        exit 1
     fi
 
     EXTRACT_KERNEL_BINARIES
     EXTRACT_OS_PARTITIONS
+    EXTRACT_CSC_PARTITIONS
     EXTRACT_AVB_BINARIES
 
     echo -n "$DOWNLOADED_FIRMWARE" > "$FW_DIR/${MODEL}_${CSC}/.extracted"
