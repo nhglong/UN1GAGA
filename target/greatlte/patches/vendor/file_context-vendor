@@ -58,7 +58,7 @@
 /vendor/firmware/setfile_imx320\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/setfile_imx333\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/vts\.bin u:object_r:vendor_fw_file:s0
-/vendor/lib/hw/camera\.universal8895\.so u:object_r:vendor_file:s0
+/vendor/lib/hw/camera\.vendor\.universal8895\.so u:object_r:vendor_file:s0
 /vendor/lib/libblurdetection_interface\.so u:object_r:vendor_file:s0
 /vendor/lib/libblurdetection\.so u:object_r:vendor_file:s0
 /vendor/lib/libdualcam_optical_zoom\.so u:object_r:vendor_file:s0
@@ -85,7 +85,7 @@
 /vendor/lib/libvdis_core\.so u:object_r:vendor_file:s0
 /vendor/lib/libvdis_interface\.so u:object_r:vendor_file:s0
 /vendor/lib/libvxu\.so u:object_r:vendor_file:s0
-/vendor/lib64/hw/camera\.universal8895\.so u:object_r:vendor_file:s0
+/vendor/lib64/hw/camera\.vendor\.universal8895\.so u:object_r:vendor_file:s0
 /vendor/lib64/libblurdetection_interface\.so u:object_r:vendor_file:s0
 /vendor/lib64/libblurdetection\.so u:object_r:vendor_file:s0
 /vendor/lib64/libdualcam_optical_zoom\.so u:object_r:vendor_file:s0
