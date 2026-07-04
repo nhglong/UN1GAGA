@@ -628,6 +628,7 @@
 /vendor/lib/hw/audio\.r_submix\.default\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/audio\.sec_primary\.default\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/audio\.usb\.default\.so u:object_r:vendor_file:s0
+/vendor/lib/hw/camera\.universal8895\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/gatekeeper\.exynos8895\.so u:object_r:vendor_file:s0
 /vendor/lib/hw/gralloc\.default\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/hw/gralloc\.exynos8895\.so u:object_r:same_process_hal_file:s0
@@ -937,6 +938,7 @@
 /vendor/lib64/hw/audio\.r_submix\.default\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/audio\.sec_primary\.default\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/audio\.usb\.default\.so u:object_r:vendor_file:s0
+/vendor/lib64/hw/camera\.universal8895\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/fingerprint\.default\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/gatekeeper\.exynos8895\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/gps\.default\.so u:object_r:vendor_file:s0
