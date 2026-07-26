@@ -908,6 +908,7 @@ vendor/lib64/android.hardware.wifi.supplicant@1.0.so 0 0 644
 vendor/lib64/android.hardware.wifi.supplicant@1.1.so 0 0 644
 vendor/lib64/android.hardware.wifi.supplicant@1.2.so 0 0 644
 vendor/lib64/android.hardware.wifi.supplicant@1.3.so 0 0 644
+vendor/lib64/android.hardware.wifi.supplicant@1.4.so 0 0 644
 vendor/lib64/android.hardware.wifi@1.0.so 0 0 644 capabilities=0x0
 vendor/lib64/android.hardware.wifi@1.1.so 0 0 644 capabilities=0x0
 vendor/lib64/android.hardware.wifi@1.2.so 0 0 644 capabilities=0x0

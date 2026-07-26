@@ -120,6 +120,11 @@ vendor/lib64/libflicker.so
 vendor/lib/libaudio_soundtrigger.so
 vendor/lib/hw/sound_trigger.primary.universal8895.so
 
+# WiFi - S908EXXSDGZB6
+vendor/bin/hw/wpa_supplicant|895c43df78e29ecf94b018b0ff6e5601
+vendor/etc/init/android.hardware.wifi.supplicant-service.rc|d2e9e216a33b160fb751ce86ef1f7316
+vendor/lib64/android.hardware.wifi.supplicant@1.4.so|8a777ad8cb4cbdd3b05a2144951d09e8
+
 # WiFi
 vendor/bin/hw/macloader
 vendor/bin/hw/mfgloader
