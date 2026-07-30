@@ -539,44 +539,47 @@ on boot
     write /dev/cpuctl/bg_abnormal/cpu.cfs_period_us 20000
     write /dev/cpuctl/bg_abnormal/cpu.cfs_quota_us 10000
 
+on early-init
+    mount cgroup cpuset /dev/cpuset cpuset
+
     mkdir /dev/cpuset/cached
-    write /dev/cpuset/cached/cpus 0-3
-    copy /dev/cpuset/mems /dev/cpuset/cached/mems
+    write /dev/cpuset/cached/cpuset.cpus 0-3
+    copy /dev/cpuset/cpuset.mems /dev/cpuset/cached/mems
     mkdir /dev/cpuset/abnormal
-    write /dev/cpuset/abnormal/cpus 0-3
-    copy /dev/cpuset/mems /dev/cpuset/abnormal/mems
+    write /dev/cpuset/abnormal/cpuset.cpus 0-2
+    copy /dev/cpuset/cpuset.mems /dev/cpuset/abnormal/mems
 
     # change permissions for BarTender's cpusets we'll touch at runtime
     chown system system /dev/cpuset/cached
     chown system system /dev/cpuset/abnormal
-    chown system system /dev/cpuset/cached/tasks
-    chown system system /dev/cpuset/abnormal/tasks
-    chown system system /dev/cpuset/cached/cpus
-    chown system system /dev/cpuset/abnormal/cpus
-    chmod 0664 /dev/cpuset/cached/tasks
-    chmod 0664 /dev/cpuset/abnormal/tasks
-    chmod 0664 /dev/cpuset/cached/cpus
-    chmod 0664 /dev/cpuset/abnormal/cpus
+    chown system system /dev/cpuset/cached/cpuset.tasks
+    chown system system /dev/cpuset/abnormal/cpuset.tasks
+    chown system system /dev/cpuset/cached/cpuset.cpus
+    chown system system /dev/cpuset/abnormal/cpuset.cpus
+    chmod 0664 /dev/cpuset/cached/cpuset.tasks
+    chmod 0664 /dev/cpuset/abnormal/cpuset.tasks
+    chmod 0664 /dev/cpuset/cached/cpuset.cpus
+    chmod 0664 /dev/cpuset/abnormal/cpuset.cpus
 
 # CPUSET(8895)
-    chown system system /dev/cpuset/top-app/cpus
-    chown system system /dev/cpuset/foreground/cpus
-    chown system system /dev/cpuset/background/cpus
-    chown system system /dev/cpuset/system-background/cpus
-    chown system system /dev/cpuset/surfaceflinger/cpus
-    chown system system /dev/cpuset/cpus
-    chmod 664 /dev/cpuset/top-app/cpus
-    chmod 664 /dev/cpuset/foreground/cpus
-    chmod 664 /dev/cpuset/background/cpus
-    chmod 664 /dev/cpuset/system-background/cpus
-    chmod 664 /dev/cpuset/surfaceflinger/cpus
-    chmod 664 /dev/cpuset/cpus
-    write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/top-app/family_boost 1
-    write /dev/cpuset/foreground/cpus 0-2,4-7
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-2
-    write /dev/cpuset/surfaceflinger/cpus 0-2
+    chown system system /dev/cpuset/top-app/cpuset.cpus
+    chown system system /dev/cpuset/foreground/cpuset.cpus
+    chown system system /dev/cpuset/background/cpuset.cpus
+    chown system system /dev/cpuset/system-background/cpuset.cpus
+    chown system system /dev/cpuset/surfaceflinger/cpuset.cpus
+    chown system system /dev/cpuset/cpuset.cpus
+    chmod 664 /dev/cpuset/top-app/cpuset.cpus
+    chmod 664 /dev/cpuset/foreground/cpuset.cpus
+    chmod 664 /dev/cpuset/background/cpuset.cpus
+    chmod 664 /dev/cpuset/system-background/cpuset.cpus
+    chmod 664 /dev/cpuset/surfaceflinger/cpuset.cpus
+    chmod 664 /dev/cpuset/cpuset.cpus
+    write /dev/cpuset/top-app/cpuset.cpus 0-7
+    write /dev/cpuset/top-app/cpuset.family_boost 1
+    write /dev/cpuset/foreground/cpuset.cpus 0-2,4-7
+    write /dev/cpuset/background/cpuset.cpus 0-1
+    write /dev/cpuset/system-background/cpuset.cpus 0-2
+    write /dev/cpuset/surfaceflinger/cpuset.cpus 0-2
 
 # Permissions for audio
     chown system radio /sys/class/audio/earjack/select_jack
