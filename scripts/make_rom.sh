@@ -53,7 +53,7 @@ PREPARE_SCRIPT()
     while [[ "$#" != 0 ]]; do
         if [[ "$1" == "--force" ]] || [[ "$1" == "-f" ]]; then
             FORCE=true
-        elif [[ "$1" == "--no-target-files" ]] || [[ "$1" == "-x" ]]; then
+        elif [[ "$1" == "--images-only" ]] || [[ "$1" == "-x" ]]; then
             BUILD_TARGET_FILES=false
             BUILD_FLASHABLE_ZIP=false
         elif [[ "$1" == "--build-rom-zip" ]] || [[ "$1" == "-z" ]]; then
@@ -93,7 +93,7 @@ PRINT_USAGE()
 {
     echo "Usage: make_rom [options]" >&2
     echo " -f, --force : Force ROM build" >&2
-    echo " -x, --no-target-files : Do not build target-files zip" >&2
+    echo " -x, --images-only : Build images only" >&2
     echo " -z, --build-rom-zip : Build flashable zip" >&2
 }
 # ]
