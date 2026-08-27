@@ -5,10 +5,12 @@
 # [
 source "$SRC_DIR/scripts/utils/install_utils.sh" || exit 1
 
+TMP_DIR="$OUT_DIR/target/$TARGET_CODENAME/zip"
+
 FORCE=false
 BUILD_ROM=false
 BUILD_TARGET_FILES=true
-BUILD_FLASHABLE_ZIP=false
+export BUILD_FLASHABLE_ZIP=false
 
 START_TIME="$(date +%s)"
 
