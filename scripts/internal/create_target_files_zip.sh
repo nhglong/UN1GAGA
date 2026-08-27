@@ -112,28 +112,6 @@ fi
 
 OUTPUT_FILE="$1"
 
-[ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"
-mkdir -p "$TMP_DIR"
-
-LOG_STEP_IN "- Building OS partitions"
-while IFS= read -r f; do
-    PARTITION=$(basename "$f")
-    IS_VALID_PARTITION_NAME "$PARTITION" || continue
-
-    if $TARGET_USE_DYNAMIC_PARTITIONS; then
-        "$SRC_DIR/scripts/build_fs_image.sh" "$TARGET_OS_FILE_SYSTEM_TYPE" \
-            -o "$TMP_DIR/$PARTITION.img" -m -S \
-            "$WORK_DIR/$PARTITION" "$WORK_DIR/configs/file_context-$PARTITION" "$WORK_DIR/configs/fs_config-$PARTITION" || exit 1
-    else
-        _GET_PARTITION_SIZE "$PARTITION" > /dev/null || exit 1
-
-        "$SRC_DIR/scripts/build_fs_image.sh" "$TARGET_OS_FILE_SYSTEM_TYPE" \
-            -o "$TMP_DIR/$PARTITION.img" -m -S -s "$(_GET_PARTITION_SIZE "$PARTITION")" \
-            "$WORK_DIR/$PARTITION" "$WORK_DIR/configs/file_context-$PARTITION" "$WORK_DIR/configs/fs_config-$PARTITION" || exit 1
-    fi
-done < <(find "$WORK_DIR" -maxdepth 1 -type d)
-LOG_STEP_OUT
-
 if $TARGET_USE_DYNAMIC_PARTITIONS; then
     LOG "- Building unsparse_super_empty.img"
     BUILD_SUPER_EMPTY
