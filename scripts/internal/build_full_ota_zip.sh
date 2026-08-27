@@ -220,12 +220,15 @@ if ! unzip -l "$TARGET_ZIP" | grep -q "build_info.txt" || unzip -l "$TARGET_ZIP"
     exit 1
 fi
 
-[ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+if ! $BUILD_FLASHABLE_ZIP; then
+    [ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+
+    LOG "- Extracting target files"
+    EVAL "unzip -o \"$TARGET_ZIP\" -d \"$TMP_DIR\"" || exit 1
+fi
+
 mkdir -p "$TMP_DIR/META-INF/com/google/android"
 cp -a "$SRC_DIR/prebuilts/bootable/deprecated-ota/updater" "$TMP_DIR/META-INF/com/google/android/update-binary"
-
-LOG "- Extracting target files"
-EVAL "unzip -o \"$TARGET_ZIP\" -d \"$TMP_DIR\"" || exit 1
 
 BUILD_INFO="$(cat "$TMP_DIR/build_info.txt")"
 rm -f "$TMP_DIR/build_info.txt"
