@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # [
-source "$SRC_DIR/scripts/utils/build_utils.sh" || exit 1
+source "$SRC_DIR/scripts/utils/install_utils.sh" || exit 1
 
 FORCE=false
 BUILD_ROM=false
@@ -164,6 +164,28 @@ if $BUILD_ROM; then
 
     echo -n "$(GET_WORK_DIR_HASH)" > "$WORK_DIR/.completed"
 fi
+
+[ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+mkdir -p "$TMP_DIR"
+
+LOG_STEP_IN true "Building OS partitions"
+while IFS= read -r f; do
+    PARTITION=$(basename "$f")
+    IS_VALID_PARTITION_NAME "$PARTITION" || continue
+
+    if $TARGET_USE_DYNAMIC_PARTITIONS; then
+        "$SRC_DIR/scripts/build_fs_image.sh" "$TARGET_OS_FILE_SYSTEM_TYPE" \
+            -o "$TMP_DIR/$PARTITION.img" -m -S \
+            "$WORK_DIR/$PARTITION" "$WORK_DIR/configs/file_context-$PARTITION" "$WORK_DIR/configs/fs_config-$PARTITION" || exit 1
+    else
+        _GET_PARTITION_SIZE "$PARTITION" > /dev/null || exit 1
+
+        "$SRC_DIR/scripts/build_fs_image.sh" "$TARGET_OS_FILE_SYSTEM_TYPE" \
+            -o "$TMP_DIR/$PARTITION.img" -m -S -s "$(_GET_PARTITION_SIZE "$PARTITION")" \
+            "$WORK_DIR/$PARTITION" "$WORK_DIR/configs/file_context-$PARTITION" "$WORK_DIR/configs/fs_config-$PARTITION" || exit 1
+    fi
+done < <(find "$WORK_DIR" -maxdepth 1 -type d)
+LOG_STEP_OUT
 
 if $BUILD_TARGET_FILES || $BUILD_FLASHABLE_ZIP; then
     ZIP_FILE_NAME="${TARGET_CODENAME}_"
