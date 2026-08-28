@@ -226,6 +226,7 @@ GET_AVBTOOL_CMD()
     CMD+="--hash_algorithm \"sha256\" "
     CMD+="--algorithm \"SHA256_RSA4096\" "
     CMD+="--key \"$SRC_DIR/security/avb/testkey_rsa4096.pem\""
+    CMD+="--do_not_generate_fec"
 
     echo "$CMD"
 }
