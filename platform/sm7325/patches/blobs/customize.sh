@@ -129,3 +129,8 @@ ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance.xml" 0 0 644 "
 ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_iot.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
 ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_v0.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
 ADD_TO_WORK_DIR "$MODPATH" "vendor" "etc/media_codecs_performance_yupik_v1.xml" 0 0 644 "u:object_r:vendor_configs_file:s0"
+
+# Atrace
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.atrace@1.0-service"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.atrace@1.0-service.rc"
+DELETE_FROM_WORK_DIR "vendor" "etc/vintf/manifest/android.hardware.atrace@1.0-service.xml"
