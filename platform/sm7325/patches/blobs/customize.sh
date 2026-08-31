@@ -122,3 +122,8 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
     done
     LOG_STEP_OUT
 fi
+
+# Atrace
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.atrace@1.0-service"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.atrace@1.0-service.rc"
+DELETE_FROM_WORK_DIR "vendor" "etc/vintf/manifest/android.hardware.atrace@1.0-service.xml"
