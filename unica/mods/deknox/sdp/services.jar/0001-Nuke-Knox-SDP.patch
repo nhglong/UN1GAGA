@@ -1,4 +1,4 @@
-From bd321e3c176604957deef59554a565d6db76584b Mon Sep 17 00:00:00 2001
+From c27ee255b6bd64eeaa08498f32c6eaa01ceb9419 Mon Sep 17 00:00:00 2001
 From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 30 Aug 2025 00:37:42 +0200
 Subject: [PATCH] Nuke Knox SDP
@@ -37,7 +37,7 @@ UN1CA: this patch is not complete! Please check unica/mods/deknox/customize.sh f
  .../enterprise/security/PasswordPolicy.smali  |  265 +-
  .../knox/ContainerDependencyWrapper.smali     |    4 -
  ...gerService$$ExternalSyntheticLambda0.smali |    8 +-
- .../server/knox/dar/DarManagerService.smali   | 8097 ++++-------------
+ .../server/knox/dar/DarManagerService.smali   | 8105 ++++-------------
  .../com/android/server/knox/dar/DarUtil.smali |  229 +-
  .../server/knox/dar/KeyProtector.smali        |  178 +-
  .../android/server/knox/dar/SecureUtil.smali  |   97 -
@@ -131,7 +131,7 @@ UN1CA: this patch is not complete! Please check unica/mods/deknox/customize.sh f
  .../server/trust/TrustManagerService.smali    |   64 +-
  ...ServiceExt$$ExternalSyntheticLambda5.smali |   84 +-
  .../wm/ActivityTaskManagerServiceExt.smali    |   66 +-
- 126 files changed, 9276 insertions(+), 35076 deletions(-)
+ 126 files changed, 9276 insertions(+), 35084 deletions(-)
  create mode 100644 smali/com/android/server/enterprise/security/PasswordPolicy$$ExternalSyntheticLambda1.smali
  rename smali/com/android/server/enterprise/security/{PasswordPolicy$$ExternalSyntheticLambda12.smali => PasswordPolicy$$ExternalSyntheticLambda11.smali} (82%)
  rename smali/com/android/server/enterprise/security/{PasswordPolicy$$ExternalSyntheticLambda15.smali => PasswordPolicy$$ExternalSyntheticLambda14.smali} (90%)
@@ -2262,10 +2262,10 @@ index fd61e369f..0e0d56a1c 100644
      .locals 1
  
 diff --git a/smali/com/android/server/devicepolicy/DevicePolicyManagerService.smali b/smali/com/android/server/devicepolicy/DevicePolicyManagerService.smali
-index cc40dd358..6798bf57a 100644
+index 1ec5ed82b..6a2e36f0c 100644
 --- a/smali/com/android/server/devicepolicy/DevicePolicyManagerService.smali
 +++ b/smali/com/android/server/devicepolicy/DevicePolicyManagerService.smali
-@@ -10682,8 +10682,6 @@
+@@ -10735,8 +10735,6 @@
  
      invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
@@ -2274,7 +2274,7 @@ index cc40dd358..6798bf57a 100644
      return-void
  
      :goto_4
-@@ -63491,8 +63489,6 @@
+@@ -63482,8 +63480,6 @@
  
      invoke-virtual {v5}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
@@ -2284,7 +2284,7 @@ index cc40dd358..6798bf57a 100644
  
      move-result v0
 diff --git a/smali/com/android/server/enterprise/EDMProxyService.smali b/smali/com/android/server/enterprise/EDMProxyService.smali
-index 69e92a7e0..887d1233a 100644
+index dcd6e651a..9dd7b6042 100644
 --- a/smali/com/android/server/enterprise/EDMProxyService.smali
 +++ b/smali/com/android/server/enterprise/EDMProxyService.smali
 @@ -3065,11 +3065,11 @@
@@ -8856,7 +8856,7 @@ index 0a291ca76..6f077e937 100644
      invoke-direct {v4}, Ljava/lang/Object;-><init>()V
  
 diff --git a/smali/com/android/server/knox/dar/DarManagerService.smali b/smali/com/android/server/knox/dar/DarManagerService.smali
-index 2c50d66b4..a33441302 100644
+index 679afaddc..a33441302 100644
 --- a/smali/com/android/server/knox/dar/DarManagerService.smali
 +++ b/smali/com/android/server/knox/dar/DarManagerService.smali
 @@ -26,8 +26,6 @@
@@ -8968,7 +8968,7 @@ index 2c50d66b4..a33441302 100644
  
      return-void
  .end method
-@@ -405,7753 +432,2987 @@
+@@ -405,7761 +432,2987 @@
  .end method
  
  .method public final addEngine(Lcom/samsung/android/knox/sdp/core/SdpCreationParam;Ljava/lang/String;Ljava/lang/String;)I
@@ -10606,125 +10606,127 @@ index 2c50d66b4..a33441302 100644
 +    move-exception v2
  
 -    invoke-virtual {p0}, Ljava/security/cert/CertificateParsingException;->printStackTrace()V
-+    const-string/jumbo v3, "Unexpected failure while unlock secure folder with token"
- 
+-
 -    :cond_1
 -    return v0
 -.end method
-+    invoke-static {v2, v3, v1}, Lcom/android/server/DirEncryptServiceHelper$$ExternalSyntheticOutline0;->m(Ljava/lang/Exception;Ljava/lang/String;Ljava/lang/String;)V
++    const-string/jumbo v3, "Unexpected failure while unlock secure folder with token"
  
 -.method public final checkSystemPermission()V
 -    .locals 3
++    invoke-static {v2, v3, v1}, Lcom/android/server/DirEncryptServiceHelper$$ExternalSyntheticOutline0;->m(Ljava/lang/Exception;Ljava/lang/String;Ljava/lang/String;)V
+ 
+-    iget-object v0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
 +    :cond_2
 +    :goto_1
 +    invoke-static {v0}, Lcom/android/server/knox/dar/SecureUtil;->clear([B)V
  
--    iget-object v0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
+-    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 +    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
  
--    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+-    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 +    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->getUserManager()Landroid/os/UserManager;
  
--    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
+-    move-result v0
 +    move-result-object p0
  
--    move-result v0
+-    const/16 v1, 0x3e8
 +    invoke-virtual {p0, p1}, Landroid/os/UserManager;->isUserUnlocked(I)Z
  
--    const/16 v1, 0x3e8
+-    if-ne v0, v1, :cond_0
 +    move-result p0
  
--    if-ne v0, v1, :cond_0
-+    new-instance v0, Ljava/lang/StringBuilder;
- 
 -    return-void
-+    const-string/jumbo v2, "SecureFolder user "
++    new-instance v0, Ljava/lang/StringBuilder;
  
 -    :cond_0
 -    const-string v0, "DarManagerService"
-+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++    const-string/jumbo v2, "SecureFolder user "
  
 -    const-string/jumbo v1, "Require system permission."
-+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
  
 -    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-+    const-string p1, " has been unlocked [ res : "
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
  
 -    new-instance v0, Ljava/lang/SecurityException;
-+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    const-string p1, " has been unlocked [ res : "
  
 -    new-instance v1, Ljava/lang/StringBuilder;
-+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
  
 -    const-string/jumbo v2, "Security Exception Occurred in pid["
-+    const-string p0, " ]"
++    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
  
 -    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    const-string p0, " ]"
  
 -    iget-object v2, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
-+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
  
 -    invoke-virtual {v2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-+    move-result-object p0
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
  
 -    invoke-static {}, Landroid/os/Binder;->getCallingPid()I
-+    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    move-result-object p0
  
 -    move-result v2
++    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 +    return-void
 +.end method
  
--    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+-    const-string/jumbo v2, "] with uid["
 +.method public final isDarSupported()Z
 +    .locals 0
  
--    const-string/jumbo v2, "] with uid["
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 +    const/4 p0, 0x1
  
--    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+-    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
 +    return p0
 +.end method
  
--    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
+-    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 +.method public final isDefaultPathUser(I)Z
 +    .locals 0
  
--    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+-    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 +    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isSdpSupported()Z
  
--    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
+-    move-result p0
 +    const/4 p0, 0x0
  
--    move-result p0
+-    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 +    return p0
 +.end method
  
--    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+-    const-string/jumbo p0, "]"
 +.method public final isDeviceRootKeyInstalled()Z
 +    .locals 10
  
--    const-string/jumbo p0, "]"
+-    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 +    const-string/jumbo v0, "ro.hardware.virtual_device"
  
--    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 +    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
  
--    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+-    move-result-object p0
 +    move-result-object v0
  
--    move-result-object p0
-+    const-string v1, "1"
- 
 -    invoke-direct {v0, p0}, Ljava/lang/SecurityException;-><init>(Ljava/lang/String;)V
-+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++    const-string v1, "1"
  
 -    throw v0
 -.end method
-+    move-result v0
++    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
  
 -.method public final clearResetPasswordToken(I)Z
 -    .locals 6
++    move-result v0
+ 
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->checkSystemPermission()V
 +    const/4 v1, 0x1
  
 -    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isVirtualLockSupported()Z
@@ -10793,194 +10795,194 @@ index 2c50d66b4..a33441302 100644
  
      :try_start_0
 -    iget-object v4, v0, Lcom/android/server/knox/dar/VirtualLockImpl;->mDarDatabaseCache:Lcom/android/server/knox/dar/DarDatabaseCache;
--
--    invoke-virtual {v4, p1}, Lcom/android/server/knox/dar/DarDatabaseCache;->getLong(I)J
 +    new-instance v7, Lcom/samsung/android/security/keystore/AttestationUtils;
  
--    move-result-wide v4
+-    invoke-virtual {v4, p1}, Lcom/android/server/knox/dar/DarDatabaseCache;->getLong(I)J
 +    invoke-direct {v7}, Lcom/samsung/android/security/keystore/AttestationUtils;-><init>()V
  
--    invoke-virtual {v0, p1, v4, v5}, Lcom/android/server/knox/dar/VirtualLockImpl;->clearResetPasswordTokenInternal(IJ)Z
+-    move-result-wide v4
 +    sget-object v8, Lcom/android/server/knox/dar/SecureUtil;->sSecureRandom:Ljava/security/SecureRandom;
+ 
+-    invoke-virtual {v0, p1, v4, v5}, Lcom/android/server/knox/dar/VirtualLockImpl;->clearResetPasswordTokenInternal(IJ)Z
++    const/16 v9, 0x8
  
 -    move-result v0
 -    :try_end_0
 -    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-+    const/16 v9, 0x8
++    invoke-virtual {v8, v9}, Ljava/security/SecureRandom;->generateSeed(I)[B
  
 -    invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
-+    invoke-virtual {v8, v9}, Ljava/security/SecureRandom;->generateSeed(I)[B
++    move-result-object v8
  
 -    :goto_0
 -    if-eqz v0, :cond_1
-+    move-result-object v8
- 
--    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isDualDarDoSupported()Z
 +    invoke-virtual {v7, v0, v8}, Lcom/samsung/android/security/keystore/AttestationUtils;->generateKeyPair(Ljava/lang/String;[B)Ljava/security/KeyPair;
  
--    move-result v2
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isDualDarDoSupported()Z
 +    move-result-object v7
  
--    if-eqz v2, :cond_1
+-    move-result v2
 +    if-eqz v7, :cond_1
  
--    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mDualDarDoManagerImpl:Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;
+-    if-eqz v2, :cond_1
 +    move v3, v1
  
--    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+-    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mDualDarDoManagerImpl:Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;
 +    :cond_1
 +    if-eqz v3, :cond_2
  
--    invoke-static {}, Lcom/samsung/android/knox/dar/ddar/DualDarManager;->isOnDeviceOwnerEnabled()Z
+-    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 +    const-string v7, "Generated keypair is protected by SAK"
  
--    move-result v2
+-    invoke-static {}, Lcom/samsung/android/knox/dar/ddar/DualDarManager;->isOnDeviceOwnerEnabled()Z
 +    invoke-static {v2, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
  
--    if-eqz v2, :cond_1
+-    move-result v2
 +    invoke-static {v0}, Lcom/samsung/android/security/keystore/AttestationUtils;->deleteKey(Ljava/lang/String;)V
 +    :try_end_0
 +    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 +    .catchall {:try_start_0 .. :try_end_0} :catchall_0
  
--    invoke-virtual {p0, v1}, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->getInnerAuthUserId(I)I
+-    if-eqz v2, :cond_1
 +    goto :goto_0
  
--    move-result v2
+-    invoke-virtual {p0, v1}, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->getInnerAuthUserId(I)I
 +    :catchall_0
 +    move-exception v0
  
--    if-ne v2, p1, :cond_1
+-    move-result v2
 +    goto :goto_4
  
--    iget-boolean p1, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mHasTokenSetForInner:Z
+-    if-ne v2, p1, :cond_1
 +    :catch_0
 +    move-exception v0
  
--    if-eqz p1, :cond_1
+-    iget-boolean p1, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mHasTokenSetForInner:Z
 +    goto :goto_1
  
--    iput-boolean v1, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mHasTokenSetForInner:Z
+-    if-eqz p1, :cond_1
 +    :cond_2
 +    :goto_0
 +    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
  
--    new-instance p1, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl$$ExternalSyntheticLambda1;
+-    iput-boolean v1, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mHasTokenSetForInner:Z
 +    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
--    invoke-direct {p1, p0}, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl$$ExternalSyntheticLambda1;-><init>(Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;)V
+-    new-instance p1, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl$$ExternalSyntheticLambda1;
 +    invoke-static {v5, v6}, Landroid/os/Binder;->restoreCallingIdentity(J)V
  
--    invoke-static {p1}, Landroid/os/Binder;->withCleanCallingIdentity(Lcom/android/internal/util/FunctionalUtils$ThrowingRunnable;)V
+-    invoke-direct {p1, p0}, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl$$ExternalSyntheticLambda1;-><init>(Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;)V
 +    goto :goto_3
  
--    :cond_1
--    return v0
+-    invoke-static {p1}, Landroid/os/Binder;->withCleanCallingIdentity(Lcom/android/internal/util/FunctionalUtils$ThrowingRunnable;)V
 +    :goto_1
 +    :try_start_1
 +    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isEmTokenAllowed()Z
  
--    :catchall_0
--    move-exception p0
+-    :cond_1
+-    return v0
 +    move-result v7
  
--    invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+-    :catchall_0
+-    move-exception p0
 +    if-eqz v7, :cond_3
  
--    throw p0
+-    invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
 +    const-string v0, "Failed while check SAK. But, EM Token is allowed. Continue - "
+ 
+-    throw p0
++    invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
  
 -    :cond_2
 -    return v1
 -.end method
-+    invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    goto :goto_2
  
 -.method public final createEncPkgDir(ILjava/lang/String;)I
 -    .locals 2
-+    goto :goto_2
- 
--    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isSdpSupported()Z
 +    :cond_3
 +    new-instance v1, Ljava/lang/StringBuilder;
  
--    move-result v0
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isSdpSupported()Z
 +    invoke-direct {v1, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
  
--    if-eqz v0, :cond_0
+-    move-result v0
 +    invoke-virtual {v0}, Ljava/lang/Exception;->toString()Ljava/lang/String;
  
--    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mSdpManagerImpl:Lcom/android/server/knox/dar/sdp/SdpManagerImpl;
+-    if-eqz v0, :cond_0
 +    move-result-object v4
  
--    invoke-virtual {p0}, Lcom/android/server/knox/dar/sdp/SdpManagerImpl;->getPackageManagerImpl()Ljava/util/Optional;
+-    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mSdpManagerImpl:Lcom/android/server/knox/dar/sdp/SdpManagerImpl;
 +    invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
  
--    move-result-object p0
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/sdp/SdpManagerImpl;->getPackageManagerImpl()Ljava/util/Optional;
 +    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
  
--    new-instance v0, Lcom/android/server/knox/dar/sdp/SdpManagerImpl$$ExternalSyntheticLambda1;
+-    move-result-object p0
 +    move-result-object v1
  
--    const/4 v1, 0x0
+-    new-instance v0, Lcom/android/server/knox/dar/sdp/SdpManagerImpl$$ExternalSyntheticLambda1;
 +    invoke-static {v2, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
  
--    invoke-direct {v0, p2, p1, v1}, Lcom/android/server/knox/dar/sdp/SdpManagerImpl$$ExternalSyntheticLambda1;-><init>(Ljava/lang/String;II)V
+-    const/4 v1, 0x0
 +    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 +    :try_end_1
 +    .catchall {:try_start_1 .. :try_end_1} :catchall_0
  
--    invoke-virtual {p0, v0}, Ljava/util/Optional;->map(Ljava/util/function/Function;)Ljava/util/Optional;
+-    invoke-direct {v0, p2, p1, v1}, Lcom/android/server/knox/dar/sdp/SdpManagerImpl$$ExternalSyntheticLambda1;-><init>(Ljava/lang/String;II)V
 +    move v1, v3
  
--    move-result-object p0
+-    invoke-virtual {p0, v0}, Ljava/util/Optional;->map(Ljava/util/function/Function;)Ljava/util/Optional;
 +    :goto_2
 +    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
  
--    sget-object p1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+-    move-result-object p0
 +    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
--    invoke-virtual {p0, p1}, Ljava/util/Optional;->orElse(Ljava/lang/Object;)Ljava/lang/Object;
+-    sget-object p1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
 +    invoke-static {v5, v6}, Landroid/os/Binder;->restoreCallingIdentity(J)V
  
--    move-result-object p0
+-    invoke-virtual {p0, p1}, Ljava/util/Optional;->orElse(Ljava/lang/Object;)Ljava/lang/Object;
 +    move v3, v1
  
--    invoke-static {p0}, Lcom/android/server/knox/dar/SecureUtil;->isFailed(Ljava/lang/Object;)Z
+-    move-result-object p0
 +    :goto_3
 +    invoke-static {v3}, Lcom/android/server/knox/dar/SecureUtil;->record(Z)V
  
--    move-result p0
+-    invoke-static {p0}, Lcom/android/server/knox/dar/SecureUtil;->isFailed(Ljava/lang/Object;)Z
 +    return v3
  
--    if-eqz p0, :cond_0
+-    move-result p0
 +    :goto_4
 +    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
  
--    const/16 p0, -0xb
+-    if-eqz p0, :cond_0
 +    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
--    return p0
+-    const/16 p0, -0xb
 +    invoke-static {v5, v6}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+ 
+-    return p0
++    throw v0
  
 -    :cond_0
 -    const/4 p0, 0x0
-+    throw v0
- 
--    return p0
--.end method
 +    :cond_4
 +    iget-object v0, p0, Lcom/android/server/knox/dar/DarManagerService;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
  
--.method public final deleteToeknFromTrusted(Ljava/lang/String;)I
--    .locals 6
+-    return p0
+-.end method
 +    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
--    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isSdpSupported()Z
+-.method public final deleteToeknFromTrusted(Ljava/lang/String;)I
+-    .locals 6
 +    invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
  
--    move-result v0
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isSdpSupported()Z
 +    move-result-wide v4
  
+-    move-result v0
+-
 -    if-eqz v0, :cond_3
 -
 -    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mSdpManagerImpl:Lcom/android/server/knox/dar/sdp/SdpManagerImpl;
@@ -11194,87 +11196,87 @@ index 2c50d66b4..a33441302 100644
 -    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 +.method public final isInnerAuthRequired(I)Z
 +    .locals 5
-+
-+    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isDualDarDoSupported()Z
  
 -    move-result p2
-+    move-result v0
++    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isDualDarDoSupported()Z
  
 -    invoke-virtual {p0, p1, p2, v1}, Lcom/android/server/knox/dar/sdp/engine/SdpServiceKeeper;->isEngineOwner(IILcom/samsung/android/knox/sdp/core/SdpEngineInfo;)Z
-+    const/4 v1, 0x0
++    move-result v0
  
 -    move-result p1
-+    if-eqz v0, :cond_4
++    const/4 v1, 0x0
  
 -    if-eqz p1, :cond_3
-+    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mDualDarDoManagerImpl:Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;
++    if-eqz v0, :cond_4
  
 -    iget-object p1, p0, Lcom/android/server/knox/dar/sdp/engine/SdpServiceKeeper;->mSdpPolicyMapLock:Ljava/lang/Object;
-+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
++    iget-object p0, p0, Lcom/android/server/knox/dar/DarManagerService;->mDualDarDoManagerImpl:Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;
  
 -    monitor-enter p1
-+    invoke-static {p1}, Lcom/samsung/android/knox/dar/ddar/DualDarManager;->isOnDeviceOwner(I)Z
++    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
 -    :try_start_1
 -    invoke-virtual {v1}, Lcom/samsung/android/knox/sdp/core/SdpEngineInfo;->getAlias()Ljava/lang/String;
++    invoke-static {p1}, Lcom/samsung/android/knox/dar/ddar/DualDarManager;->isOnDeviceOwner(I)Z
+ 
+-    move-result-object p2
 +    move-result v0
  
--    move-result-object p2
+-    invoke-virtual {p0, p2}, Lcom/android/server/knox/dar/sdp/engine/SdpServiceKeeper;->getSdpPolicyLocked(Ljava/lang/String;)Lcom/android/server/knox/dar/sdp/engine/SdpPolicy;
 +    if-nez v0, :cond_0
  
--    invoke-virtual {p0, p2}, Lcom/android/server/knox/dar/sdp/engine/SdpServiceKeeper;->getSdpPolicyLocked(Ljava/lang/String;)Lcom/android/server/knox/dar/sdp/engine/SdpPolicy;
+-    move-result-object p2
 +    goto :goto_1
  
--    move-result-object p2
+-    if-eqz p2, :cond_1
 +    :cond_0
 +    iget-object v0, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mInjector:Lcom/android/server/knox/dar/DarManagerService$Injector;
  
--    if-eqz p2, :cond_1
+-    invoke-virtual {p2, v0}, Lcom/android/server/knox/dar/sdp/engine/SdpPolicy;->removePrivilegedApp(Lcom/samsung/android/knox/sdp/core/SdpDomain;)Z
 +    iget-object v2, v0, Lcom/android/server/knox/dar/DarManagerService$Injector;->mContext:Landroid/content/Context;
  
--    invoke-virtual {p2, v0}, Lcom/android/server/knox/dar/sdp/engine/SdpPolicy;->removePrivilegedApp(Lcom/samsung/android/knox/sdp/core/SdpDomain;)Z
+-    move-result v0
 +    invoke-static {v2}, Lcom/android/server/knox/dar/EnterprisePartitionManager;->getInstance(Landroid/content/Context;)Lcom/android/server/knox/dar/EnterprisePartitionManager;
  
--    move-result v0
+-    if-eqz v0, :cond_1
 +    move-result-object v2
  
--    if-eqz v0, :cond_1
+-    const/4 v0, 0x0
 +    invoke-virtual {v2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
  
--    const/4 v0, 0x0
-+    invoke-static {}, Lcom/android/server/knox/dar/EnterprisePartitionManager;->getDualDARLockstate()Z
- 
 -    goto :goto_0
-+    move-result v2
++    invoke-static {}, Lcom/android/server/knox/dar/EnterprisePartitionManager;->getDualDARLockstate()Z
  
 -    :catchall_0
 -    move-exception p0
-+    const-string/jumbo v3, "isInnerLayerLockedState - result : "
++    move-result v2
  
 -    goto :goto_1
-+    const-string v4, "DualDarManagerImpl"
++    const-string/jumbo v3, "isInnerLayerLockedState - result : "
  
 -    :cond_1
 -    const/16 v0, -0x63
-+    invoke-static {v3, v4, v2}, Lcom/android/server/accessibility/AccessibilityManagerService$$ExternalSyntheticOutline0;->m(Ljava/lang/String;Ljava/lang/String;Z)V
++    const-string v4, "DualDarManagerImpl"
  
 -    :goto_0
 -    monitor-exit p1
 -    :try_end_1
 -    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-+    if-eqz v2, :cond_1
++    invoke-static {v3, v4, v2}, Lcom/android/server/accessibility/AccessibilityManagerService$$ExternalSyntheticOutline0;->m(Ljava/lang/String;Ljava/lang/String;Z)V
  
 -    if-nez v0, :cond_2
-+    goto :goto_0
++    if-eqz v2, :cond_1
  
 -    invoke-virtual {p0, v1, p2}, Lcom/android/server/knox/dar/sdp/engine/SdpServiceKeeper;->updatePolicy(Lcom/samsung/android/knox/sdp/core/SdpEngineInfo;Lcom/android/server/knox/dar/sdp/engine/SdpPolicy;)I
++    goto :goto_0
+ 
+-    move-result p0
 +    :cond_1
 +    iget-boolean v2, p0, Lcom/android/server/knox/dar/ddar/core/DualDarDoManagerImpl;->mHasTokenSetForInner:Z
  
--    move-result p0
-+    if-nez v2, :cond_2
- 
 -    return p0
++    if-nez v2, :cond_2
++
 +    goto :goto_1
  
      :cond_2
@@ -11422,11 +11424,9 @@ index 2c50d66b4..a33441302 100644
 +    const-string/jumbo v13, "SHA-384"
  
 -    invoke-virtual {v5, v6}, Landroid/content/Context;->checkCallingOrSelfPermission(Ljava/lang/String;)I
-+    const-string/jumbo v14, "SHA-512"
- 
+-
 -    move-result v5
-+    const-string/jumbo v9, "NONE"
- 
+-
 -    if-eqz v5, :cond_1
 -
 -    new-instance v3, Ljava/lang/StringBuilder;
@@ -13692,6 +13692,8 @@ index 2c50d66b4..a33441302 100644
 -.method public final isResetPasswordTokenActive(I)Z
 -    .locals 4
 -
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->checkSystemPermission()V
+-
 -    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isVirtualLockSupported()Z
 -
 -    move-result v0
@@ -15240,6 +15242,8 @@ index 2c50d66b4..a33441302 100644
 -.method public final resetPasswordWithToken(Ljava/lang/String;[BI)Z
 -    .locals 9
 -
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->checkSystemPermission()V
+-
 -    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isVirtualLockSupported()Z
 -
 -    move-result v0
@@ -16101,6 +16105,8 @@ index 2c50d66b4..a33441302 100644
 -.method public final setResetPasswordToken([BI)Z
 -    .locals 10
 -
+-    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->checkSystemPermission()V
+-
 -    invoke-virtual {p0}, Lcom/android/server/knox/dar/DarManagerService;->isVirtualLockSupported()Z
 -
 -    move-result v0
@@ -16134,9 +16140,11 @@ index 2c50d66b4..a33441302 100644
 -    invoke-static {p2}, Lcom/samsung/android/knox/dar/VirtualLockUtils;->isVirtualUserId(I)Z
 -
 -    move-result v4
--
++    const-string/jumbo v14, "SHA-512"
+ 
 -    const/4 v5, 0x1
--
++    const-string/jumbo v9, "NONE"
+ 
 -    if-nez v4, :cond_0
 +    const-string/jumbo v10, "SHA-1"
  
@@ -37091,7 +37099,7 @@ index 308cde4dc..000000000
 -    .end packed-switch
 -.end method
 diff --git a/smali/com/android/server/locksettings/LockSettingsService.smali b/smali/com/android/server/locksettings/LockSettingsService.smali
-index 8eca6b243..d40038499 100644
+index 0379754ca..92d10eb6e 100644
 --- a/smali/com/android/server/locksettings/LockSettingsService.smali
 +++ b/smali/com/android/server/locksettings/LockSettingsService.smali
 @@ -38,7 +38,7 @@
@@ -52129,7 +52137,7 @@ index 44822ca68..3f97e47c1 100644
 -    throw p0
 -.end method
 diff --git a/smali_classes2/com/android/server/pm/ComputerEngine.smali b/smali_classes2/com/android/server/pm/ComputerEngine.smali
-index 2c141f297..dffa32888 100644
+index ede79b612..f4632bad6 100644
 --- a/smali_classes2/com/android/server/pm/ComputerEngine.smali
 +++ b/smali_classes2/com/android/server/pm/ComputerEngine.smali
 @@ -17265,21 +17265,21 @@
@@ -52159,10 +52167,10 @@ index 2c141f297..dffa32888 100644
      invoke-virtual {p4, v1}, Ljava/util/Optional;->orElseGet(Ljava/util/function/Supplier;)Ljava/lang/Object;
  
 diff --git a/smali_classes2/com/android/server/pm/PackageManagerService$IPackageManagerImpl.smali b/smali_classes2/com/android/server/pm/PackageManagerService$IPackageManagerImpl.smali
-index 4b26f9b0e..6558cfb47 100644
+index 5f255a2ea..c3b7737c8 100644
 --- a/smali_classes2/com/android/server/pm/PackageManagerService$IPackageManagerImpl.smali
 +++ b/smali_classes2/com/android/server/pm/PackageManagerService$IPackageManagerImpl.smali
-@@ -1880,95 +1880,11 @@
+@@ -1882,95 +1882,11 @@
  .end method
  
  .method public final createEncAppData(Ljava/lang/String;I)Z
@@ -52260,7 +52268,7 @@ index 4b26f9b0e..6558cfb47 100644
  .end method
  
  .method public final currentToCanonicalPackageNames([Ljava/lang/String;)[Ljava/lang/String;
-@@ -14621,88 +14537,17 @@
+@@ -14623,88 +14539,17 @@
  .method public final removeEncPkgDir(ILjava/lang/String;)Z
      .locals 0
  
@@ -52353,7 +52361,7 @@ index 4b26f9b0e..6558cfb47 100644
  
  .method public final removePermission(Ljava/lang/String;)V
 diff --git a/smali_classes2/com/android/server/pm/PackageManagerService.smali b/smali_classes2/com/android/server/pm/PackageManagerService.smali
-index e3a67ea21..42aaad74e 100644
+index 7ed1b04e7..247c91a91 100644
 --- a/smali_classes2/com/android/server/pm/PackageManagerService.smali
 +++ b/smali_classes2/com/android/server/pm/PackageManagerService.smali
 @@ -17047,79 +17047,6 @@
@@ -52437,7 +52445,7 @@ index e3a67ea21..42aaad74e 100644
      .locals 13
  
 diff --git a/smali_classes2/com/android/server/pm/PersonaManagerService$2.smali b/smali_classes2/com/android/server/pm/PersonaManagerService$2.smali
-index dc955d3b4..aed628364 100644
+index 73bf47a02..7d7cdedfa 100644
 --- a/smali_classes2/com/android/server/pm/PersonaManagerService$2.smali
 +++ b/smali_classes2/com/android/server/pm/PersonaManagerService$2.smali
 @@ -2554,14 +2554,14 @@
@@ -52459,7 +52467,7 @@ index dc955d3b4..aed628364 100644
      .packed-switch 0x0
          :pswitch_4
 diff --git a/smali_classes2/com/android/server/pm/PersonaManagerService.smali b/smali_classes2/com/android/server/pm/PersonaManagerService.smali
-index 98596ecb0..a48038495 100644
+index cb05e9bfb..c6cd8e20d 100644
 --- a/smali_classes2/com/android/server/pm/PersonaManagerService.smali
 +++ b/smali_classes2/com/android/server/pm/PersonaManagerService.smali
 @@ -5097,43 +5097,41 @@
@@ -54487,7 +54495,7 @@ index f8ba45c5d..795ca4924 100644
      const/16 p0, 0x27b0
  
 diff --git a/smali_classes2/com/android/server/pm/UserManagerService.smali b/smali_classes2/com/android/server/pm/UserManagerService.smali
-index 0de93d74c..a92241e28 100644
+index 7d89dd64c..999613d9e 100644
 --- a/smali_classes2/com/android/server/pm/UserManagerService.smali
 +++ b/smali_classes2/com/android/server/pm/UserManagerService.smali
 @@ -66,7 +66,7 @@
@@ -57629,5 +57637,5 @@ index e0bfef375..12b13c854 100644
      .catchall {:try_start_4 .. :try_end_4} :catchall_0
  
 -- 
-2.51.1
+2.55.0
 
