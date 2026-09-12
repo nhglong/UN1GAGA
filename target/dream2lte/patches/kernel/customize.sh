@@ -7,4 +7,4 @@ for i in "dt" "dtbo" "init_boot" "vendor_boot"; do
 done
 
 LOG "- Replacing boot.img"
-EVAL "cp \"$MODPATH/boot.img\" \"$WORK_DIR/kernel/boot.img\""
+EVAL "cp \"$MODPATH/kernel_20261014-dream2lte.img\" \"$WORK_DIR/kernel/boot.img\""
