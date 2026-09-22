@@ -1,0 +1,140 @@
+From 153c636c7edf0efe02382b5018574d91eecaa944 Mon Sep 17 00:00:00 2001
+From: nhglong <its.nhglong@gmail.com>
+Date: Tue, 22 Sep 2026 23:26:09 +0700
+Subject: [PATCH] Add rear fingerprint sensor support
+
+---
+ .../biometrics/app/setting/Utils$Config.smali | 62 +++++++++++++++++++++++++++++++---------------
+ 1 file changed, 42 insertions(+), 20 deletions(-)
+
+diff --git a/smali/com/samsung/android/biometrics/app/setting/Utils$Config.smali b/smali/com/samsung/android/biometrics/app/setting/Utils$Config.smali
+index a61c6f93..fdb3b923 100644
+--- a/smali/com/samsung/android/biometrics/app/setting/Utils$Config.smali
++++ b/smali/com/samsung/android/biometrics/app/setting/Utils$Config.smali
+@@ -161,15 +161,37 @@
+ 
+     sput-boolean v7, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_SENSOR_IS_OPTICAL:Z
+ 
+-    sput-boolean v2, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_SENSOR_IS_SIDE:Z
++    const-string v7, "powerkey"
+ 
+-    const-string v7, "rear"
++    invoke-virtual {v4, v7}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
++
++    move-result v7
++
++    if-nez v7, :cond_2
++
++    const-string v7, "side"
+ 
+     invoke-virtual {v4, v7}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+ 
+-    move-result v4
++    move-result v7
++
++    if-eqz v7, :cond_1
++
++    goto :goto_1
++
++    :cond_1
++    move v7, v3
++
++    goto :goto_2
++
++    :cond_2
++    :goto_1
++    move v7, v2
++
++    :goto_2
++    sput-boolean v7, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_SENSOR_IS_SIDE:Z
+ 
+-    sput-boolean v4, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_SENSOR_IS_REAR:Z
++    sput-boolean v2, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_SENSOR_IS_REAR:Z
+ 
+     invoke-static {}, Lcom/samsung/android/feature/SemFloatingFeature;->getInstance()Lcom/samsung/android/feature/SemFloatingFeature;
+ 
+@@ -181,16 +203,16 @@
+ 
+     move-result v4
+ 
+-    if-lt v4, v2, :cond_1
++    if-lt v4, v2, :cond_3
+ 
+     move v4, v2
+ 
+-    goto :goto_1
++    goto :goto_3
+ 
+-    :cond_1
++    :cond_3
+     move v4, v3
+ 
+-    :goto_1
++    :goto_3
+     sput-boolean v4, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_HW_LIGHT_SOURCE:Z
+ 
+     sput-boolean v1, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_TSP_BLOCK:Z
+@@ -207,16 +229,16 @@
+ 
+     move-result v1
+ 
+-    if-ne v1, v2, :cond_2
++    if-ne v1, v2, :cond_4
+ 
+     move v1, v2
+ 
+-    goto :goto_2
++    goto :goto_4
+ 
+-    :cond_2
++    :cond_4
+     move v1, v3
+ 
+-    :goto_2
++    :goto_4
+     sput-boolean v1, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FP_FEATURE_LOCAL_HBM:Z
+ 
+     sput-boolean v0, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FEATURE_FINGERPRINT_JDM_HAL:Z
+@@ -301,16 +323,16 @@
+ 
+     const/4 v1, 0x2
+ 
+-    if-ne v0, v1, :cond_3
++    if-ne v0, v1, :cond_5
+ 
+     move v0, v2
+ 
+-    goto :goto_3
++    goto :goto_5
+ 
+-    :cond_3
++    :cond_5
+     move v0, v3
+ 
+-    :goto_3
++    :goto_5
+     sput-boolean v0, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FEATURE_SUPPORT_DISPLAY_SEAMLESS_MODE:Z
+ 
+     invoke-static {}, Lcom/samsung/android/feature/SemFloatingFeature;->getInstance()Lcom/samsung/android/feature/SemFloatingFeature;
+@@ -349,14 +371,14 @@
+ 
+     move-result v0
+ 
+-    if-eqz v0, :cond_4
++    if-eqz v0, :cond_6
+ 
+-    goto :goto_4
++    goto :goto_6
+ 
+-    :cond_4
++    :cond_6
+     move v2, v3
+ 
+-    :goto_4
++    :goto_6
+     sput-boolean v2, Lcom/samsung/android/biometrics/app/setting/Utils$Config;->FEATURE_SUPPORT_DRM_PROPERTY_FOR_BRIGHTNESS:Z
+ 
+     invoke-static {}, Lcom/samsung/android/feature/SemFloatingFeature;->getInstance()Lcom/samsung/android/feature/SemFloatingFeature;
+-- 
+2.51.0
+

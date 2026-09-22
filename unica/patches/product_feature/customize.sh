@@ -352,15 +352,25 @@ if [[ "$SOURCE_FINGERPRINT_CONFIG_SENSOR" != "$TARGET_FINGERPRINT_CONFIG_SENSOR"
                         "semGetTransitionEffectValue()I" \
                         "0"
                 fi
-            elif [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "side" ]]; then
+            elif [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "side" ]] || \
+                [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "rear" ]] ; then
                 SOURCE_FINGERPRINT_CONFIG_SENSOR="google_touch_side,navi=1"
 
                 ADD_TO_WORK_DIR "b4qxxx" "system" "system/priv-app/BiometricSetting/BiometricSetting.apk" 0 0 644 "u:object_r:system_file:s0"
                 APPLY_PATCH "system" "system/priv-app/BiometricSetting/BiometricSetting.apk" \
                     "$MODPATH/fingerprint/side_fp/BiometricSetting.apk/0001-Add-FEATURE_FINGERPRINT_JDM_HAL-support.patch"
+                if [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "rear" ]]; then
+                    APPLY_PATCH "system" "system/priv-app/BiometricSetting/BiometricSetting.apk" \
+                        "$MODPATH/fingerprint/rear/BiometricSetting.apk/0001-Add-rear-fingerprint-sensor-support.patch"
+                fi
 
-                APPLY_PATCH "system" "system/framework/framework.jar" \
-                    "$MODPATH/fingerprint/side_fp/framework.jar/0001-Add-side-fingerprint-sensor-support.patch"
+                if [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "side" ]]; then
+                    APPLY_PATCH "system" "system/framework/framework.jar" \
+                        "$MODPATH/fingerprint/side_fp/framework.jar/0001-Add-side-fingerprint-sensor-support.patch"
+                elif [[ "$(GET_FINGERPRINT_SENSOR_TYPE "$TARGET_FINGERPRINT_CONFIG_SENSOR")" == "rear" ]]; then
+                    APPLY_PATCH "system" "system/framework/framework.jar" \
+                        "$MODPATH/fingerprint/side_fp/framework.jar/0001-Add-rear-fingerprint-sensor-support.patch"
+                fi
                 APPLY_PATCH "system" "system/framework/services.jar" \
                     "$MODPATH/fingerprint/side_fp/services.jar/0001-Add-side-fingerprint-sensor-support.patch"
                 EVAL "sed -i \"/implements/i .implements Lcom\/android\/server\/biometrics\/sensors\/fingerprint\/SemFpHalLifecycleListener;\" \"$APKTOOL_DIR/system/framework/services.jar/smali/com/android/server/biometrics/sensors/fingerprint/SemFingerprintServiceExtImpl.smali\""
