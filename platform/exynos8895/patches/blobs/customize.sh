@@ -1,8 +1,10 @@
 SKIPUNZIP=1
 
 LOG_STEP_IN "- Replacing SoundBooster"
-DELETE_FROM_WORK_DIR "system" "system/lib/lib_SoundBooster_ver1100.so"
-DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SoundBooster_ver1100.so"
+#DELETE_FROM_WORK_DIR "system" "system/lib/lib_SoundBooster_ver1100.so"
+#DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SoundBooster_ver1100.so"
+EVAL "mv -f \"$WORK_DIR/system/system/lib/lib_SoundBooster_ver1100.so\" \"$WORK_DIR/system/system/lib/lib_SoundBooster_ver1050.so\""
+EVAL "mv -f \"$WORK_DIR/system/system/lib64/lib_SoundBooster_ver1100.so\" \"$WORK_DIR/system/system/lib64/lib_SoundBooster_ver1050.so\""
 ADD_TO_WORK_DIR "$MODPATH" "system" "system/lib/lib_SoundBooster_ver1000.so" 0 0 644 "u:object_r:system_lib_file:s0"
 ADD_TO_WORK_DIR "$MODPATH" "system" "system/lib/libsamsungSoundbooster_plus_legacy.so" 0 0 644 "u:object_r:system_lib_file:s0"
 ADD_TO_WORK_DIR "$MODPATH" "system" "system/lib64/lib_SoundBooster_ver1000.so" 0 0 644 "u:object_r:system_lib_file:s0"
