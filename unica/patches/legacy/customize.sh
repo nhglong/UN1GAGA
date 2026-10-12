@@ -128,24 +128,28 @@ BACKPORT_SF_PROPS
 # - Add back SECOND_PICTURE_CONFIG camera feature support
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "34" ]; then
     PATCHED=true
-    APPLY_PATCH "system" "system/framework/framework.jar" \
-        "$MODPATH/camera/framework.jar/0001-Backport-legacy-CameraMetadataNative-code.patch"
-    if $TARGET_CAMERA_SUPPORT_MASS_APP_FLAVOR; then
-        APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
-            "$MODPATH/camera_mass/SamsungCamera.apk/0001-Backport-legacy-Scene-detection-code.patch"
-    else
-        APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
-            "$MODPATH/camera/SamsungCamera.apk/0001-Backport-legacy-Scene-detection-code.patch"
+    if [ -f "$WORK_DIR/system/system/priv-app/SamsungCamera/SamsungCamera.apk" ]; then
+        APPLY_PATCH "system" "system/framework/framework.jar" \
+            "$MODPATH/camera/framework.jar/0001-Backport-legacy-CameraMetadataNative-code.patch"
+        if $TARGET_CAMERA_SUPPORT_MASS_APP_FLAVOR; then
+            APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
+                "$MODPATH/camera_mass/SamsungCamera.apk/0001-Backport-legacy-Scene-detection-code.patch"
+        else
+            APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
+                "$MODPATH/camera/SamsungCamera.apk/0001-Backport-legacy-Scene-detection-code.patch"
+        fi
     fi
 fi
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     PATCHED=true
-    if $TARGET_CAMERA_SUPPORT_MASS_APP_FLAVOR; then
-        APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
-            "$MODPATH/camera_mass/SamsungCamera.apk/0001-Backport-CONTROL_AVAILABLE_FEATURE_SECOND_PICTURE_CO.patch"
-    else
-        APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
-            "$MODPATH/camera/SamsungCamera.apk/0001-Backport-CONTROL_AVAILABLE_FEATURE_SECOND_PICTURE_CO.patch"
+    if [ -f "$WORK_DIR/system/system/priv-app/SamsungCamera/SamsungCamera.apk" ]; then
+        if $TARGET_CAMERA_SUPPORT_MASS_APP_FLAVOR; then
+            APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
+                "$MODPATH/camera_mass/SamsungCamera.apk/0001-Backport-CONTROL_AVAILABLE_FEATURE_SECOND_PICTURE_CO.patch"
+        else
+            APPLY_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
+                "$MODPATH/camera/SamsungCamera.apk/0001-Backport-CONTROL_AVAILABLE_FEATURE_SECOND_PICTURE_CO.patch"
+        fi
     fi
 fi
 
@@ -460,11 +464,13 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
                 'const v3, 0x7f420888' \
                 'const v3, 0x7f000789'
         fi
-        SMALI_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
-            "smali_classes3/com/samsung/android/sum/core/filter/EncoderFilter.smali" "replace" \
-            'configCodec(Lcom/samsung/android/sum/core/message/Message;)V' \
-            'const v4, 0x7f420888' \
-            'const v4, 0x7f000789'
+        if [ -f "$WORK_DIR/system/system/priv-app/SamsungCamera/SamsungCamera.apk" ]; then
+            SMALI_PATCH "system" "system/priv-app/SamsungCamera/SamsungCamera.apk" \
+                "smali_classes3/com/samsung/android/sum/core/filter/EncoderFilter.smali" "replace" \
+                'configCodec(Lcom/samsung/android/sum/core/message/Message;)V' \
+                'const v4, 0x7f420888' \
+                'const v4, 0x7f000789'
+        fi
         SMALI_PATCH "system" "system/priv-app/vexfwk_service/vexfwk_service.apk" \
             "smali/com/samsung/android/sum/core/filter/EncoderFilter.smali" "replace" \
             'configCodec(Lcom/samsung/android/sum/core/message/Message;)V' \
