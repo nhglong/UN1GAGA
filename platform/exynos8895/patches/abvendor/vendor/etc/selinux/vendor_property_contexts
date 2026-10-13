@@ -208,6 +208,7 @@ ro.vendor.ddk.set.afbc              u:object_r:vendor_default_prop:s0
 ro.vendor.wfdsupport              u:object_r:vendor_default_prop:s0
 ro.vendor.cscsupported  u:object_r:vendor_default_prop:s0
 vendor.sys.mobicoredaemon.enable  u:object_r:vendor_mobicoredaemon_prop:s0
+sys.mobicoredaemon.enable  u:object_r:vendor_mobicoredaemon_prop:s0
 
 # for iwlan
 vendor.charon.                   u:object_r:vendor_ims_prop:s0
